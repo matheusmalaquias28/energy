@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest:*)",
+      "Bash(mv:*)",
+      "Bash(rm:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(node:*)",
+      "WebSearch",
+      "WebFetch(domain:designbybrandin.com)",
+      "WebFetch(domain:wearestokt.com)"
+    ]
+  }
+}
