@@ -2,8 +2,11 @@
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { ArrowUpRight } from "lucide-react";
 import { sectionBodyTitle, sectionTitle } from "@/lib/fonts";
+import { useContactModal } from "@/components/contact/contact-modal-context";
 
 export default function StrategicPartner() {
+  const { openContactModal } = useContactModal();
+
   return (
     <section className="py-28 lg:py-36 px-6 lg:px-16 bg-[#0a0a0a] border-b border-white/5">
       <div className="max-w-[90rem] mx-auto">
@@ -37,10 +40,14 @@ export default function StrategicPartner() {
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
               <div className="flex flex-wrap gap-6">
-                <a href="#contato" className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.15em] text-white border-b border-white/20 pb-1 hover:border-[#FE4101] hover:text-[#FE4101] transition-colors duration-300 cursor-none">
+                <button
+                  type="button"
+                  onClick={openContactModal}
+                  className="group inline-flex cursor-none items-center gap-2 border-b border-white/20 bg-transparent pb-1 text-sm uppercase tracking-[0.15em] text-white transition-colors duration-300 hover:border-[#FE4101] hover:text-[#FE4101]"
+                >
                   Quero ser parceiro
                   <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
+                </button>
                 <a href="#servicos" className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.15em] text-white/40 border-b border-white/10 pb-1 hover:border-white/40 hover:text-white/70 transition-colors duration-300 cursor-none">
                   Ver como funciona
                   <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

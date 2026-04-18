@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -114,13 +115,10 @@ export function HyperplexedTitle({
     <h1
       data-value={value}
       aria-label={value}
-      className={
-        `inline-block cursor-default select-none rounded-[clamp(0.5rem,1.2vw,1.25rem)] ` +
-        `px-[clamp(0.65rem,1.8vw,2rem)] py-[clamp(0.4rem,1vw,1.1rem)] ` +
-        `text-[#FE4101] transition-[color,background-color] duration-[400ms] ease-out ` +
-        `hover:bg-[#FE4101] hover:text-white ` +
-        className
-      }
+      className={cn(
+        "inline-block cursor-default select-none rounded-[clamp(0.5rem,1.2vw,1.25rem)] px-1.5 py-2 text-[#FE4101] transition-[color,background-color] duration-[400ms] ease-out hover:bg-[#FE4101] hover:text-white sm:px-[clamp(0.65rem,1.8vw,2rem)] sm:py-[clamp(0.4rem,1vw,1.1rem)]",
+        className,
+      )}
       onMouseEnter={onPointerEnter}
       onMouseLeave={onPointerLeave}
     >

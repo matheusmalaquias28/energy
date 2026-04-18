@@ -33,28 +33,49 @@ export function GlobeVV() {
     const wrap = wrapRef.current;
     if (!wrap) return;
 
-    // clientWidth é sempre confiável (container tem largura definida pelo grid)
-    const S = wrap.clientWidth;
-
     /* ── Renderer ─────────────────────────────────────────── */
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(S, S);
     renderer.setClearColor(0x000000, 0);
-    Object.assign(renderer.domElement.style, {
-      position: "absolute", inset: "0",
-      width: "100%", height: "100%",
-      cursor: "grab", touchAction: "none",
+    const dom = renderer.domElement;
+    Object.assign(dom.style, {
+      position: "absolute",
+      left: "0",
+      top: "0",
+      cursor: "grab",
+      touchAction: "none",
     });
-    wrap.appendChild(renderer.domElement);
+    wrap.appendChild(dom);
 
-    /* ── Scene / Camera ───────────────────────────────────── */
+    /* ── Scene / Camera — aspect = viewport (w/h); FOV + distância para a esfera caber inteira (sem crop nas bordas) ── */
     const scene  = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100); // square = aspect 1
-    camera.position.z = 2.6;
+    /** FOV um pouco mais largo + câmara mais afastada = margem em relação ao frustum (evita corte lateral/canto). */
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+    camera.position.z = 3.15;
+
+    const resize = () => {
+      const w = Math.max(1, Math.floor(wrap.clientWidth));
+      const h = Math.max(1, Math.floor(wrap.clientHeight));
+      if (w < 2 || h < 2) return;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h, true);
+      dom.style.display = "block";
+      dom.style.boxSizing = "border-box";
+      dom.style.position = "absolute";
+      dom.style.left = "0";
+      dom.style.top = "0";
+      dom.style.width = `${w}px`;
+      dom.style.height = `${h}px`;
+    };
+    resize();
+    const ro = new ResizeObserver(() => resize());
+    ro.observe(wrap);
 
     /* ── Globe group ──────────────────────────────────────── */
     const globe = new THREE.Group();
+    /** Ligeiramente <1 para margem de segurança dentro do frustum (evita corte nas extremidades do viewport). */
+    globe.scale.setScalar(0.96);
     // Initial rotation so Brazil faces front
     // lon=-90 faces camera at ry=0; offset to lon≈-40
     globe.rotation.y = 0.87;
@@ -145,7 +166,7 @@ export function GlobeVV() {
 
     /* ── Vila Velha marker ────────────────────────────────── */
     const mvv  = latLonToVec3(VILA_VELHA.lat, VILA_VELHA.lon, 1.015);
-    const pink = 0xfe4101;
+    const pink = 0xff1884;
 
     // Core dot
     const dot = new THREE.Mesh(
@@ -194,10 +215,8 @@ export function GlobeVV() {
     };
     const onMove = (e: PointerEvent) => {
       if (!isDragging.current) return;
+      /** Só rotação em Y — inclinar em X achata o disco visto de frente. */
       globe.rotation.y += (e.clientX - lastX.current) * 0.008;
-      globe.rotation.x  = Math.max(-0.4, Math.min(0.4,
-        globe.rotation.x + (e.clientY - lastY.current) * 0.005,
-      ));
       lastX.current = e.clientX;
       lastY.current = e.clientY;
     };
@@ -209,37 +228,28 @@ export function GlobeVV() {
     el.addEventListener("pointerleave", onUp);
 
     return () => {
+      ro.disconnect();
       cancelAnimationFrame(raf);
       el.removeEventListener("pointerdown", onDown);
       el.removeEventListener("pointermove", onMove);
       el.removeEventListener("pointerup",   onUp);
       el.removeEventListener("pointerleave", onUp);
       renderer.dispose();
-      wrap.removeChild(el);
+      if (wrap.contains(el)) wrap.removeChild(el);
     };
   }, []);
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className="relative h-full min-h-[280px] w-full overflow-hidden">
       {/*
-        Square wrapper — its CENTER sits on the TOP edge of the card.
-        overflow-hidden on parent clips the top half → shows only bottom hemisphere.
+        Margem interior: o pai usa rounded + overflow-hidden; sem isto o desenho encostava ao clip e parecia “cortado” nas laterais.
+        Canvas continua a preencher só a área útil (aspect correcto no resize).
       */}
-      <div
-        ref={wrapRef}
-        className="absolute"
-        style={{
-          width: "min(75%, 380px)",
-          aspectRatio: "1 / 1",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      />
+      <div ref={wrapRef} className="absolute inset-2.5 sm:inset-3 md:inset-4" />
 
       {/* Label */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 pointer-events-none flex items-center gap-2">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#FE4101] shadow-[0_0_8px_#FE4101]" />
+      <div className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 pointer-events-none">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#FF1884] shadow-[0_0_8px_#FF1884]" />
         <span className="text-[10px] uppercase tracking-[0.22em] text-white/30">
           Vila Velha · ES · Brasil
         </span>

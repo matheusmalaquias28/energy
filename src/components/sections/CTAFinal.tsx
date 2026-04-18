@@ -3,8 +3,11 @@ import { motion } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { ArrowUpRight } from "lucide-react";
 import { sectionTitle } from "@/lib/fonts";
+import { useContactModal } from "@/components/contact/contact-modal-context";
 
 export default function CTAFinal() {
+  const { openContactModal } = useContactModal();
+
   return (
     <section id="contato" className="py-28 lg:py-40 px-6 lg:px-16 bg-[#111111]">
       <div className="max-w-[90rem] mx-auto">
@@ -34,14 +37,15 @@ export default function CTAFinal() {
 
         <ScrollReveal delay={0.15}>
           <div className="flex flex-col sm:flex-row gap-6 items-start">
-            <motion.a
-              href="mailto:contato@energy.studio"
-              className="group inline-flex items-center gap-3 text-base uppercase tracking-[0.15em] text-white border-b border-white/20 pb-2 hover:border-[#FE4101] hover:text-[#FE4101] transition-colors duration-300 cursor-none"
+            <motion.button
+              type="button"
+              onClick={openContactModal}
+              className="group inline-flex cursor-none items-center gap-3 border-b border-white/20 bg-transparent pb-2 text-base uppercase tracking-[0.15em] text-white transition-colors duration-300 hover:border-[#FE4101] hover:text-[#FE4101]"
               whileHover={{}}
             >
               Solicitar proposta gratuita
               <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-            </motion.a>
+            </motion.button>
             <a
               href="#projetos"
               className="group inline-flex items-center gap-3 text-base uppercase tracking-[0.15em] text-white/30 border-b border-white/10 pb-2 hover:border-white/40 hover:text-white/60 transition-colors duration-300 cursor-none"

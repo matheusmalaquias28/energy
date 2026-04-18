@@ -1,4 +1,5 @@
 import BrandLogo from "@/components/layout/BrandLogo";
+import { FooterContactLink } from "@/components/contact/FooterContactLink";
 
 export default function Footer() {
   return (
@@ -30,7 +31,7 @@ export default function Footer() {
               <ul className="space-y-3 text-sm text-white/40">
                 <li><a href="#" className="hover:text-white transition-colors cursor-none link-hover">Sobre</a></li>
                 <li><a href="#projetos" className="hover:text-white transition-colors cursor-none link-hover">Projetos</a></li>
-                <li><a href="#contato" className="hover:text-white transition-colors cursor-none link-hover">Contato</a></li>
+                <li><FooterContactLink /></li>
               </ul>
             </div>
             <div>

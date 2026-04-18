@@ -6,6 +6,7 @@ import BrandLogo from "@/components/layout/BrandLogo";
 import NavMenuInflatedLogo from "@/components/layout/NavMenuInflatedLogo";
 import { ScrambleText } from "@/components/effects/ScrambleText";
 import { urbanist } from "@/lib/fonts";
+import { useContactModal } from "@/components/contact/contact-modal-context";
 
 const links = [
   { label: "Serviços", href: "#servicos" },
@@ -17,6 +18,7 @@ const links = [
 const linkTextClass = `${urbanist.className} text-[clamp(2.25rem,6vw,4.5rem)] font-bold uppercase tracking-[-0.04em]`;
 
 export default function Navbar() {
+  const { openContactModal } = useContactModal();
   const [open, setOpen] = useState(false);
   const [scrollPct, setScrollPct] = useState(0);
   const frameRef = useRef<number>(0);
@@ -163,7 +165,11 @@ export default function Navbar() {
               >
                 <a
                   href="#contato"
-                  onClick={close}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    close();
+                    openContactModal();
+                  }}
                   className="group inline-flex items-center gap-3 rounded-full border-2 border-black bg-black px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#FE4101] shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-[transform,background-color,color,box-shadow] duration-300 hover:bg-transparent hover:text-black hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] md:px-9 md:py-4 md:text-xs"
                 >
                   <ScrambleText

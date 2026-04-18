@@ -10,10 +10,12 @@ function HoverVideoTile({
   title,
   videoSrc,
   hideOverlay = false,
+  blackInsetVideo = false,
 }: {
   title: string;
   videoSrc?: string;
   hideOverlay?: boolean;
+  blackInsetVideo?: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [intrinsicAspect, setIntrinsicAspect] = useState<string | null>(null);
@@ -38,24 +40,29 @@ function HoverVideoTile({
     e: React.SyntheticEvent<HTMLVideoElement>,
   ) => {
     const v = e.currentTarget;
-    if (!hideOverlay || !v.videoWidth || !v.videoHeight) return;
+    if (!hideOverlay || blackInsetVideo || !v.videoWidth || !v.videoHeight) return;
     setIntrinsicAspect(`${v.videoWidth} / ${v.videoHeight}`);
   };
 
   const containerStyle: CSSProperties | undefined =
-    hideOverlay && intrinsicAspect
+    hideOverlay && intrinsicAspect && !blackInsetVideo
       ? { aspectRatio: intrinsicAspect }
       : undefined;
 
   const containerClass =
-    "relative w-full cursor-pointer overflow-hidden rounded-2xl bg-neutral-300 " +
-    (hideOverlay && intrinsicAspect ? "" : "aspect-square ") +
-    (!hideOverlay ? "group" : "");
+    "relative w-full cursor-pointer overflow-hidden rounded-2xl " +
+    (blackInsetVideo
+      ? "aspect-square bg-black "
+      : "bg-neutral-300 " +
+        (hideOverlay && intrinsicAspect ? "" : "aspect-square ") +
+        (!hideOverlay ? "group " : ""));
 
   const fitClass =
-    hideOverlay && intrinsicAspect
-      ? "object-contain"
-      : "object-cover group-hover:scale-[1.03]";
+    blackInsetVideo
+      ? "h-auto max-h-[70%] w-auto max-w-[70%] object-contain"
+      : hideOverlay && intrinsicAspect
+        ? "object-contain"
+        : "object-cover group-hover:scale-[1.03]";
 
   return (
     <div
@@ -67,16 +74,31 @@ function HoverVideoTile({
       onMouseLeave={stop}
     >
       {hasVideo ? (
-        <video
-          ref={videoRef}
-          src={videoSrc}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          onLoadedMetadata={handleLoadedMetadata}
-          className={`absolute inset-0 h-full w-full opacity-100 transition-transform duration-500 ease-out ${fitClass}`}
-        />
+        blackInsetVideo ? (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <video
+              ref={videoRef}
+              src={videoSrc}
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              onLoadedMetadata={handleLoadedMetadata}
+              className={`opacity-100 transition-transform duration-500 ease-out ${fitClass}`}
+            />
+          </div>
+        ) : (
+          <video
+            ref={videoRef}
+            src={videoSrc}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            onLoadedMetadata={handleLoadedMetadata}
+            className={`absolute inset-0 h-full w-full opacity-100 transition-transform duration-500 ease-out ${fitClass}`}
+          />
+        )
       ) : (
         <div
           className="absolute inset-0 bg-gradient-to-br from-neutral-200 via-neutral-300 to-neutral-400"
@@ -160,6 +182,7 @@ export default function ExpertiseVideoStrip() {
                   title={item.title}
                   videoSrc={item.videoSrc}
                   hideOverlay={item.hideOverlay}
+                  blackInsetVideo={item.blackInsetVideo}
                 />
               ))}
             </div>

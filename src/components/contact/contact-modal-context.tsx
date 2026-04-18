@@ -1,0 +1,46 @@
+"use client";
+
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
+import { ContactModal } from "./ContactModal";
+
+type ContactModalContextValue = {
+  openContactModal: () => void;
+  closeContactModal: () => void;
+  open: boolean;
+};
+
+const ContactModalContext = createContext<ContactModalContextValue | null>(null);
+
+export function ContactModalProvider({ children }: { children: ReactNode }) {
+  const [open, setOpen] = useState(false);
+
+  const openContactModal = useCallback(() => setOpen(true), []);
+  const closeContactModal = useCallback(() => setOpen(false), []);
+
+  const value = useMemo(
+    () => ({ openContactModal, closeContactModal, open }),
+    [openContactModal, closeContactModal, open],
+  );
+
+  return (
+    <ContactModalContext.Provider value={value}>
+      {children}
+      <ContactModal open={open} onClose={closeContactModal} />
+    </ContactModalContext.Provider>
+  );
+}
+
+export function useContactModal() {
+  const ctx = useContext(ContactModalContext);
+  if (!ctx) {
+    throw new Error("useContactModal must be used within ContactModalProvider");
+  }
+  return ctx;
+}

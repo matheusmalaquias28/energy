@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 
 const row1 = [
-  "Brauer Advocacia", "Innova Tech", "Casa Bella", "Atlas Construtora",
+  "Aamove", "Innova Tech", "Casa Bella", "Atlas Construtora",
   "Nexus Group", "Viva Saúde", "Torque Studio", "Meridian Capital",
 ];
 

@@ -7,22 +7,26 @@ export type ExpertiseVideoItem = {
   videoSrc?: string;
   /** Sem degradê escuro sobre o vídeo */
   hideOverlay?: boolean;
+  /** Fundo preto e vídeo central ~30% menor que o contentor */
+  blackInsetVideo?: boolean;
 };
 
 /** Vídeos de exemplo (substituir por assets do projeto) */
 export const EXPERTISE_VIDEO_ITEMS: ExpertiseVideoItem[] = [
   {
-    title: "Branding & identidade",
-    videoSrc: "/videos/bomb.mp4",
+    title: "Sites Institucionais",
+    videoSrc: "/videos/robot2.mp4",
     hideOverlay: true,
+    blackInsetVideo: true,
   },
   {
     title: "Web design & desenvolvimento",
     videoSrc: "/videos/hand-energy.mp4",
     hideOverlay: true,
+    blackInsetVideo: true,
   },
   {
-    title: "Motion & sistemas",
+    title: "Ecommerces",
     videoSrc:
       "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
   },

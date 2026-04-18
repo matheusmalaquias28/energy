@@ -4,6 +4,7 @@ import { ArrowDownRight } from "lucide-react";
 import { GLSLHills } from "@/components/ui/glsl-hills";
 import { anton, manrope } from "@/lib/fonts";
 import { HyperplexedTitle } from "@/components/effects/HyperplexedTitle";
+import { useContactModal } from "@/components/contact/contact-modal-context";
 
 const LINE_DELAY = 160; // ms between lines
 
@@ -17,6 +18,7 @@ const heroTitleLines = [
 const ANTON_SCRAMBLE_MOUNT_MS = Math.round((0.15 + 1 * (LINE_DELAY / 1000) + 0.65) * 1000);
 
 export default function Hero() {
+  const { openContactModal } = useContactModal();
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#0a0a0a]">
@@ -42,14 +44,15 @@ export default function Hero() {
         </motion.div>
 
         {/* Title */}
-        <div className="mx-auto w-full max-w-[90rem]">
+        <div className="mx-auto w-full max-w-[90rem] space-y-1 sm:space-y-1.5 md:space-y-2">
           {heroTitleLines.map((line, i) => {
             const fontClass = line.font === "manrope" ? manrope.className : anton.className;
             const weightClass = line.font === "manrope" ? "font-bold" : "";
+            /** Uma linha por bloco (3 linhas no total); calc usa a largura útil para maximizar o tamanho sem quebra. */
             const sizeClass =
               line.font === "manrope"
-                ? "text-[clamp(2.7rem,5vw,4.4rem)] leading-[1.05]"
-                : "text-[clamp(3.35rem,9.2vw,10.75rem)] leading-[0.86]";
+                ? "whitespace-nowrap leading-[1.04] text-[clamp(1.45rem,calc((100vw-3.5rem)/10.25),4.55rem)]"
+                : "whitespace-nowrap leading-[0.88] text-[clamp(2.15rem,calc((100vw-3.5rem)/8.85),11rem)]";
             return (
               <motion.div
                 key={line.text}
@@ -72,7 +75,7 @@ export default function Hero() {
                   <HyperplexedTitle
                     value={line.text}
                     mountDelayMs={ANTON_SCRAMBLE_MOUNT_MS}
-                    className={`${fontClass} ${weightClass} uppercase tracking-tight ${sizeClass}`}
+                    className={`${fontClass} ${weightClass} uppercase tracking-tight ${sizeClass} max-sm:px-0.5 max-sm:py-1`}
                   />
                 )}
               </motion.div>
@@ -107,8 +110,9 @@ export default function Hero() {
               />
             </motion.a>
 
-            <motion.a
-              href="#contato"
+            <motion.button
+              type="button"
+              onClick={openContactModal}
               whileHover={{ y: -3, transition: { duration: 0.22, ease: [0.25, 1, 0.5, 1] } }}
               whileTap={{ scale: 0.97 }}
               className="group inline-flex cursor-none items-center justify-center gap-2 rounded-full border border-white/12 bg-transparent px-8 py-3.5 text-sm uppercase tracking-[0.15em] text-white/55 shadow-none transition-[color,background-color,border-color,box-shadow] duration-300 hover:border-white/35 hover:bg-white/[0.06] hover:text-white hover:shadow-[0_8px_28px_rgba(255,255,255,0.06)]"
@@ -119,7 +123,7 @@ export default function Hero() {
                 className="transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:translate-y-1"
                 strokeWidth={2}
               />
-            </motion.a>
+            </motion.button>
           </div>
         </motion.div>
 

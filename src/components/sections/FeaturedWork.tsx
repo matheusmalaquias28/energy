@@ -6,6 +6,7 @@ import type { FeaturedProject } from "@/data/featured-projects";
 import { FEATURED_PROJECTS } from "@/data/featured-projects";
 import { ArrowUpRight } from "lucide-react";
 import { sectionTitle } from "@/lib/fonts";
+import { useContactModal } from "@/components/contact/contact-modal-context";
 
 function LastRowProjectSlot({
   project,
@@ -30,6 +31,7 @@ function LastRowProjectSlot({
 }
 
 export default function FeaturedWork() {
+  const { openContactModal } = useContactModal();
   const projects = FEATURED_PROJECTS;
   /** Tudo após os dois destaques em container grande (largura total) */
   const restAfterFirstTwo = projects.slice(2);
@@ -71,16 +73,17 @@ export default function FeaturedWork() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.05}>
-            <a
-              href="#contato"
-              className="group inline-flex items-center gap-2 border-b border-white/15 pb-1 text-[11px] uppercase tracking-[0.18em] text-white/50 transition-colors duration-300 hover:border-[#FE4101]/50 hover:text-white cursor-none"
+            <button
+              type="button"
+              onClick={openContactModal}
+              className="group inline-flex cursor-none items-center gap-2 border-b border-white/15 bg-transparent pb-1 text-[11px] uppercase tracking-[0.18em] text-white/50 transition-colors duration-300 hover:border-[#FE4101]/50 hover:text-white"
             >
               Todos os projetos
               <ArrowUpRight
                 size={14}
                 className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               />
-            </a>
+            </button>
           </ScrollReveal>
         </div>
 

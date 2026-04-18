@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import { ArrowUpRight } from "lucide-react";
 import type { FeaturedProject } from "@/data/featured-projects";
 import { sectionDisplay } from "@/lib/fonts";
+import { useContactModal } from "@/components/contact/contact-modal-context";
 
 const CURSOR_OFFSET = 18;
 
@@ -28,6 +29,7 @@ export default function ProjectCard({
   priority = false,
   size = "default",
 }: ProjectCardProps) {
+  const { openContactModal } = useContactModal();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hovered, setHovered] = useState(false);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
@@ -87,9 +89,10 @@ export default function ProjectCard({
   return (
     <>
       {popup}
-      <a
-      href="#contato"
-      className={`group relative block ${sizeHeights[size]} w-full cursor-none overflow-hidden rounded-3xl border border-white/[0.08] bg-[#111] transition-[border-color,box-shadow] duration-500 hover:border-white/[0.14] hover:shadow-[0_24px_80px_rgba(0,0,0,0.45)] ${className}`}
+      <button
+      type="button"
+      onClick={openContactModal}
+      className={`group relative block ${sizeHeights[size]} w-full cursor-none overflow-hidden rounded-3xl border border-white/[0.08] bg-[#111] text-left transition-[border-color,box-shadow] duration-500 hover:border-white/[0.14] hover:shadow-[0_24px_80px_rgba(0,0,0,0.45)] ${className}`}
       onMouseEnter={handleEnter}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
@@ -148,7 +151,7 @@ export default function ProjectCard({
           </h3>
         </div>
       </div>
-    </a>
+    </button>
     </>
   );
 }

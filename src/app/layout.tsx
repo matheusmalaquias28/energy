@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CustomCursor from "@/components/ui/CustomCursor";
 import PagePreloader from "@/components/effects/PagePreloader";
+import { ContactModalProvider } from "@/components/contact/contact-modal-context";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -25,11 +26,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={`${spaceGrotesk.variable} bg-[#121212] text-white antialiased overflow-x-hidden`}>
-        <PagePreloader />
-        <CustomCursor />
-        <Navbar />
-        {children}
-        <Footer />
+        <ContactModalProvider>
+          <PagePreloader />
+          <CustomCursor />
+          <Navbar />
+          {children}
+          <Footer />
+        </ContactModalProvider>
       </body>
     </html>
   );
