@@ -8,14 +8,18 @@ const MOBILE_MAX_WIDTH = "(max-width: 767px)";
 const VIDEO_DESKTOP = "/videos/pre-loader-2.mp4";
 const VIDEO_MOBILE = "/videos/pre-loader-3.mp4";
 
+/** Module-level flag — survives re-mounts, resets only on hard refresh. */
+let _homePreloaderComplete = false;
+
 export default function PagePreloader() {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(() => !_homePreloaderComplete);
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
   const ended = useRef(false);
 
   const dismiss = () => {
     if (ended.current) return;
     ended.current = true;
+    _homePreloaderComplete = true;
     setShow(false);
   };
 
