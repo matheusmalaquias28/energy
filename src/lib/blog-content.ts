@@ -3,6 +3,14 @@ import type React from "react";
 type MDXModule = { default: React.ComponentType };
 
 export const blogContent: Record<string, () => Promise<MDXModule>> = {
+  "criacao-de-sites-vila-velha": () =>
+    import("@/content/blog/criacao-de-sites-vila-velha.mdx"),
+  "criacao-de-sites-vitoria-es": () =>
+    import("@/content/blog/criacao-de-sites-vitoria-es.mdx"),
+  "criacao-de-sites-serra-es": () =>
+    import("@/content/blog/criacao-de-sites-serra-es.mdx"),
+  "criacao-de-sites-campos-do-jordao": () =>
+    import("@/content/blog/criacao-de-sites-campos-do-jordao.mdx"),
   "quanto-custa-criar-um-site": () =>
     import("@/content/blog/quanto-custa-criar-um-site.mdx"),
   "o-que-e-landing-page": () =>

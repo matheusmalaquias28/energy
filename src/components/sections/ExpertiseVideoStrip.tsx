@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { EXPERTISE_VIDEO_ITEMS } from "@/data/expertise-videos";
 import { sectionTitle } from "@/lib/fonts";
@@ -11,16 +11,53 @@ function HoverVideoTile({
   videoSrc,
   hideOverlay = false,
   blackInsetVideo = false,
+  fullBleed = false,
 }: {
   title: string;
   videoSrc?: string;
   hideOverlay?: boolean;
   blackInsetVideo?: boolean;
+  fullBleed?: boolean;
 }) {
+  const tileRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [intrinsicAspect, setIntrinsicAspect] = useState<string | null>(null);
 
   const hasVideo = Boolean(videoSrc?.trim());
+
+  useEffect(() => {
+    const root = tileRef.current;
+    const v = videoRef.current;
+    if (!root || !v || !hasVideo) return;
+
+    let observer: IntersectionObserver | null = null;
+
+    const bindMobileAutoplay = () => {
+      observer?.disconnect();
+      observer = null;
+      if (!window.matchMedia("(max-width: 767px)").matches) return;
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry?.isIntersecting) {
+            void v.play().catch(() => {});
+          } else {
+            v.pause();
+            v.currentTime = 0;
+          }
+        },
+        { threshold: 0.3, rootMargin: "0px 0px -5% 0px" },
+      );
+      observer.observe(root);
+    };
+
+    bindMobileAutoplay();
+    const mq = window.matchMedia("(max-width: 767px)");
+    mq.addEventListener("change", bindMobileAutoplay);
+    return () => {
+      mq.removeEventListener("change", bindMobileAutoplay);
+      observer?.disconnect();
+    };
+  }, [hasVideo]);
 
   const play = () => {
     const v = videoRef.current;
@@ -40,12 +77,12 @@ function HoverVideoTile({
     e: React.SyntheticEvent<HTMLVideoElement>,
   ) => {
     const v = e.currentTarget;
-    if (!hideOverlay || blackInsetVideo || !v.videoWidth || !v.videoHeight) return;
+    if (!hideOverlay || blackInsetVideo || fullBleed || !v.videoWidth || !v.videoHeight) return;
     setIntrinsicAspect(`${v.videoWidth} / ${v.videoHeight}`);
   };
 
   const containerStyle: CSSProperties | undefined =
-    hideOverlay && intrinsicAspect && !blackInsetVideo
+    hideOverlay && intrinsicAspect && !blackInsetVideo && !fullBleed
       ? { aspectRatio: intrinsicAspect }
       : undefined;
 
@@ -53,25 +90,34 @@ function HoverVideoTile({
     "relative w-full cursor-pointer overflow-hidden rounded-2xl " +
     (blackInsetVideo
       ? "aspect-square bg-black "
-      : "bg-neutral-300 " +
-        (hideOverlay && intrinsicAspect ? "" : "aspect-square ") +
-        (!hideOverlay ? "group " : ""));
+      : fullBleed
+        ? "aspect-square bg-black "
+        : "bg-neutral-300 " +
+          (hideOverlay && intrinsicAspect ? "" : "aspect-square ") +
+          (!hideOverlay ? "group " : ""));
 
   const fitClass =
     blackInsetVideo
       ? "h-auto max-h-[70%] w-auto max-w-[70%] object-contain"
-      : hideOverlay && intrinsicAspect
-        ? "object-contain"
-        : "object-cover group-hover:scale-[1.03]";
+      : fullBleed
+        ? "object-cover"
+        : hideOverlay && intrinsicAspect
+          ? "object-contain"
+          : "object-cover group-hover:scale-[1.03]";
 
   return (
     <div
+      ref={tileRef}
       className={containerClass}
       style={containerStyle}
       onMouseEnter={() => {
+        if (window.matchMedia("(max-width: 767px)").matches) return;
         play();
       }}
-      onMouseLeave={stop}
+      onMouseLeave={() => {
+        if (window.matchMedia("(max-width: 767px)").matches) return;
+        stop();
+      }}
     >
       {hasVideo ? (
         blackInsetVideo ? (
@@ -183,6 +229,7 @@ export default function ExpertiseVideoStrip() {
                   videoSrc={item.videoSrc}
                   hideOverlay={item.hideOverlay}
                   blackInsetVideo={item.blackInsetVideo}
+                  fullBleed={item.fullBleed}
                 />
               ))}
             </div>

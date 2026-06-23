@@ -36,6 +36,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  const servicePages: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/servicos`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.95 },
+    { url: `${SITE_URL}/servicos/criacao-de-sites`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/servicos/landing-page`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/servicos/ecommerce`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+  ];
+
   return [
     {
       url: SITE_URL,
@@ -43,6 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...servicePages,
     ...blogListPage,
     ...blogPostPages,
     ...cityPages,

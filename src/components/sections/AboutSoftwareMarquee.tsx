@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import Image from "next/image";
 import { useReducedMotion } from "framer-motion";
 
@@ -15,6 +16,9 @@ const SOFTWARE_ICONS = [
   { src: "/softwares/aWt8S2FAJgVYqnvJDNFMiOU1tI.svg", alt: "Ferramenta" },
   { src: "/softwares/hrb7ZJ8C0JfUTXU3LHoy5mAGeM.svg", alt: "Ferramenta" },
 ] as const;
+
+/** Repetições por metade do track: cada metade precisa ser ≥ largura da viewport para o -50% não “vazar” vazio. */
+const STRIP_REPEAT_COUNT = 5;
 
 function SoftwareIcon({ item }: { item: (typeof SOFTWARE_ICONS)[number] }) {
   return (
@@ -50,7 +54,8 @@ export default function AboutSoftwareMarquee() {
         ) : (
           <>
             {/*
-              Duas sequências idênticas; -50% do width do track = um ciclo completo (sem pl no flex).
+              Duas metades idênticas; translate -50% = um ciclo. Cada metade repete os ícones
+              o suficiente para a metade ser mais larga que a viewport (evita buraco à direita).
             */}
             <div
               className="flex w-max shrink-0 items-center gap-8 sm:gap-10 md:gap-12"
@@ -59,11 +64,18 @@ export default function AboutSoftwareMarquee() {
                 willChange: "transform",
               }}
             >
-              {[0, 1].map((loop) =>
-                SOFTWARE_ICONS.map((item, idx) => (
-                  <SoftwareIcon key={`${loop}-${item.src}-${idx}`} item={item} />
-                )),
-              )}
+              {[0, 1].map((loop) => (
+                <Fragment key={loop}>
+                  {Array.from({ length: STRIP_REPEAT_COUNT }, (_, r) =>
+                    SOFTWARE_ICONS.map((item, idx) => (
+                      <SoftwareIcon
+                        key={`${loop}-${r}-${idx}-${item.src}`}
+                        item={item}
+                      />
+                    )),
+                  ).flat()}
+                </Fragment>
+              ))}
             </div>
             <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[#0a0a0a] to-transparent sm:w-20" />
             <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#0a0a0a] to-transparent sm:w-20" />

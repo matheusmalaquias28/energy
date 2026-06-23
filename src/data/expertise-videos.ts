@@ -9,6 +9,8 @@ export type ExpertiseVideoItem = {
   hideOverlay?: boolean;
   /** Fundo preto e vídeo central ~30% menor que o contentor */
   blackInsetVideo?: boolean;
+  /** Vídeo em cobertura total do card (sem letterbox do inset) */
+  fullBleed?: boolean;
 };
 
 /** Vídeos de exemplo (substituir por assets do projeto) */
@@ -17,7 +19,7 @@ export const EXPERTISE_VIDEO_ITEMS: ExpertiseVideoItem[] = [
     title: "Sites Institucionais",
     videoSrc: "/videos/robot2.mp4",
     hideOverlay: true,
-    blackInsetVideo: true,
+    fullBleed: true,
   },
   {
     title: "Web design & desenvolvimento",

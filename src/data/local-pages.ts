@@ -221,6 +221,198 @@ export const localPages: LocalPageData[] = [
   },
 
   /* ─────────────────────────────────────────────
+     VILA VELHA — SITES INSTITUCIONAIS
+  ───────────────────────────────────────────── */
+  {
+    slug: "criacao-de-sites-vila-velha",
+    service: "sites",
+    serviceLabel: "Sites Institucionais",
+    city: "Vila Velha",
+    region: "Grande Vitória",
+    state: "ES",
+    h1: "Criação de Sites em Vila Velha",
+    metaTitle: "Criação de Sites em Vila Velha | Agência Energy",
+    metaDescription:
+      "Criação de sites profissionais em Vila Velha (ES). Sites institucionais com design exclusivo, SEO técnico e alta performance para empresas da Grande Vitória. Solicite um orçamento.",
+    keywords: [
+      "criação de sites vila velha",
+      "agência de sites vila velha",
+      "site profissional vila velha",
+      "desenvolvimento de site vila velha es",
+      "site para empresa vila velha",
+    ],
+    intro:
+      "Vila Velha é a cidade mais populosa do Espírito Santo e um dos mercados comerciais mais movimentados da Grande Vitória. Com forte presença de comércio, serviços, saúde e gastronomia, empresas locais que investem em um site profissional se destacam num mercado onde a concorrência ainda subestima a presença digital.",
+    marketContext:
+      "Com mais de 500 mil habitantes e bairros consolidados como Praia da Costa, Itapoã e Centro, Vila Velha concentra um mercado consumidor exigente e bem conectado. O comportamento do consumidor capixaba moderno começa pelo Google — e empresas sem site profissional simplesmente não entram na lista de opções de quem pesquisa antes de comprar.",
+    serviceDetails: [
+      {
+        title: "Sites para Comércio e Varejo",
+        desc: "Lojas, redes locais e centros comerciais de Vila Velha precisam de sites que funcionem como vitrine digital 24 horas. Design atrativo, catálogo de produtos, integração com WhatsApp e SEO para buscas locais.",
+        tags: ["Catálogo online", "SEO local", "WhatsApp integrado", "Mobile first"],
+      },
+      {
+        title: "Sites para Clínicas e Saúde",
+        desc: "Vila Velha tem uma das maiores concentrações de clínicas médicas, odontológicas e estéticas do Espírito Santo. Sites profissionais para esse setor precisam transmitir credibilidade, facilitar o agendamento e aparecer nas buscas de quem procura especialistas na cidade.",
+        tags: ["Agendamento online", "Credibilidade médica", "SEO para saúde", "LGPD compliant"],
+      },
+      {
+        title: "Sites Corporativos e de Serviços",
+        desc: "Escritórios de advocacia, contabilidade, engenharia e demais prestadores de serviços B2B que precisam de um site que comunique autoridade e gere leads qualificados no mercado da Grande Vitória.",
+        tags: ["Design premium", "Formulário de contato", "Performance 95+", "Copy estratégico"],
+      },
+    ],
+    whyLocal:
+      "Vila Velha cresce em ritmo acelerado — novos bairros, novos shoppings, nova rota de metrô. O mercado está em expansão e o consumidor está online. Empresas que investem em presença digital agora se consolidam antes que a concorrência perceba o movimento.",
+    faqs: [
+      {
+        q: "Preciso estar fisicamente em Vila Velha para contratar a agência?",
+        a: "Não. Todo o processo é 100% remoto: briefing por videochamada, aprovações por e-mail ou WhatsApp e entrega digital. Atendemos empresas em Vila Velha, Vitória, Serra e toda a Grande Vitória.",
+      },
+      {
+        q: "Quanto tempo leva para criar um site profissional para minha empresa?",
+        a: "Sites institucionais ficam prontos em 3 a 6 semanas a partir do briefing aprovado. O prazo varia de acordo com a complexidade do projeto e a velocidade de aprovação do cliente.",
+      },
+      {
+        q: "O site vai aparecer no Google para buscas em Vila Velha?",
+        a: "Todos os projetos incluem SEO técnico completo e orientação sobre Google Business Profile. O posicionamento orgânico se consolida ao longo do tempo, mas a base técnica correta acelera significativamente esse processo.",
+      },
+      {
+        q: "Posso atualizar o site sozinho depois de pronto?",
+        a: "Sim. Todo projeto inclui CMS integrado para que você possa atualizar textos, fotos e informações sem precisar de um desenvolvedor.",
+      },
+    ],
+  },
+
+  /* ─────────────────────────────────────────────
+     VITÓRIA — SITES INSTITUCIONAIS
+  ───────────────────────────────────────────── */
+  {
+    slug: "criacao-de-sites-vitoria",
+    service: "sites",
+    serviceLabel: "Sites Institucionais",
+    city: "Vitória",
+    region: "Grande Vitória",
+    state: "ES",
+    h1: "Criação de Sites em Vitória",
+    metaTitle: "Criação de Sites em Vitória (ES) | Agência Energy",
+    metaDescription:
+      "Criação de sites profissionais em Vitória, capital do Espírito Santo. Sites institucionais com design de alto nível, SEO técnico e performance máxima para empresas capixabas. Solicite uma proposta.",
+    keywords: [
+      "criação de sites vitória es",
+      "agência de sites vitória",
+      "site profissional vitória espírito santo",
+      "desenvolvimento de site vitória es",
+      "site para empresa vitória",
+    ],
+    intro:
+      "Vitória é a capital do Espírito Santo e o centro financeiro, corporativo e cultural da Grande Vitória. Com um dos maiores PIBs per capita entre as capitais brasileiras e uma economia diversificada entre porto, mineração, serviços e tecnologia, é um mercado onde a qualidade da presença digital faz diferença real.",
+    marketContext:
+      "A capital capixaba concentra as sedes das principais empresas do estado, escritórios de advocacia de alto padrão, clínicas especializadas e um setor de serviços B2B muito ativo. O cliente corporativo de Vitória pesquisa fornecedores no Google, avalia o site antes de agendar reunião e descarta fornecedores com presença digital precária antes mesmo do primeiro contato.",
+    serviceDetails: [
+      {
+        title: "Sites Corporativos de Alto Padrão",
+        desc: "Vitória tem um mercado B2B sofisticado — escritórios de advocacia, consultorias, engenharias e gestoras que precisam de um site que transmita autoridade imediata. Design premium, copy estratégico e performance impecável para um público que julga pelo detalhe.",
+        tags: ["Design premium", "Copy B2B", "Performance máxima", "Identidade visual integrada"],
+      },
+      {
+        title: "Sites para Startups e Tecnologia",
+        desc: "O ecossistema de inovação de Vitória cresce com programas como o ES Tech Hub. Startups e empresas de tecnologia precisam de sites que comuniquem modernidade, produto e proposta de valor de forma clara e convincente para investidores e clientes.",
+        tags: ["Startup-ready", "Product storytelling", "Captação de leads", "Integração de CRM"],
+      },
+      {
+        title: "Sites para Gastronomia e Hospitalidade",
+        desc: "Vitória tem uma das melhores cenas gastronômicas do Brasil. Restaurantes, bares e hotéis que investem em presença digital profissional capturam o cliente antes da decisão — quando ele ainda está pesquisando onde jantar ou se hospedar.",
+        tags: ["Cardápio online", "Reservas", "Galeria profissional", "SEO gastronômico"],
+      },
+    ],
+    whyLocal:
+      "O mercado de Vitória é disputado, sofisticado e crescente. Uma empresa sem site de qualidade equivale a um escritório sem recepção — o cliente percebe antes de entrar. Investir em presença digital de alto nível em Vitória é investir na credibilidade que o mercado capixaba exige.",
+    faqs: [
+      {
+        q: "Vocês atendem empresas em Vitória de forma remota?",
+        a: "Sim. Todo o processo — briefing, desenvolvimento, aprovações e entrega — é 100% remoto. Atendemos empresas em Vitória, Vila Velha, Serra, Cariacica e toda a Grande Vitória.",
+      },
+      {
+        q: "Qual o prazo para criar um site corporativo em Vitória?",
+        a: "Sites corporativos ficam prontos em 4 a 8 semanas. Projetos com funcionalidades específicas como área do cliente, integração com ERP ou sistemas de cotação podem levar mais tempo, dependendo da complexidade.",
+      },
+      {
+        q: "O site vai gerar leads de empresas da Grande Vitória?",
+        a: "A geração de leads orgânicos depende da combinação de SEO bem feito e conteúdo relevante. Configuramos toda a base técnica e orientamos sobre estratégia de conteúdo para que o site capture buscas qualificadas da região.",
+      },
+      {
+        q: "Trabalham com identidade visual ou apenas desenvolvimento de site?",
+        a: "Trabalhamos com o projeto completo: desde identidade visual e branding até o desenvolvimento e a entrega do site. Caso já tenha marca definida, adaptamos o projeto ao seu padrão visual existente.",
+      },
+    ],
+  },
+
+  /* ─────────────────────────────────────────────
+     SERRA — SITES INSTITUCIONAIS
+  ───────────────────────────────────────────── */
+  {
+    slug: "criacao-de-sites-serra-es",
+    service: "sites",
+    serviceLabel: "Sites Institucionais",
+    city: "Serra",
+    region: "Grande Vitória",
+    state: "ES",
+    h1: "Criação de Sites em Serra (ES)",
+    metaTitle: "Criação de Sites em Serra (ES) | Agência Energy",
+    metaDescription:
+      "Criação de sites profissionais em Serra, ES. Sites institucionais para indústrias, comércio e serviços da Grande Vitória com design exclusivo, SEO técnico e alta performance.",
+    keywords: [
+      "criação de sites serra es",
+      "agência de sites serra espírito santo",
+      "site profissional serra es",
+      "desenvolvimento de site serra es",
+      "site para empresa serra es",
+    ],
+    intro:
+      "Serra é o maior polo industrial do Espírito Santo — sede de empresas como ArcelorMittal, Nestlé e dezenas de indústrias de médio porte. É também um dos municípios com maior crescimento populacional da Grande Vitória, com comércio e serviços em expansão acelerada. Empresas que investem em presença digital agora chegam primeiro num mercado que ainda está se formando.",
+    marketContext:
+      "A Serra divide-se entre um polo industrial consolidado e bairros residenciais em rápida expansão. Comércio local, clínicas, escolas, prestadores de serviços e fornecedores industriais competem por um público crescente e cada vez mais conectado. Empresas com site profissional e bem posicionado no Google têm vantagem real sobre concorrentes que ainda dependem exclusivamente de indicação.",
+    serviceDetails: [
+      {
+        title: "Sites para Indústria e B2B",
+        desc: "Fornecedores industriais, distribuidoras e empresas B2B de Serra precisam de sites que comuniquem capacidade técnica, portfólio de clientes e credibilidade corporativa. O site é frequentemente o primeiro ponto de contato do comprador antes de uma licitação ou cotação.",
+        tags: ["Portfólio técnico", "Certificações e normas", "Formulário de cotação", "B2B focado"],
+      },
+      {
+        title: "Sites para Comércio Local e Serviços",
+        desc: "Com bairros como Laranjeiras, Jacaraípe e Carapina em expansão, Serra concentra um mercado de varejo e serviços locais em crescimento. Sites com SEO local bem configurado capturam buscas de moradores que procuram comércio e serviços próximos.",
+        tags: ["SEO local", "Google Maps integrado", "WhatsApp direto", "Mobile first"],
+      },
+      {
+        title: "Sites para Saúde e Educação",
+        desc: "Clínicas médicas, odontológicas, escolas e centros de treinamento em Serra atendem uma população crescente que busca serviços de qualidade cada vez mais perto de casa. Um site profissional com agendamento e informações claras converte mais do que qualquer panfleto.",
+        tags: ["Agendamento online", "SEO para saúde", "Página por especialidade", "Credibilidade"],
+      },
+    ],
+    whyLocal:
+      "Serra ainda está em formação como mercado digital — o que é uma vantagem estratégica para quem age agora. Enquanto a maioria dos concorrentes não investiu em presença digital de qualidade, uma empresa com site profissional e SEO bem feito pode dominar as buscas locais com muito mais facilidade do que em mercados mais disputados.",
+    faqs: [
+      {
+        q: "Atendem empresas industriais e B2B em Serra?",
+        a: "Sim. Temos experiência em criar sites para empresas industriais, fornecedoras e prestadoras de serviço B2B, com foco em comunicar capacidade técnica, portfólio e gerar leads qualificados para equipes comerciais.",
+      },
+      {
+        q: "Quanto tempo leva para criar o site da minha empresa em Serra?",
+        a: "Sites institucionais ficam prontos em 3 a 6 semanas. Para projetos B2B com portfólio técnico extenso ou integrações específicas, o prazo pode variar — sempre apresentamos cronograma detalhado na proposta.",
+      },
+      {
+        q: "O site vai aparecer no Google para quem pesquisa em Serra?",
+        a: "Todos os projetos incluem SEO técnico completo, configuração do Google Business Profile e orientação de estratégia de palavras-chave para buscas locais de Serra e Grande Vitória.",
+      },
+      {
+        q: "Trabalham com empresas de qualquer setor em Serra?",
+        a: "Sim. Atendemos desde indústrias e fornecedoras B2B até comércio local, clínicas, escritórios e prestadores de serviço. O projeto é sempre adaptado ao setor, ao público e ao objetivo de negócio.",
+      },
+    ],
+  },
+
+  /* ─────────────────────────────────────────────
      VALE DO PARAÍBA — SITES IMOBILIÁRIOS
   ───────────────────────────────────────────── */
   {

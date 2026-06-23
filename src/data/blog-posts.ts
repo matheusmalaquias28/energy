@@ -10,6 +10,70 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "criacao-de-sites-vila-velha",
+    title: "Criação de Sites em Vila Velha: o que empresas capixabas precisam saber",
+    description:
+      "Guia completo para donos de negócios de Vila Velha que querem entender como um site profissional funciona na prática — e por que ele é um dos ativos mais valiosos que uma empresa local pode construir.",
+    publishedAt: "2026-06-23",
+    readingTime: "10 min",
+    category: "SEO Local",
+    keywords: [
+      "criação de sites vila velha",
+      "site profissional vila velha es",
+      "agência digital vila velha",
+      "seo local vila velha",
+      "site para empresa vila velha",
+    ],
+  },
+  {
+    slug: "criacao-de-sites-vitoria-es",
+    title: "Criação de Sites em Vitória (ES): o guia para empresas da capital capixaba",
+    description:
+      "O mercado de Vitória é exigente, sofisticado e ainda tem espaço para quem investe em presença digital de qualidade. Saiba o que seu site precisa ter para se destacar na capital do Espírito Santo.",
+    publishedAt: "2026-06-23",
+    readingTime: "10 min",
+    category: "SEO Local",
+    keywords: [
+      "criação de sites vitória es",
+      "site profissional vitória espírito santo",
+      "agência digital vitória es",
+      "seo vitória es",
+      "site para empresa vitória",
+    ],
+  },
+  {
+    slug: "criacao-de-sites-serra-es",
+    title: "Criação de Sites em Serra (ES): guia para empresas do maior polo industrial capixaba",
+    description:
+      "Serra tem um potencial enorme e ainda está sendo descoberta como mercado digital. Saiba como empresas do polo industrial e do comércio local podem dominar as buscas do Google na região.",
+    publishedAt: "2026-06-23",
+    readingTime: "11 min",
+    category: "SEO Local",
+    keywords: [
+      "criação de sites serra es",
+      "site profissional serra espírito santo",
+      "agência digital serra es",
+      "seo serra es",
+      "site para empresa serra es",
+    ],
+  },
+  {
+    slug: "criacao-de-sites-campos-do-jordao",
+    title: "Criação de Sites em Campos do Jordão: guia completo para empresas da serra",
+    description:
+      "Tudo que donos de pousadas, restaurantes, ateliês e prestadores de serviço de Campos do Jordão precisam saber para ter um site profissional que aparece no Google e converte turistas em clientes.",
+    publishedAt: "2026-06-23",
+    readingTime: "11 min",
+    category: "SEO Local",
+    keywords: [
+      "criação de sites campos do jordão",
+      "site profissional campos do jordão",
+      "agência digital campos do jordão",
+      "seo campos do jordão",
+      "site pousada campos do jordão",
+    ],
+  },
+  {
     slug: "quanto-custa-criar-um-site",
     title: "Quanto custa criar um site profissional em 2026?",
     description:

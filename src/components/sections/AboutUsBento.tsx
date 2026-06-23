@@ -18,9 +18,9 @@ const stats = [
     sub: "Em agência e projetos digitais de alto impacto.",
   },
   {
-    value: "15+",
-    label: "Prémios & menções",
-    sub: "Reconhecimento em plataformas de design e criatividade.",
+    value: "4+",
+    label: "Países atendidos",
+    sub: "Projetos e acompanhamento para marcas em diferentes mercados e fusos.",
   },
   {
     value: "350+",
@@ -84,8 +84,7 @@ export default function AboutUsBento() {
               <span className="text-[#FE4101]">trabalhamos</span>
             </h2>
             <p className="max-w-xl text-sm leading-relaxed text-white/45 md:text-base">
-              Números que resumem a nossa trajetória — e espaço para a história completa
-              em breve.
+              Números que resumem a nossa trajetória.
             </p>
           </div>
         </ScrollReveal>

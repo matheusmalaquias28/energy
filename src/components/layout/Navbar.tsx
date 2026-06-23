@@ -9,7 +9,7 @@ import { urbanist } from "@/lib/fonts";
 import { useContactModal } from "@/components/contact/contact-modal-context";
 
 const links = [
-  { label: "Serviços", href: "#servicos" },
+  { label: "Serviços", href: "/servicos" },
   { label: "Projetos", href: "#projetos" },
   { label: "Diferenciais", href: "#diferenciais" },
   { label: "Blog", href: "/blog" },
