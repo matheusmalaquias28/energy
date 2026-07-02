@@ -3,6 +3,8 @@ import type React from "react";
 type MDXModule = { default: React.ComponentType };
 
 export const blogContent: Record<string, () => Promise<MDXModule>> = {
+  "fable-5-o-que-e-como-usar": () =>
+    import("@/content/blog/fable-5-o-que-e-como-usar.mdx"),
   "criacao-de-sites-vila-velha": () =>
     import("@/content/blog/criacao-de-sites-vila-velha.mdx"),
   "criacao-de-sites-vitoria-es": () =>

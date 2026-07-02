@@ -13,6 +13,7 @@ const links = [
   { label: "Projetos", href: "#projetos" },
   { label: "Diferenciais", href: "#diferenciais" },
   { label: "Blog", href: "/blog" },
+  { label: "Vault", href: "/vault" },
   { label: "FAQ", href: "#faq" },
 ] as const;
 

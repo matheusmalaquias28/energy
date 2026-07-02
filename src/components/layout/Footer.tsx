@@ -47,7 +47,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 pt-8 border-t border-white/5 flex flex-col lg:flex-row justify-between gap-4 text-[11px] text-white/15 uppercase tracking-[0.15em]">
-          <span>© 2024 Energy. Todos os direitos reservados.</span>
+          <span>© 2026 Energy. Todos os direitos reservados.</span>
           <span>Design que trabalha por você.</span>
         </div>
       </div>

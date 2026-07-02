@@ -1,0 +1,294 @@
+import { CopyPromptCard } from "@/components/ui/CopyPromptCard"
+
+# Fable 5: o que é e como você começa a usar o modelo mais avançado da Anthropic
+
+A inteligência artificial evoluiu mais nos últimos 18 meses do que nas duas décadas anteriores. E no centro dessa corrida está a Anthropic — empresa fundada por ex-pesquisadores da OpenAI — que acaba de lançar o **Fable 5**: o modelo mais capaz da família Claude até hoje.
+
+Se você já usa IA no trabalho e quer entender o que mudou (e o que isso muda pra você), este manual foi feito exatamente para isso.
+
+---
+
+## O que é o Fable 5?
+
+O Fable 5 é o modelo de linguagem mais recente da **Anthropic** — e o primeiro da nova geração "Fable". Enquanto a família Claude 4.X (Opus, Sonnet, Haiku) segue disponível e em uso massivo, o Fable 5 representa um salto de geração: novo paradigma de treinamento, maior capacidade de raciocínio longo e profundo, e desempenho superior em tarefas que exigem contexto extenso.
+
+Em termos simples: é como passar de um analista sênior muito bom para um sócio que entende o seu negócio.
+
+<div style={{background: "linear-gradient(135deg, #111 0%, #1a1a1a 100%)", border: "1px solid rgba(254,65,1,0.2)", borderLeft: "3px solid #FE4101", padding: "2rem", margin: "2.5rem 0", borderRadius: "2px"}}>
+  <p style={{color: "rgba(255,255,255,0.4)", fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.75rem", fontFamily: "monospace"}}>// Identificador do modelo na API</p>
+  <p style={{color: "#FE4101", fontSize: "1.5rem", fontFamily: "monospace", fontWeight: "700", margin: "0 0 0.5rem 0"}}>claude-fable-5</p>
+  <p style={{color: "rgba(255,255,255,0.35)", fontSize: "0.85rem", margin: 0}}>Anthropic · Julho 2026 · Geração Fable</p>
+</div>
+
+---
+
+## A família completa de modelos
+
+Antes de mergulhar no Fable 5, é importante entender o ecossistema. A Anthropic mantém quatro modelos ativos simultaneamente, cada um com um perfil de uso ideal:
+
+| Modelo | ID na API | Perfil de uso |
+|--------|-----------|---------------|
+| **Fable 5** | `claude-fable-5` | Raciocínio profundo, projetos complexos, agentes autônomos |
+| **Opus 4.8** | `claude-opus-4-8` | Escrita avançada, análise detalhada, tarefas longas |
+| **Sonnet 4.6** | `claude-sonnet-4-6` | Equilíbrio perfeito entre velocidade e qualidade |
+| **Haiku 4.5** | `claude-haiku-4-5-20251001` | Tarefas simples, alto volume, custo otimizado |
+
+> **Regra geral:** use o Haiku quando a tarefa for repetitiva ou simples. Use o Sonnet para o dia a dia. Use o Opus ou o Fable 5 quando o trabalho realmente importa.
+
+---
+
+## O que o Fable 5 faz de diferente
+
+### Janela de contexto expandida
+
+O Fable 5 consegue processar documentos muito mais extensos de uma única vez — contratos longos, repositórios inteiros de código, relatórios completos. Você para de trabalhar com recortes e começa a trabalhar com o quadro completo.
+
+### Raciocínio em cadeia mais sofisticado
+
+Tarefas que antes exigiam várias conversas separadas agora acontecem em uma só. O modelo mantém coerência ao longo de raciocínios longos e complexos, sem "esquecer" o que foi dito no começo.
+
+### Agentes autônomos e uso de ferramentas
+
+O Fable 5 foi otimizado para atuar como **agente** — ou seja, executar sequências de ações usando ferramentas externas (busca na web, código, APIs) com muito menos supervisão humana. É o modelo ideal para automações sofisticadas.
+
+### Código de altíssimo nível
+
+Se você usa IA para programar, a diferença é imediata. O Fable 5 entende arquiteturas de sistema, refatora código com critério, identifica bugs sutis e escreve testes com uma precisão que modelos anteriores não alcançavam.
+
+---
+
+## Como acessar o Fable 5 — 3 caminhos
+
+### Caminho 1: Claude.ai no navegador
+
+A forma mais simples. Acesse **claude.ai**, faça login (ou crie uma conta gratuita) e selecione o modelo na conversa.
+
+<div style={{background: "#0d0d0d", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "4px", overflow: "hidden", margin: "2rem 0"}}>
+  <div style={{background: "#161616", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "0.6rem 1rem", display: "flex", gap: "0.4rem", alignItems: "center"}}>
+    <div style={{width: "10px", height: "10px", borderRadius: "50%", background: "#ff5f57"}} />
+    <div style={{width: "10px", height: "10px", borderRadius: "50%", background: "#febc2e"}} />
+    <div style={{width: "10px", height: "10px", borderRadius: "50%", background: "#28c840"}} />
+    <span style={{color: "rgba(255,255,255,0.2)", fontSize: "0.7rem", marginLeft: "0.5rem", fontFamily: "monospace"}}>claude.ai</span>
+  </div>
+  <div style={{padding: "1.5rem", display: "grid", gridTemplateColumns: "auto 1fr", gap: "1rem", alignItems: "start"}}>
+    <div style={{width: "32px", height: "32px", background: "linear-gradient(135deg, #FE4101, #ff6b3d)", borderRadius: "50%", flexShrink: 0}} />
+    <div>
+      <p style={{color: "rgba(255,255,255,0.2)", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "0.4rem", fontFamily: "monospace"}}>Claude · Fable 5</p>
+      <p style={{color: "rgba(255,255,255,0.7)", fontSize: "0.9rem", lineHeight: "1.6", margin: 0}}>Olá! Sou o Claude, rodando no Fable 5. Como posso ajudar você hoje?</p>
+    </div>
+  </div>
+  <div style={{borderTop: "1px solid rgba(255,255,255,0.04)", padding: "0.75rem 1rem", display: "flex", gap: "0.5rem", alignItems: "center"}}>
+    <div style={{flex: 1, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "4px", padding: "0.5rem 0.75rem"}}>
+      <p style={{color: "rgba(255,255,255,0.2)", fontSize: "0.8rem", margin: 0, fontFamily: "monospace"}}>Escreva uma mensagem...</p>
+    </div>
+    <div style={{width: "32px", height: "32px", background: "#FE4101", borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center"}}>
+      <span style={{color: "white", fontSize: "0.8rem"}}>↑</span>
+    </div>
+  </div>
+</div>
+
+**Planos disponíveis:**
+- **Gratuito** — acesso limitado, bom para testar
+- **Pro** (US$ 20/mês) — uso ilimitado em todos os modelos, incluindo Fable 5
+- **Team/Enterprise** — para equipes com controles corporativos
+
+---
+
+### Caminho 2: Claude Code (para devs e agências)
+
+Claude Code é a CLI oficial da Anthropic — você instala no terminal e passa a trabalhar direto no seu código, com o modelo integrado ao seu ambiente de desenvolvimento.
+
+```bash
+# Instalar globalmente
+npm install -g @anthropic-ai/claude-code
+
+# Iniciar uma sessão
+claude
+
+# Usar o modo rápido com Opus (mais veloz)
+/fast
+```
+
+<div style={{background: "#0a0a0a", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "4px", overflow: "hidden", margin: "2rem 0"}}>
+  <div style={{background: "#111", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "0.5rem 1rem", display: "flex", gap: "0.4rem", alignItems: "center"}}>
+    <div style={{width: "10px", height: "10px", borderRadius: "50%", background: "#ff5f57"}} />
+    <div style={{width: "10px", height: "10px", borderRadius: "50%", background: "#febc2e"}} />
+    <div style={{width: "10px", height: "10px", borderRadius: "50%", background: "#28c840"}} />
+    <span style={{color: "rgba(255,255,255,0.15)", fontSize: "0.7rem", marginLeft: "0.5rem", fontFamily: "monospace"}}>terminal — claude</span>
+  </div>
+  <div style={{padding: "1.25rem 1.5rem", fontFamily: "monospace", fontSize: "0.82rem", lineHeight: "1.8"}}>
+    <p style={{color: "#22D3A5", margin: "0 0 0.25rem 0"}}>✓ Claude Code v1.x.x inicializado</p>
+    <p style={{color: "rgba(255,255,255,0.3)", margin: "0 0 0.25rem 0"}}>Modelo: claude-sonnet-4-6 (padrão)</p>
+    <p style={{color: "rgba(255,255,255,0.3)", margin: "0 0 1rem 0"}}>Diretório: ~/meu-projeto</p>
+    <p style={{color: "#FE4101", margin: "0 0 0.25rem 0"}}>→ <span style={{color: "rgba(255,255,255,0.6)"}}>refatore o componente Header para usar TypeScript strict</span></p>
+    <p style={{color: "rgba(255,255,255,0.2)", margin: 0}}>Claude analisando 12 arquivos...</p>
+  </div>
+</div>
+
+O Claude Code vai além de um simples chat: ele **lê**, **edita** e **executa** arquivos no seu projeto. Você fala em linguagem natural e ele faz o trabalho técnico.
+
+**Integrações com IDE:**
+- VS Code (extensão oficial)
+- JetBrains (IntelliJ, WebStorm, etc.)
+- Funciona também direto no terminal
+
+---
+
+### Caminho 3: API direta (para builders)
+
+Se você está construindo um produto ou automatizando processos internos, a API da Anthropic é o caminho.
+
+```bash
+# Instalar o SDK
+npm install @anthropic-ai/sdk
+```
+
+```typescript
+import Anthropic from "@anthropic-ai/sdk";
+
+const client = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
+
+const message = await client.messages.create({
+  model: "claude-fable-5",
+  max_tokens: 4096,
+  messages: [
+    {
+      role: "user",
+      content: "Analise este contrato e identifique cláusulas de risco:",
+    },
+  ],
+});
+
+console.log(message.content);
+```
+
+> **Dica:** A Anthropic oferece créditos gratuitos para novos accounts via API. Acesse **console.anthropic.com** para criar sua chave e acompanhar o uso em tempo real.
+
+---
+
+## Casos de uso que o Fable 5 domina
+
+### Para agências e times de marketing
+
+- Criar estratégias de conteúdo completas com base em dados de mercado
+- Revisar e reescrever textos mantendo tom de voz da marca
+- Gerar variações de copy para A/B tests
+- Analisar métricas e propor ajustes de estratégia
+
+### Para desenvolvedores
+
+- Revisão de código com profundidade de sênior
+- Documentação técnica gerada automaticamente
+- Debug de erros complexos com contexto do projeto inteiro
+- Arquitetura e planejamento de sistemas
+
+### Para gestores e consultores
+
+- Síntese de relatórios longos em insights acionáveis
+- Redação de propostas comerciais e apresentações
+- Análise de contratos e documentos jurídicos
+- Preparação para reuniões e negociações
+
+### Para automações com agentes
+
+- Pipelines que pesquisam, processam e entregam informação automaticamente
+- Atendimento inteligente integrado a sistemas internos
+- Monitoramento e relatórios automáticos
+
+---
+
+## 6 usos absurdos que você pode fazer com o Fable 5 agora
+
+Esses não são casos de uso teóricos. São ações que você consegue executar ainda hoje, com prompts prontos pra copiar.
+
+<CopyPromptCard
+  number={1}
+  title="Clone os apps que você paga pra usar"
+  description="Aquele app de assinatura que faz uma coisa só? O Fable 5 constrói uma versão sua do zero — código, interface e tudo — numa única sessão. Você para de pagar mensalidade por algo que dá pra ter."
+  prompt="Build me a full working app that does [what the paid app does]. Complete code, simple UI, and tell me how to run it."
+/>
+
+<CopyPromptCard
+  number={2}
+  title="Construa um jogo enquanto você dorme"
+  description="Ele trabalha sozinho por horas. Você descreve o jogo antes de dormir, deixa rodando, e acorda com um protótipo jogável pronto pra testar e ajustar."
+  prompt="Create a [type/style] game with [core mechanic]. Make it run in a single file, test it yourself, and list what to improve."
+/>
+
+<CopyPromptCard
+  number={3}
+  title="Ache as assinaturas que sugam seu dinheiro"
+  description="Exporte o extrato do seu banco (PDF ou CSV) e jogue pro Fable 5. Ele lê tudo, encontra assinaturas esquecidas e gastos repetidos, e te mostra exatamente onde você está vazando dinheiro todo mês."
+  prompt="Analyze this bank statement. List every subscription and recurring charge, the monthly and yearly total, and what I should cancel."
+/>
+
+<CopyPromptCard
+  number={4}
+  title="Gere sua campanha de marketing inteira"
+  description="Não é só uma legenda. Ele monta a campanha completa: ângulos, copy dos anúncios, roteiro de conteúdo, ideias de criativo e plano de postagem — pensados pro seu público."
+  prompt="Build a full marketing campaign for [product] targeting [audience]. Include angles, ad copy, content scripts, and a posting calendar."
+/>
+
+<CopyPromptCard
+  number={5}
+  title="Receba conselhos dos seus números reais"
+  description="Junte seus dados — extratos, faturamento, planilha de gastos — e ele vira seu consultor financeiro. Analisa a sua realidade, não teoria genérica, e te diz onde cortar, onde investir e o que priorizar."
+  prompt="Based on these numbers, act as my financial advisor. Where am I losing money, what should I prioritize, and what is my next move?"
+/>
+
+<CopyPromptCard
+  number={6}
+  title="Deixe ele editar seu próximo vídeo"
+  description="Passe a transcrição ou o roteiro bruto e ele corta o que não presta, sugere os melhores cortes pra Reels, escreve legendas e monta a estrutura de edição. Você sai do zero direto pro rascunho pronto."
+  prompt="Here is my video transcript. Suggest the best cuts for Reels, write captions, and lay out an editing script."
+/>
+
+---
+
+## Primeiros passos: um roteiro de 30 minutos
+
+**Minutos 1–5: Criar a conta**
+
+Acesse claude.ai e crie sua conta. A versão gratuita já permite testar o modelo com as funcionalidades principais.
+
+**Minutos 5–15: A primeira conversa de verdade**
+
+Não comece com "me escreva um e-mail". Comece com um problema real que você tem no trabalho agora. Cole um documento, um trecho de código, ou descreva um desafio específico. O Fable 5 performa melhor com contexto rico.
+
+**Minutos 15–25: Iterar e refinar**
+
+O que separa usuários medianos de usuários avançados é a capacidade de iterar. A primeira resposta raramente é a melhor. Peça ajustes, dê mais contexto, questione o raciocínio. O modelo responde muito bem a direcionamentos.
+
+**Minutos 25–30: Definir um fluxo recorrente**
+
+Identifique **uma tarefa** que você faz toda semana e que poderia ser acelerada com IA. Esse é o seu ponto de entrada. Depois que esse fluxo virar hábito, os outros vêm naturais.
+
+---
+
+## Dicas para extrair o máximo
+
+**Dê contexto, sempre.** O modelo não conhece sua empresa, seu cliente, seu mercado. Quanto mais você contextualiza, melhor a resposta.
+
+**Use role prompting.** "Você é um especialista em finanças B2B com 20 anos de experiência..." muda completamente o calibre da resposta.
+
+**Quebre tarefas grandes.** Em vez de "escreva um plano de marketing completo", faça "primeiro me ajude a definir o ICP. Depois vamos para o posicionamento." Passo a passo.
+
+**Peça raciocínio explícito.** "Explique o seu raciocínio antes de dar a resposta" produz respostas mais acuradas e revisáveis.
+
+**Salve os prompts que funcionam.** Quando encontrar uma abordagem que dá resultado, documente. Prompts bons valem dinheiro.
+
+---
+
+## O que vem por aí
+
+O lançamento do Fable 5 marca uma inflexão. Pela primeira vez, modelos de linguagem começam a atuar com autonomia real em tarefas longas e complexas — não apenas respondendo perguntas, mas executando trabalho.
+
+Para agências, esse é o momento de entender a tecnologia antes que ela vire obrigação. Para desenvolvedores, é o momento de construir os produtos que as empresas vão precisar nos próximos cinco anos. Para gestores, é o momento de parar de terceirizar a curiosidade.
+
+O Fable 5 está disponível agora. A barreira de entrada nunca foi tão baixa.
+
+---
+
+*Este manual foi produzido pela Energy Agência Digital — especialistas em presença digital de alto nível para empresas que levam a web a sério.*

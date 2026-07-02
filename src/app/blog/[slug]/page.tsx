@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { blogPosts, getPostBySlug, formatDate } from "@/data/blog-posts";
 import { blogContent } from "@/lib/blog-content";
@@ -108,6 +109,24 @@ export default async function BlogPostPage(props: {
             <p className="text-white/50 text-lg leading-relaxed">{post.description}</p>
           </div>
         </section>
+
+        {/* Cover image */}
+        {post.coverImage && (
+          <section className="px-6 lg:px-16 pt-10 pb-0">
+            <div className="max-w-3xl mx-auto">
+              <div className="relative w-full aspect-[4/3] overflow-hidden border border-white/[0.06]">
+                <Image
+                  src={post.coverImage}
+                  alt={post.title}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 768px"
+                />
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Content */}
         <section className="py-16 px-6 lg:px-16">

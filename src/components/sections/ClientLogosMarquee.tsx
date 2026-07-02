@@ -10,7 +10,6 @@ const CLIENT_LOGOS = [
   { src: "/logos/cholate-araucaria-logo.png", alt: "Cholate Araucária" },
   { src: "/logos/mellow-me-logo-1.png", alt: "Mellow Me" },
   { src: "/logos/ioa-logo.png", alt: "IOA" },
-  { src: "/logos/lseven-logo.png", alt: "LSeven" },
   { src: "/logos/mrrice.png", alt: "Mr Rice" },
   { src: "/logos/recta-securitizadora-logo.png", alt: "Recta Securitizadora" },
   { src: "/logos/alvim-advogados-logo.png", alt: "Alvim Advogados" },

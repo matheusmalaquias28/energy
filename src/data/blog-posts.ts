@@ -6,9 +6,30 @@ export interface BlogPost {
   readingTime: string;
   category: string;
   keywords: string[];
+  coverImage?: string;
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "fable-5-o-que-e-como-usar",
+    title: "Fable 5: o que é e como começar a usar o modelo mais avançado da Anthropic",
+    description:
+      "Manual completo sobre o Fable 5, o mais novo modelo da família Claude. O que mudou, como acessar via claude.ai, Claude Code e API, e um roteiro prático para você começar hoje.",
+    publishedAt: "2026-07-02",
+    readingTime: "14 min",
+    category: "Inteligência Artificial",
+    coverImage: "/Capas/magnific_crie-uma-imagem-realista-_74rgw9AJAL (1).jpeg",
+    keywords: [
+      "fable 5",
+      "claude fable 5",
+      "anthropic fable 5",
+      "o que é fable 5",
+      "como usar claude fable 5",
+      "modelos claude anthropic",
+      "claude code",
+      "ia para empresas",
+    ],
+  },
   {
     slug: "criacao-de-sites-vila-velha",
     title: "Criação de Sites em Vila Velha: o que empresas capixabas precisam saber",

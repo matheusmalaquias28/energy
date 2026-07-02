@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { EXPERTISE_VIDEO_ITEMS } from "@/data/expertise-videos";
 import { sectionTitle } from "@/lib/fonts";
@@ -22,42 +22,55 @@ function HoverVideoTile({
   const tileRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [intrinsicAspect, setIntrinsicAspect] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const hasVideo = Boolean(videoSrc?.trim());
+  const inView = useInView(tileRef, {
+    amount: 0.2,
+    margin: "0px 0px -5% 0px",
+  });
 
   useEffect(() => {
-    const root = tileRef.current;
-    const v = videoRef.current;
-    if (!root || !v || !hasVideo) return;
-
-    let observer: IntersectionObserver | null = null;
-
-    const bindMobileAutoplay = () => {
-      observer?.disconnect();
-      observer = null;
-      if (!window.matchMedia("(max-width: 767px)").matches) return;
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry?.isIntersecting) {
-            void v.play().catch(() => {});
-          } else {
-            v.pause();
-            v.currentTime = 0;
-          }
-        },
-        { threshold: 0.3, rootMargin: "0px 0px -5% 0px" },
-      );
-      observer.observe(root);
-    };
-
-    bindMobileAutoplay();
     const mq = window.matchMedia("(max-width: 767px)");
-    mq.addEventListener("change", bindMobileAutoplay);
-    return () => {
-      mq.removeEventListener("change", bindMobileAutoplay);
-      observer?.disconnect();
+    const sync = () => setIsMobile(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  const attemptPlay = useCallback(() => {
+    const v = videoRef.current;
+    if (!v || !hasVideo) return;
+
+    const play = () => {
+      void v.play().catch(() => {});
     };
+
+    if (v.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
+      play();
+      return;
+    }
+
+    const onCanPlay = () => {
+      v.removeEventListener("canplay", onCanPlay);
+      play();
+    };
+    v.addEventListener("canplay", onCanPlay);
   }, [hasVideo]);
+
+  useEffect(() => {
+    if (!isMobile || !hasVideo) return;
+
+    const v = videoRef.current;
+    if (!v) return;
+
+    if (inView) {
+      attemptPlay();
+    } else {
+      v.pause();
+      v.currentTime = 0;
+    }
+  }, [isMobile, hasVideo, inView, attemptPlay]);
 
   const play = () => {
     const v = videoRef.current;
@@ -111,11 +124,11 @@ function HoverVideoTile({
       className={containerClass}
       style={containerStyle}
       onMouseEnter={() => {
-        if (window.matchMedia("(max-width: 767px)").matches) return;
+        if (isMobile) return;
         play();
       }}
       onMouseLeave={() => {
-        if (window.matchMedia("(max-width: 767px)").matches) return;
+        if (isMobile) return;
         stop();
       }}
     >
@@ -128,7 +141,7 @@ function HoverVideoTile({
               muted
               loop
               playsInline
-              preload="metadata"
+              preload={isMobile ? "auto" : "metadata"}
               onLoadedMetadata={handleLoadedMetadata}
               className={`opacity-100 transition-transform duration-500 ease-out ${fitClass}`}
             />
@@ -140,7 +153,7 @@ function HoverVideoTile({
             muted
             loop
             playsInline
-            preload="metadata"
+            preload={isMobile ? "auto" : "metadata"}
             onLoadedMetadata={handleLoadedMetadata}
             className={`absolute inset-0 h-full w-full opacity-100 transition-transform duration-500 ease-out ${fitClass}`}
           />
@@ -152,16 +165,19 @@ function HoverVideoTile({
         />
       )}
 
-      {!hideOverlay ? (
+      {hasVideo ? (
+        <div
+          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-black via-black/45 to-transparent"
+          aria-hidden
+        />
+      ) : !hideOverlay ? (
         <div
           className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent"
           aria-hidden
         />
       ) : null}
       <h3
-        className={`pointer-events-none absolute bottom-0 left-0 p-5 text-left text-lg leading-tight text-white md:p-6 md:text-xl ${sectionTitle} font-bold ${
-          hideOverlay ? "drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]" : ""
-        }`}
+        className={`pointer-events-none absolute bottom-0 left-0 z-[2] p-5 text-left text-[32px] leading-[1] text-white md:p-6 md:text-[54px] ${sectionTitle} font-bold`}
       >
         {title}
       </h3>
