@@ -3,6 +3,8 @@ import type React from "react";
 type MDXModule = { default: React.ComponentType };
 
 export const blogContent: Record<string, () => Promise<MDXModule>> = {
+  "magnific-ia-geracao-de-imagens": () =>
+    import("@/content/blog/magnific-ia-geracao-de-imagens.mdx"),
   "fable-5-o-que-e-como-usar": () =>
     import("@/content/blog/fable-5-o-que-e-como-usar.mdx"),
   "criacao-de-sites-vila-velha": () =>

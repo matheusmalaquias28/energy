@@ -18,6 +18,20 @@ export interface VaultItem {
 
 export const vaultItems: VaultItem[] = [
   {
+    id: "v012",
+    title: "Magnific: a IA que substituiu meu time de design",
+    description:
+      "Como a plataforma Magnific (antigo Freepik) opera na Energy, o que você consegue fazer com a versão pública, e por que quem usa IA corretamente pode te substituir antes da própria IA.",
+    category: "artigos",
+    tags: ["IA", "Design", "Magnific", "Ferramentas"],
+    date: "2026-07-04",
+    readingTime: "13 min",
+    href: "/blog/magnific-ia-geracao-de-imagens",
+    isNew: true,
+    isFeatured: true,
+    coverImage: "/Capas/magnific_crie-a-imagem-de-um-desig_kLETTeW16B.jpeg",
+  },
+  {
     id: "v011",
     title: "Fable 5: Manual Completo — O Que É e Como Começar a Usar",
     description:

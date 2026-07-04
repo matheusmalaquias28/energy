@@ -11,6 +11,28 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "magnific-ia-geracao-de-imagens",
+    title: "Magnific: a IA que substituiu meu time de design (e o que isso significa para você)",
+    description:
+      "Como a plataforma de geração visual por IA Magnific (antigo Freepik) mudou a operação da Energy — e por que quem opera IA corretamente pode te substituir antes da própria IA.",
+    publishedAt: "2026-07-04",
+    readingTime: "13 min",
+    category: "Inteligência Artificial",
+    coverImage: "/Capas/magnific_crie-a-imagem-de-um-desig_kLETTeW16B.jpeg",
+    keywords: [
+      "magnific ia",
+      "magnific freepik",
+      "geração de imagens ia",
+      "ia para design",
+      "substituir designer ia",
+      "magnific plataforma",
+      "geração de vídeo ia",
+      "ferramentas ia criativo",
+      "flux pro",
+      "upscaling ia",
+    ],
+  },
+  {
     slug: "fable-5-o-que-e-como-usar",
     title: "Fable 5: o que é e como começar a usar o modelo mais avançado da Anthropic",
     description:
