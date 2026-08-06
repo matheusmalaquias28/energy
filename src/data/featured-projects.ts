@@ -4,11 +4,15 @@ export type FeaturedProject = {
   /** Imagem estática (capa do projeto) */
   image: string;
   /** Vídeo em loop no hover (opcional) */
-  video: string;
+  video?: string;
   /** Vídeo sempre visível com autoplay (preenche o container) em vez de só no hover */
   videoAlways?: boolean;
+  /** Serve a imagem sem otimização do Next.js (qualidade máxima) */
+  imageUnoptimized?: boolean;
   /** Badges no canto inferior esquerdo */
   badges: string[];
+  /** URL do site ao vivo — abre em nova guia ao clicar no card */
+  href?: string;
 };
 
 export const FEATURED_PROJECTS: FeaturedProject[] = [
@@ -20,6 +24,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     video: "/videos/render-above-2.mp4",
     videoAlways: true,
     badges: ["Site institucional", "UI/UX", "Performance"],
+    href: "https://aboveimobiliaria.com.br/",
   },
   {
     name: "Chocolate Araucária",
@@ -29,23 +34,32 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     video: "/videos/araucaria-render-1.mp4",
     videoAlways: true,
     badges: ["Website Institucional", "Scroll Effects", "Dev"],
+    href: "https://www.chocolatearaucaria.com.br/",
   },
   {
-    name: "Casa Bella",
-    year: "2024",
+    name: "Veredas",
+    year: "2026",
     image:
       "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80&auto=format&fit=crop",
-    video:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-    badges: ["E-commerce", "Branding"],
+    video: "/videos/veredas-hero.mp4",
+    videoAlways: true,
+    badges: ["Site Institucional"],
+    href: "https://www.veredas.art/",
   },
   {
-    name: "Atlas Construtora",
-    year: "2023",
-    image:
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80&auto=format&fit=crop",
-    video:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    name: "Geléia dos Monges",
+    year: "2026",
+    image: "/projects/geleia-monges.png",
+    imageUnoptimized: true,
     badges: ["Site institucional", "3D", "SEO"],
+    href: "https://geleia-dos-monges.vercel.app/",
+  },
+  {
+    name: "Leep Chás",
+    year: "2026",
+    image: "/projects/leep-mockup.png",
+    imageUnoptimized: true,
+    badges: ["Ecommerce"],
+    href: "https://leepchas.com.br/",
   },
 ];

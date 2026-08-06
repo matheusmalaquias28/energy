@@ -29,7 +29,8 @@ export const EXPERTISE_VIDEO_ITEMS: ExpertiseVideoItem[] = [
   },
   {
     title: "Ecommerces",
-    videoSrc:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+    videoSrc: "/videos/ecommerce-premium.mp4",
+    hideOverlay: true,
+    fullBleed: true,
   },
 ];

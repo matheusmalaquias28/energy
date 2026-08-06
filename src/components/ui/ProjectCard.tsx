@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrowUpRight } from "lucide-react";
 import type { FeaturedProject } from "@/data/featured-projects";
 import { sectionDisplay } from "@/lib/fonts";
 import { useContactModal } from "@/components/contact/contact-modal-context";
+import { useSmartVideo } from "@/hooks/useSmartVideo";
 
 const CURSOR_OFFSET = 18;
 
@@ -30,31 +31,39 @@ export default function ProjectCard({
   size = "default",
 }: ProjectCardProps) {
   const { openContactModal } = useContactModal();
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [hovered, setHovered] = useState(false);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [mounted, setMounted] = useState(false);
 
   const alwaysVideo = Boolean(project.video && project.videoAlways);
+  const { videoRef, allowPlayback, safePlay, safePause } = useSmartVideo({
+    src: project.video,
+    poster: project.image,
+    enabled: Boolean(project.video),
+  });
 
+  const showVideoLayer = allowPlayback && (alwaysVideo || hovered);
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (!alwaysVideo || !videoRef.current) return;
-    const v = videoRef.current;
-    v.muted = true;
-    v.play().catch(() => {});
-  }, [alwaysVideo, project.video]);
+    if (!alwaysVideo || !allowPlayback) return;
+    safePlay();
+  }, [alwaysVideo, allowPlayback, safePlay]);
+
+  useEffect(() => {
+    if (alwaysVideo) return;
+    if (hovered && allowPlayback) {
+      safePlay();
+    } else {
+      safePause();
+    }
+  }, [alwaysVideo, hovered, allowPlayback, safePlay, safePause]);
 
   const handleEnter = (e: React.MouseEvent) => {
     setHovered(true);
     setCursor({ x: e.clientX, y: e.clientY });
-    if (project.video && videoRef.current && !alwaysVideo) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => {});
-    }
   };
 
   const handleMove = (e: React.MouseEvent) => {
@@ -63,10 +72,7 @@ export default function ProjectCard({
 
   const handleLeave = () => {
     setHovered(false);
-    if (videoRef.current && !alwaysVideo) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
+    if (!alwaysVideo) safePause();
   };
 
   const popup =
@@ -81,29 +87,26 @@ export default function ProjectCard({
         }}
         aria-hidden
       >
-        Ver projeto
+        {project.href ? "Ver site" : "Ver projeto"}
       </div>,
       document.body,
     );
 
-  return (
+  const cardClassName = `group relative block ${sizeHeights[size]} w-full cursor-none overflow-hidden rounded-3xl border border-white/[0.08] bg-[#111] text-left transition-[border-color,box-shadow] duration-500 hover:border-white/[0.14] hover:shadow-[0_24px_80px_rgba(0,0,0,0.45)] ${className}`;
+
+  const cardContent = (
     <>
-      {popup}
-      <button
-      type="button"
-      onClick={openContactModal}
-      className={`group relative block ${sizeHeights[size]} w-full cursor-none overflow-hidden rounded-3xl border border-white/[0.08] bg-[#111] text-left transition-[border-color,box-shadow] duration-500 hover:border-white/[0.14] hover:shadow-[0_24px_80px_rgba(0,0,0,0.45)] ${className}`}
-      onMouseEnter={handleEnter}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-    >
       <Image
         src={project.image}
         alt={project.name}
         fill
         sizes="(max-width: 1024px) 100vw, 40vw"
         priority={priority}
-        className={`object-cover transition-transform duration-700 ease-out ${alwaysVideo ? "" : "group-hover:scale-[1.04]"}`}
+        quality={100}
+        unoptimized={project.imageUnoptimized}
+        className={`object-cover transition-transform duration-700 ease-out ${
+          alwaysVideo && showVideoLayer ? "opacity-0" : ""
+        } ${alwaysVideo ? "" : "group-hover:scale-[1.04]"}`}
       />
 
       {project.video ? (
@@ -113,10 +116,10 @@ export default function ProjectCard({
           muted
           loop
           playsInline
-          autoPlay={alwaysVideo}
-          preload={alwaysVideo ? "auto" : "metadata"}
-          className={`absolute inset-0 z-[1] h-full w-full object-cover ${alwaysVideo ? "opacity-100" : "transition-opacity duration-500 ease-out"}`}
-          style={alwaysVideo ? undefined : { opacity: hovered ? 1 : 0 }}
+          preload="auto"
+          className={`absolute inset-0 z-[1] h-full w-full object-cover transition-opacity duration-500 ease-out ${
+            showVideoLayer ? "opacity-100" : "opacity-0"
+          }`}
         />
       ) : null}
 
@@ -151,7 +154,37 @@ export default function ProjectCard({
           </h3>
         </div>
       </div>
-    </button>
+    </>
+  );
+
+  return (
+    <>
+      {popup}
+      {project.href ? (
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cardClassName}
+          onMouseEnter={handleEnter}
+          onMouseMove={handleMove}
+          onMouseLeave={handleLeave}
+          aria-label={`Visitar site ${project.name}`}
+        >
+          {cardContent}
+        </a>
+      ) : (
+        <button
+          type="button"
+          onClick={openContactModal}
+          className={cardClassName}
+          onMouseEnter={handleEnter}
+          onMouseMove={handleMove}
+          onMouseLeave={handleLeave}
+        >
+          {cardContent}
+        </button>
+      )}
     </>
   );
 }

@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import SmartVideoPoster from "@/components/ui/SmartVideoPoster";
+import { SMART_VIDEO_FAST_LOAD_MS, useSmartVideo } from "@/hooks/useSmartVideo";
 
 /** Abaixo de `md` (768px): vídeo dedicado ao mobile — desktop mantém o asset anterior. */
 const MOBILE_MAX_WIDTH = "(max-width: 767px)";
@@ -15,6 +17,11 @@ export default function PagePreloader() {
   const [show, setShow] = useState(() => !_homePreloaderComplete);
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
   const ended = useRef(false);
+
+  const { videoRef, allowPlayback, posterSrc, safePlay } = useSmartVideo({
+    src: videoSrc ?? undefined,
+    enabled: Boolean(videoSrc),
+  });
 
   const dismiss = () => {
     if (ended.current) return;
@@ -37,6 +44,17 @@ export default function PagePreloader() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!videoSrc || !allowPlayback) return;
+    safePlay();
+  }, [videoSrc, allowPlayback, safePlay]);
+
+  useEffect(() => {
+    if (!videoSrc || allowPlayback) return;
+    const t = window.setTimeout(dismiss, SMART_VIDEO_FAST_LOAD_MS + 400);
+    return () => window.clearTimeout(t);
+  }, [videoSrc, allowPlayback]);
+
   return (
     <AnimatePresence
       onExitComplete={() => {
@@ -54,17 +72,29 @@ export default function PagePreloader() {
           transition={{ duration: 0.75, ease: [0.32, 0.72, 0, 1] }}
         >
           {videoSrc && (
-            <video
-              key={videoSrc}
-              className="pointer-events-none h-full w-full select-none object-cover"
-              src={videoSrc}
-              muted
-              playsInline
-              autoPlay
-              preload="auto"
-              onEnded={dismiss}
-              onError={dismiss}
-            />
+            <div className="relative h-full w-full">
+              {posterSrc ? (
+                <SmartVideoPoster
+                  src={posterSrc}
+                  visible={!allowPlayback}
+                  fit="cover"
+                  className="z-[1]"
+                />
+              ) : null}
+              <video
+                key={videoSrc}
+                ref={videoRef}
+                className={`pointer-events-none relative z-[2] h-full w-full select-none object-cover transition-opacity duration-300 ${
+                  allowPlayback ? "opacity-100" : "opacity-0"
+                }`}
+                src={videoSrc}
+                muted
+                playsInline
+                preload="auto"
+                onEnded={dismiss}
+                onError={dismiss}
+              />
+            </div>
           )}
         </motion.div>
       )}

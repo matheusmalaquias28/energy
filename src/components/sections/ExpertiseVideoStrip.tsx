@@ -1,9 +1,11 @@
 "use client";
 
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import SmartVideoPoster from "@/components/ui/SmartVideoPoster";
 import { EXPERTISE_VIDEO_ITEMS } from "@/data/expertise-videos";
+import { useSmartVideo } from "@/hooks/useSmartVideo";
 import { sectionTitle } from "@/lib/fonts";
 
 function HoverVideoTile({
@@ -20,15 +22,23 @@ function HoverVideoTile({
   fullBleed?: boolean;
 }) {
   const tileRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [intrinsicAspect, setIntrinsicAspect] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
 
   const hasVideo = Boolean(videoSrc?.trim());
   const inView = useInView(tileRef, {
     amount: 0.2,
     margin: "0px 0px -5% 0px",
   });
+
+  const { videoRef, allowPlayback, posterSrc, safePlay, safePause } = useSmartVideo({
+    src: videoSrc,
+    enabled: hasVideo,
+  });
+
+  const shouldPlay = isMobile ? inView : isHovering;
+  const showVideo = allowPlayback && shouldPlay;
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
@@ -38,53 +48,11 @@ function HoverVideoTile({
     return () => mq.removeEventListener("change", sync);
   }, []);
 
-  const attemptPlay = useCallback(() => {
-    const v = videoRef.current;
-    if (!v || !hasVideo) return;
-
-    const play = () => {
-      void v.play().catch(() => {});
-    };
-
-    if (v.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
-      play();
-      return;
-    }
-
-    const onCanPlay = () => {
-      v.removeEventListener("canplay", onCanPlay);
-      play();
-    };
-    v.addEventListener("canplay", onCanPlay);
-  }, [hasVideo]);
-
   useEffect(() => {
-    if (!isMobile || !hasVideo) return;
-
-    const v = videoRef.current;
-    if (!v) return;
-
-    if (inView) {
-      attemptPlay();
-    } else {
-      v.pause();
-      v.currentTime = 0;
-    }
-  }, [isMobile, hasVideo, inView, attemptPlay]);
-
-  const play = () => {
-    const v = videoRef.current;
-    if (!v || !hasVideo) return;
-    v.currentTime = 0;
-    v.play().catch(() => {});
-  };
-
-  const stop = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.pause();
-    v.currentTime = 0;
-  };
+    if (!hasVideo) return;
+    if (shouldPlay) safePlay();
+    else safePause();
+  }, [hasVideo, shouldPlay, safePlay, safePause]);
 
   const handleLoadedMetadata = (
     e: React.SyntheticEvent<HTMLVideoElement>,
@@ -125,38 +93,60 @@ function HoverVideoTile({
       style={containerStyle}
       onMouseEnter={() => {
         if (isMobile) return;
-        play();
+        setIsHovering(true);
       }}
       onMouseLeave={() => {
         if (isMobile) return;
-        stop();
+        setIsHovering(false);
       }}
     >
       {hasVideo ? (
         blackInsetVideo ? (
           <div className="absolute inset-0 flex items-center justify-center">
+            {posterSrc && !showVideo ? (
+              <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={posterSrc}
+                  alt=""
+                  aria-hidden
+                  decoding="async"
+                  fetchPriority="high"
+                  className="h-auto max-h-[70%] w-auto max-w-[70%] object-contain"
+                />
+              </div>
+            ) : null}
             <video
               ref={videoRef}
               src={videoSrc}
               muted
               loop
               playsInline
-              preload={isMobile ? "auto" : "metadata"}
+              preload="auto"
               onLoadedMetadata={handleLoadedMetadata}
-              className={`opacity-100 transition-transform duration-500 ease-out ${fitClass}`}
+              className={`transition-opacity duration-500 ease-out ${fitClass} ${
+                showVideo ? "opacity-100" : "opacity-0"
+              }`}
             />
           </div>
         ) : (
-          <video
-            ref={videoRef}
-            src={videoSrc}
-            muted
-            loop
-            playsInline
-            preload={isMobile ? "auto" : "metadata"}
-            onLoadedMetadata={handleLoadedMetadata}
-            className={`absolute inset-0 h-full w-full opacity-100 transition-transform duration-500 ease-out ${fitClass}`}
-          />
+          <>
+            {posterSrc ? (
+              <SmartVideoPoster src={posterSrc} visible={!showVideo} fit={fullBleed ? "cover" : "contain"} />
+            ) : null}
+            <video
+              ref={videoRef}
+              src={videoSrc}
+              muted
+              loop
+              playsInline
+              preload="auto"
+              onLoadedMetadata={handleLoadedMetadata}
+              className={`absolute inset-0 h-full w-full transition-opacity duration-500 ease-out ${fitClass} ${
+                showVideo ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          </>
         )
       ) : (
         <div

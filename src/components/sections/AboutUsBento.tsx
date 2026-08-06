@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import GradientBorderBox from "@/components/ui/GradientBorderBox";
 import { sectionBodyTitle, sectionDisplay, sectionTitle } from "@/lib/fonts";
 import { GlobeVV } from "@/components/effects/GlobeVV";
 import AboutSoftwareMarquee from "@/components/sections/AboutSoftwareMarquee";
+import SmartVideoPoster from "@/components/ui/SmartVideoPoster";
+import { useSmartVideo } from "@/hooks/useSmartVideo";
 
 const ABOUT_FOUNDER_IMAGE = "/matheus-malaquias.jpg";
 const ABOUT_SIDE_VIDEO = "/videos/melted2.mp4";
@@ -31,26 +33,34 @@ const stats = [
 
 export default function AboutUsBento() {
   const sectionRef = useRef<HTMLElement>(null);
-  const sideVideoRef = useRef<HTMLVideoElement>(null);
+  const [sideVideoActive, setSideVideoActive] = useState(false);
+  const { videoRef, allowPlayback, posterSrc, safePlay, safePause } = useSmartVideo({
+    src: ABOUT_SIDE_VIDEO,
+  });
+
+  const showSideVideo = allowPlayback && sideVideoActive;
 
   useEffect(() => {
     const section = sectionRef.current;
-    const video = sideVideoRef.current;
-    if (!section || !video) return;
+    if (!section) return;
 
     const onEnded = () => {
-      video.pause();
+      safePause();
+      setSideVideoActive(false);
     };
-    video.addEventListener("ended", onEnded);
+    const video = videoRef.current;
+    video?.addEventListener("ended", onEnded);
 
     const io = new IntersectionObserver(
       ([entry]) => {
         if (!entry) return;
         if (entry.isIntersecting) {
-          if (video.ended) return;
-          void video.play().catch(() => {});
+          if (video?.ended) return;
+          setSideVideoActive(true);
+          safePlay();
         } else {
-          video.pause();
+          setSideVideoActive(false);
+          safePause();
         }
       },
       { threshold: 0.12, rootMargin: "0px 0px -5% 0px" },
@@ -59,9 +69,9 @@ export default function AboutUsBento() {
 
     return () => {
       io.disconnect();
-      video.removeEventListener("ended", onEnded);
+      video?.removeEventListener("ended", onEnded);
     };
-  }, []);
+  }, [safePlay, safePause, videoRef]);
 
   return (
     <section
@@ -151,12 +161,30 @@ export default function AboutUsBento() {
                   <h3
                     className={`${sectionTitle} text-[clamp(1.25rem,2.2vw,1.65rem)] leading-[1.15] text-white`}
                   >
-                    Título do bloco
+                    O melhor site é aquele que vende.
                   </h3>
-                  <p className={`${sectionBodyTitle} text-sm leading-relaxed text-white/45 md:text-base`}>
-                    Corpo de texto: aqui você descreve contexto, visão ou o que quiser comunicar ao lado da
-                    fotografia. Ajuste o copy quando quiser.
-                  </p>
+                  <div className={`${sectionBodyTitle} flex flex-col gap-4 text-sm leading-relaxed text-white/45 md:text-base`}>
+                    <p>
+                      Na Energy, acreditamos que um site não existe para ganhar elogios. Ele existe para
+                      gerar resultados. Cada escolha de design, cada seção e cada botão precisam ter um
+                      propósito: transformar visitantes em clientes.
+                    </p>
+                    <p>
+                      Antes de pensar em cores ou animações, pensamos em estratégia. Entendemos o negócio,
+                      o comportamento do público e construímos uma experiência que inspira confiança e
+                      facilita a tomada de decisão.
+                    </p>
+                    <p>
+                      A tecnologia mudou a forma de criar sites, e nós acompanhamos essa evolução.
+                      Utilizamos inteligência artificial e ferramentas modernas para acelerar processos,
+                      mas as decisões mais importantes continuam sendo guiadas por estratégia, experiência
+                      e visão de mercado.
+                    </p>
+                    <p>
+                      No fim, nosso objetivo é simples: desenvolver sites que representem o potencial da
+                      sua empresa e trabalhem todos os dias para gerar novas oportunidades de negócio.
+                    </p>
+                  </div>
                 </div>
               </div>
             </GradientBorderBox>
@@ -165,9 +193,14 @@ export default function AboutUsBento() {
           <ScrollReveal delay={0.1} className="lg:col-span-3">
             <GradientBorderBox className="h-full min-h-[200px]">
               <div className="relative h-full min-h-[200px] w-full overflow-hidden rounded-[inherit] md:min-h-[240px]">
+                {posterSrc ? (
+                  <SmartVideoPoster src={posterSrc} visible={!showSideVideo} fit="cover" />
+                ) : null}
                 <video
-                  ref={sideVideoRef}
-                  className="absolute inset-0 h-full w-full object-cover object-center"
+                  ref={videoRef}
+                  className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-500 ${
+                    showSideVideo ? "opacity-100" : "opacity-0"
+                  }`}
                   src={ABOUT_SIDE_VIDEO}
                   muted
                   playsInline
