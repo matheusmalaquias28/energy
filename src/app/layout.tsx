@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import CustomCursor from "@/components/ui/CustomCursor";
 import PreloaderRouter from "@/components/effects/PreloaderRouter";
 import { ContactModalProvider } from "@/components/contact/contact-modal-context";
+import { FloatingQuoteButton } from "@/components/contact/FloatingQuoteButton";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -165,6 +166,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           {children}
           <Footer />
+          <FloatingQuoteButton />
         </ContactModalProvider>
       </body>
     </html>

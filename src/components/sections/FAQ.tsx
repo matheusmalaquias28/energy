@@ -18,60 +18,53 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-28 lg:py-36 px-6 lg:px-16 bg-[#0a0a0a] border-b border-white/5">
-      <div className="max-w-[90rem] mx-auto">
-
-        {/* Section label */}
+    <section id="faq" className="border-b border-white/5 bg-[#0a0a0a] px-6 py-28 lg:px-16 lg:py-36">
+      <div className="mx-auto max-w-[90rem]">
         <ScrollReveal>
-          <div className="flex items-center gap-4 mb-20">
-            <span className="text-xs text-white/30 uppercase tracking-[0.2em]">// 07</span>
-            <span className="flex-1 h-px bg-white/8" />
-            <span className="text-xs text-white/30 uppercase tracking-[0.2em]">Dúvidas frequentes</span>
+          <div className="mx-auto mb-12 max-w-3xl text-center lg:mb-16">
+            <span className="gallery-marquee__eyebrow">Dúvidas frequentes</span>
+            <h2
+              className={`${sectionTitle} mt-4 text-[clamp(2rem,4.5vw,4rem)] leading-[1.05] text-white`}
+            >
+              Perguntas que{" "}
+              <span className="block text-[#FE4101]">todo mundo faz.</span>
+            </h2>
           </div>
         </ScrollReveal>
 
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          <ScrollReveal>
-            <h2 className={`${sectionTitle} text-[clamp(2rem,4.5vw,4rem)] leading-[1.05] text-white sticky top-32`}>
-              Perguntas que{" "}
-              <span className="text-[#FE4101]">todo mundo</span>{" "}
-              faz.
-            </h2>
-          </ScrollReveal>
-
-          <div className="border-t border-white/8">
-            {faqs.map((faq, i) => (
-              <ScrollReveal key={i} delay={i * 0.04}>
-                <div className="border-b border-white/8">
-                  <button
-                    className="w-full flex items-center justify-between gap-6 py-6 text-left cursor-none group"
-                    onClick={() => setOpen(open === i ? null : i)}
+        <div className="mx-auto max-w-3xl border-t border-white/8">
+          {faqs.map((faq, i) => (
+            <ScrollReveal key={i} delay={i * 0.04}>
+              <div className="border-b border-white/8">
+                <button
+                  type="button"
+                  className="group flex w-full cursor-none items-center justify-between gap-6 py-6 text-left"
+                  onClick={() => setOpen(open === i ? null : i)}
+                >
+                  <span
+                    className={`${sectionBodyTitle} text-base text-white/80 transition-colors duration-300 group-hover:text-white`}
                   >
-                    <span className={`${sectionBodyTitle} text-base text-white/80 group-hover:text-white transition-colors duration-300`}>
-                      {faq.q}
-                    </span>
-                    <span className="flex-shrink-0 text-white/30 group-hover:text-[#FE4101] transition-colors duration-300">
-                      {open === i ? <Minus size={16} /> : <Plus size={16} />}
-                    </span>
-                  </button>
-                  <AnimatePresence>
-                    {open === i && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
-                      >
-                        <p className="pb-6 text-white/40 leading-relaxed text-sm">
-                          {faq.a}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+                    {faq.q}
+                  </span>
+                  <span className="shrink-0 text-white/30 transition-colors duration-300 group-hover:text-[#FE4101]">
+                    {open === i ? <Minus size={16} /> : <Plus size={16} />}
+                  </span>
+                </button>
+                <AnimatePresence>
+                  {open === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
+                    >
+                      <p className="pb-6 text-sm leading-relaxed text-white/40">{faq.a}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>

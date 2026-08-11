@@ -8,7 +8,7 @@ export default function StrategicPartner() {
   const { openContactModal } = useContactModal();
 
   return (
-    <section className="py-28 lg:py-36 px-6 lg:px-16 bg-[#0a0a0a] border-b border-white/5">
+    <section className="py-28 lg:py-36 px-6 lg:px-16 bg-black border-b border-white/5">
       <div className="max-w-[90rem] mx-auto">
 
         {/* Section label */}
@@ -48,7 +48,7 @@ export default function StrategicPartner() {
                   Quero ser parceiro
                   <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </button>
-                <a href="#servicos" className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.15em] text-white/40 border-b border-white/10 pb-1 hover:border-white/40 hover:text-white/70 transition-colors duration-300 cursor-none">
+                <a href="#processo" className="group inline-flex items-center gap-2 text-sm uppercase tracking-[0.15em] text-white/40 border-b border-white/10 pb-1 hover:border-white/40 hover:text-white/70 transition-colors duration-300 cursor-none">
                   Ver como funciona
                   <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>

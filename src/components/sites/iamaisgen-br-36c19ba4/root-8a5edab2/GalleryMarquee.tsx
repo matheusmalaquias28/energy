@@ -3,8 +3,14 @@ import {
   GALLERY_MARQUEE_TRACK_REPEATS,
   type GalleryMarqueeItem,
 } from "@/data/gallery-marquee-images";
+import { sectionTitle } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 
 const ROW_DURATIONS = ["95s", "110s", "85s"];
+
+type GalleryMarqueeProps = {
+  variant?: "lp" | "home";
+};
 
 function buildInfiniteTrack(items: GalleryMarqueeItem[]) {
   return Array.from({ length: GALLERY_MARQUEE_TRACK_REPEATS }, () => items).flat();
@@ -51,9 +57,17 @@ function GalleryRow({
   );
 }
 
-export function GalleryMarquee() {
+export function GalleryMarquee({ variant = "lp" }: GalleryMarqueeProps) {
   return (
-    <section id="galeria" className="gallery-marquee sec" aria-labelledby="gallery-marquee-title">
+    <section
+      id="galeria"
+      className={cn(
+        "gallery-marquee",
+        variant === "lp" && "sec",
+        variant === "home" && "gallery-marquee--home border-b border-white/5",
+      )}
+      aria-labelledby="gallery-marquee-title"
+    >
       <div className="gallery-marquee__backdrop" aria-hidden>
         {GALLERY_MARQUEE_ROWS.map((row, index) => (
           <GalleryRow
@@ -69,7 +83,10 @@ export function GalleryMarquee() {
 
       <div className="gallery-marquee__content">
         <span className="gallery-marquee__eyebrow">Feito pela Energy</span>
-        <h2 id="gallery-marquee-title" className="gallery-marquee__title">
+        <h2
+          id="gallery-marquee-title"
+          className={cn("gallery-marquee__title", variant === "home" && sectionTitle)}
+        >
           Projetos reais,
           <br />
           feitos para converter

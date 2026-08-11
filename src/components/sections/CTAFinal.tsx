@@ -9,8 +9,14 @@ export default function CTAFinal() {
   const { openContactModal } = useContactModal();
 
   return (
-    <section id="contato" className="py-28 lg:py-40 px-6 lg:px-16 bg-[#111111]">
-      <div className="max-w-[90rem] mx-auto">
+    <section id="contato" className="relative overflow-hidden bg-black px-6 py-28 lg:px-16 lg:py-40">
+      <div
+        className="pointer-events-none absolute inset-0 bg-[length:cover] bg-[position:center_right] bg-no-repeat"
+        style={{ backgroundImage: "url(/backgrounds/contact-section-bg.png)" }}
+        aria-hidden
+      />
+
+      <div className="relative z-10 mx-auto max-w-[90rem]">
 
         {/* Section label */}
         <ScrollReveal>

@@ -1150,7 +1150,7 @@ body {
 }
 
 /* ── Gallery marquee (background image carousel) ── */
-.iagen .gallery-marquee {
+.gallery-marquee {
   position: relative;
   overflow: hidden;
   padding: clamp(72px, 10vh, 108px) 0 clamp(64px, 8vh, 96px);
@@ -1162,7 +1162,7 @@ body {
   background: #000;
 }
 
-.iagen .gallery-marquee__backdrop {
+.gallery-marquee__backdrop {
   position: absolute;
   inset: 0;
   display: flex;
@@ -1174,12 +1174,12 @@ body {
   -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
 }
 
-.iagen .gallery-marquee-row {
+.gallery-marquee-row {
   overflow: hidden;
   width: 100%;
 }
 
-.iagen .gallery-marquee-track {
+.gallery-marquee-track {
   display: flex;
   width: max-content;
   flex-wrap: nowrap;
@@ -1188,11 +1188,11 @@ body {
   animation: gallery-marquee-scroll linear infinite;
 }
 
-.iagen .gallery-marquee-track--reverse {
+.gallery-marquee-track--reverse {
   animation-direction: reverse;
 }
 
-.iagen .gallery-marquee-card {
+.gallery-marquee-card {
   position: relative;
   flex: 0 0 auto;
   width: clamp(220px, 24vw, 320px);
@@ -1204,14 +1204,14 @@ body {
   background: rgba(255, 255, 255, 0.03);
 }
 
-.iagen .gallery-marquee-card__img {
+.gallery-marquee-card__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.iagen .gallery-marquee__overlay {
+.gallery-marquee__overlay {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -1226,7 +1226,7 @@ body {
   );
 }
 
-.iagen .gallery-marquee__content {
+.gallery-marquee__content {
   position: relative;
   z-index: 1;
   display: flex;
@@ -1234,12 +1234,12 @@ body {
   align-items: center;
   text-align: center;
   width: 100%;
-  max-width: var(--agen-max-w);
+  max-width: min(1200px, 96vw);
   padding: 0 24px clamp(40px, 6vh, 72px);
   margin: 0 auto;
 }
 
-.iagen .gallery-marquee__eyebrow {
+.gallery-marquee__eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1251,7 +1251,7 @@ body {
   margin-bottom: 22px;
 }
 
-.iagen .gallery-marquee__eyebrow::before {
+.gallery-marquee__eyebrow::before {
   content: "";
   width: 6px;
   height: 6px;
@@ -1260,8 +1260,7 @@ body {
   box-shadow: 0 0 12px rgba(254, 65, 1, 0.65);
 }
 
-.iagen .gallery-marquee__title {
-  font-family: var(--agen-font-display);
+.gallery-marquee__title {
   font-size: clamp(2rem, 5vw, 3.75rem);
   font-weight: 600;
   letter-spacing: -0.03em;
@@ -1271,7 +1270,11 @@ body {
   max-width: 18ch;
 }
 
-.iagen .gallery-marquee__sub {
+.iagen .gallery-marquee__title {
+  font-family: var(--agen-font-display);
+}
+
+.gallery-marquee__sub {
   font-size: clamp(0.92rem, 1.6vw, 1.05rem);
   color: rgba(242, 245, 240, 0.62);
   line-height: 1.65;
@@ -1285,31 +1288,31 @@ body {
 }
 
 @media (max-width: 720px) {
-  .iagen .gallery-marquee {
+  .gallery-marquee {
     min-height: clamp(380px, 58vh, 520px);
     padding: 48px 0 40px;
   }
 
-  .iagen .gallery-marquee__content {
+  .gallery-marquee__content {
     padding-bottom: 32px;
   }
 
-  .iagen .gallery-marquee__backdrop {
+  .gallery-marquee__backdrop {
     gap: 12px;
   }
 
-  .iagen .gallery-marquee-track {
+  .gallery-marquee-track {
     gap: 12px;
   }
 
-  .iagen .gallery-marquee-card {
+  .gallery-marquee-card {
     width: clamp(200px, 58vw, 260px);
     border-radius: 14px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .iagen .gallery-marquee-track {
+  .gallery-marquee-track {
     animation: none;
   }
 }

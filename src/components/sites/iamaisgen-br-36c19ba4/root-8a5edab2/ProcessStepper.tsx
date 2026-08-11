@@ -108,7 +108,7 @@ function StepIcon({
   );
 }
 
-export function ProcessStepper() {
+export function ProcessStepper({ fadeColor = "#0a0a0a" }: { fadeColor?: string }) {
   const items = useMemo(() => [...STEPS, ...STEPS, ...STEPS], []);
   const loopStart = STEPS.length;
   const loopEnd = STEPS.length * 2;
@@ -203,11 +203,13 @@ export function ProcessStepper() {
       }}
     >
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 z-20 h-16 bg-gradient-to-b from-[#0a0a0a] to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 z-20 h-16"
+        style={{ background: `linear-gradient(to bottom, ${fadeColor}, transparent)` }}
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16 bg-gradient-to-t from-[#0a0a0a] to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16"
+        style={{ background: `linear-gradient(to top, ${fadeColor}, transparent)` }}
         aria-hidden
       />
 
