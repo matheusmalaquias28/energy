@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import BrandLogo from "@/components/layout/BrandLogo";
@@ -8,7 +9,7 @@ import { ScrambleText } from "@/components/effects/ScrambleText";
 import { urbanist } from "@/lib/fonts";
 import { useContactModal } from "@/components/contact/contact-modal-context";
 
-const links = [
+const siteLinks = [
   { label: "Serviços", href: "/servicos" },
   { label: "Projetos", href: "#projetos" },
   { label: "Diferenciais", href: "#diferenciais" },
@@ -17,9 +18,20 @@ const links = [
   { label: "FAQ", href: "#faq" },
 ] as const;
 
+const lpLinks = [
+  { label: "O problema", href: "#problema" },
+  { label: "A solução", href: "#virada" },
+  { label: "Como funciona", href: "#processo" },
+  { label: "Para quem", href: "#para-quem" },
+  { label: "FAQ", href: "#faq" },
+] as const;
+
 const linkTextClass = `${urbanist.className} text-[clamp(2.25rem,6vw,4.5rem)] font-bold uppercase tracking-[-0.04em]`;
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isLandingPage = pathname === "/enrgy-lp";
+  const links = isLandingPage ? lpLinks : siteLinks;
   const { openContactModal } = useContactModal();
   const [open, setOpen] = useState(false);
   const [scrollPct, setScrollPct] = useState(0);

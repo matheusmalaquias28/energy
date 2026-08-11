@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energyagencia.com.br";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/demo/"],
+        disallow: ["/api/", "/demo/", "/enrgy-lp/"],
       },
       // Explicitly allow AI crawlers
       { userAgent: "GPTBot", allow: "/" },
@@ -18,6 +18,8 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "Google-Extended", allow: "/" },
       { userAgent: "Applebot-Extended", allow: "/" },
       { userAgent: "YouBot", allow: "/" },
+      { userAgent: "OAI-SearchBot", allow: "/" },
+      { userAgent: "ClaudeBot", allow: "/" },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
   };

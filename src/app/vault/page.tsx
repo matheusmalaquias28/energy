@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import VaultClient from "./VaultClient";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energyagencia.com.br";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br";
 
 export const metadata: Metadata = {
   title: "Vault — Base de Conhecimento Digital",

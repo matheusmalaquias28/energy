@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { blogPosts, getPostBySlug, formatDate } from "@/data/blog-posts";
 import { blogContent } from "@/lib/blog-content";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energyagencia.com.br";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br";
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -56,14 +56,24 @@ export default async function BlogPostPage(props: {
     datePublished: post.publishedAt,
     dateModified: post.publishedAt,
     author: {
-      "@type": "Organization",
-      name: "Energy Agência Digital",
+      "@type": "Person",
+      name: "Matheus Malaquias",
       url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
-      name: "Energy Agência Digital",
+      name: "Energy",
       url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+      },
+    },
+    image: {
+      "@type": "ImageObject",
+      url: post.coverImage ? `${SITE_URL}${post.coverImage}` : `${SITE_URL}/og-image.jpg`,
+      width: 1200,
+      height: 630,
     },
     mainEntityOfPage: {
       "@type": "WebPage",

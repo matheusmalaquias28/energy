@@ -1,9 +1,9 @@
-import type { MetadataRoute } from "next";
+﻿import type { MetadataRoute } from "next";
 import { brazilCities } from "@/data/cities";
 import { blogPosts } from "@/data/blog-posts";
 import { localPages } from "@/data/local-pages";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energyagencia.com.br";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const cityPages: MetadataRoute.Sitemap = brazilCities.map((city) => ({

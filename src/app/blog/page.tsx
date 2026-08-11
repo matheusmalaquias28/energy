@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { blogPosts, formatDate } from "@/data/blog-posts";
 import { ArrowUpRight } from "lucide-react";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energyagencia.com.br";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br";
 
 export const metadata: Metadata = {
   title: "Blog — Estratégia Digital, Sites e E-commerce",

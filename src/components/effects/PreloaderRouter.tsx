@@ -7,6 +7,8 @@ import InnerPagePreloader from "./InnerPagePreloader";
 export default function PreloaderRouter() {
   const pathname = usePathname();
 
+  if (pathname === "/enrgy-lp") return null;
+
   if (pathname === "/") {
     return <PagePreloader />;
   }

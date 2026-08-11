@@ -2,7 +2,7 @@ import { blogPosts } from "@/data/blog-posts";
 import { brazilCities } from "@/data/cities";
 import { localPages } from "@/data/local-pages";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energyagencia.com.br";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br";
 
 export async function GET() {
   const blogLines = blogPosts
