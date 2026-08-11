@@ -2,7 +2,6 @@ export type GalleryMarqueeItem = {
   src: string;
   tag: string;
   alt: string;
-  unoptimized?: boolean;
 };
 
 const FRAME_FILES = [
@@ -29,7 +28,6 @@ function frameItem(file: (typeof FRAME_FILES)[number], index: number): GalleryMa
     src: `/Capas/${file}`,
     tag: "",
     alt: `Projeto Energy ${index + 1}`,
-    unoptimized: true,
   };
 }
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { Fragment } from "react";
-import Image from "next/image";
 import { useReducedMotion } from "framer-motion";
 
 /** Todas as imagens em `public/softwares/`. */
@@ -24,12 +23,12 @@ function SoftwareIcon({ item }: { item: (typeof SOFTWARE_ICONS)[number] }) {
   return (
     <div className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-lg border border-white/[0.09] bg-[rgba(22,22,22,0.42)] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]">
       <div className="relative h-[60px] w-[60px]">
-        <Image
+        <img
           src={item.src}
           alt={item.alt}
-          fill
-          className="object-contain"
-          sizes="60px"
+          className="absolute inset-0 h-full w-full object-contain"
+          loading="lazy"
+          decoding="async"
         />
       </div>
     </div>

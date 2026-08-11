@@ -7,8 +7,6 @@ export type FeaturedProject = {
   video?: string;
   /** Vídeo sempre visível com autoplay (preenche o container) em vez de só no hover */
   videoAlways?: boolean;
-  /** Serve a imagem sem otimização do Next.js (qualidade máxima) */
-  imageUnoptimized?: boolean;
   /** Badges no canto inferior esquerdo */
   badges: string[];
   /** URL do site ao vivo — abre em nova guia ao clicar no card */
@@ -50,7 +48,6 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     name: "Geléia dos Monges",
     year: "2026",
     image: "/projects/geleia-monges.png",
-    imageUnoptimized: true,
     badges: ["Site institucional", "3D", "SEO"],
     href: "https://geleia-dos-monges.vercel.app/",
   },
@@ -58,7 +55,6 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     name: "Leep Chás",
     year: "2026",
     image: "/projects/leep-mockup.png",
-    imageUnoptimized: true,
     badges: ["Ecommerce"],
     href: "https://leepchas.com.br/",
   },

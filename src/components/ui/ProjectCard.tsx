@@ -102,8 +102,7 @@ export default function ProjectCard({
         fill
         sizes="(max-width: 1024px) 100vw, 40vw"
         priority={priority}
-        quality={100}
-        unoptimized={project.imageUnoptimized}
+        unoptimized
         className={`object-cover transition-transform duration-700 ease-out ${
           alwaysVideo && showVideoLayer ? "opacity-0" : ""
         } ${alwaysVideo ? "" : "group-hover:scale-[1.04]"}`}

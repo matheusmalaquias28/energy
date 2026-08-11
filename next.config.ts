@@ -4,6 +4,9 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
+    // Static assets live in /public (pre-sized). Remote posters (Unsplash) already
+    // ship with size params. Skipping /_next/image avoids Vercel transformation quota.
+    unoptimized: process.env.VERCEL === "1",
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {

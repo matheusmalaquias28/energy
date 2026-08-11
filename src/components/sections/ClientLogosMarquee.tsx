@@ -1,7 +1,6 @@
 "use client";
 
 import { useReducedMotion } from "framer-motion";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const CLIENT_LOGOS = [
@@ -38,16 +37,16 @@ function ClientLogo({
       data-client-logo=""
       data-instance-id={instanceId}
     >
-      <Image
+      <img
         src={logo.src}
         alt={logo.alt}
-        fill
-        className={`object-contain transition-[opacity,filter] duration-300 ${
+        className={`absolute inset-0 h-full w-full object-contain transition-[opacity,filter] duration-300 ${
           active
             ? "opacity-100 grayscale-0"
             : "opacity-65 grayscale hover:opacity-100 hover:grayscale-0"
         }`}
-        sizes="(max-width: 640px) 7.5rem, 9rem"
+        loading="lazy"
+        decoding="async"
       />
     </div>
   );

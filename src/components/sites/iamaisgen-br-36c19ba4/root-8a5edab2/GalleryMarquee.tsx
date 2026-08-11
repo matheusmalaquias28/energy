@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   GALLERY_MARQUEE_ROWS,
   GALLERY_MARQUEE_TRACK_REPEATS,
@@ -14,14 +13,14 @@ function buildInfiniteTrack(items: GalleryMarqueeItem[]) {
 function GalleryCard({ item }: { item: GalleryMarqueeItem }) {
   return (
     <div className="gallery-marquee-card">
-      <Image
+      <img
         src={item.src}
         alt={item.alt}
         width={320}
         height={200}
         className="gallery-marquee-card__img"
-        unoptimized={item.unoptimized}
-        sizes="320px"
+        loading="lazy"
+        decoding="async"
       />
     </div>
   );
