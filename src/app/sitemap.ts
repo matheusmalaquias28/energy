@@ -2,6 +2,7 @@
 import { brazilCities } from "@/data/cities";
 import { blogPosts } from "@/data/blog-posts";
 import { localPages } from "@/data/local-pages";
+import { lpCityPages } from "@/data/lp-city-pages";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br";
 
@@ -43,6 +44,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/servicos/ecommerce`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
   ];
 
+  const lpCityServicePages: MetadataRoute.Sitemap = lpCityPages.map((p) => ({
+    url: `${SITE_URL}/landing-page/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.9,
+  }));
+
   return [
     {
       url: SITE_URL,
@@ -51,6 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     ...servicePages,
+    ...lpCityServicePages,
     ...blogListPage,
     ...blogPostPages,
     ...cityPages,

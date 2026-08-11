@@ -37,22 +37,9 @@ export function Comparativo() {
         </div>
 
         {/* Two-column layout */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "48px",
-            alignItems: "center",
-          }}
-        >
+        <div className="comparativo-grid">
           {/* Left: differentials list */}
-          <div
-            style={{
-              border: "1px solid rgba(255,255,255,0.09)",
-              borderRadius: "24px",
-              overflow: "hidden",
-            }}
-          >
+          <div className="comparativo-list">
             {diferenciais.map((item, i) => (
               <div
                 key={i}
@@ -88,7 +75,7 @@ export function Comparativo() {
           </div>
 
           {/* Right: text + punchline */}
-          <div>
+          <div className="comparativo-content">
             <p
               style={{
                 fontSize: "1.05rem",
@@ -125,8 +112,8 @@ export function Comparativo() {
               </p>
             </div>
 
-            <div style={{ marginTop: "32px" }}>
-              <LpContactButton label="Quero minha Landing Page" className="min-w-[276px]" />
+            <div className="comparativo-cta">
+              <LpContactButton label="Quero minha Landing Page" className="min-w-[270px]" />
             </div>
           </div>
         </div>

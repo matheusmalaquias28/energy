@@ -31,15 +31,19 @@ export function DarkGradientBg({
 }: DarkGradientBgProps) {
   return (
     <Tag id={id} className={cn("relative min-h-screen w-full overflow-hidden bg-black", className)}>
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
-          className={cn("absolute inset-0 opacity-100", ambientAnimation && "hero-sun-rays")}
+          className="absolute inset-0"
           style={{
             background:
               "radial-gradient(100% 100% at 0% 0%, rgb(46, 46, 46) 0%, rgb(0, 0, 0) 100%)",
             mask: "radial-gradient(125% 100% at 0% 0%, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.224) 88.2883%, rgba(0, 0, 0, 0) 100%)",
+            WebkitMask:
+              "radial-gradient(125% 100% at 0% 0%, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.224) 88.2883%, rgba(0, 0, 0, 0) 100%)",
           }}
-        >
+        />
+
+        <div className={cn("absolute -inset-[20%]", ambientAnimation && "hero-sun-rays-layer")}>
           {ORANGE_STREAK_MASKS.map((mask, index) => (
             <div
               key={mask}
@@ -56,28 +60,30 @@ export function DarkGradientBg({
             />
           ))}
         </div>
-      </div>
 
-      <div
-        className="pointer-events-none absolute inset-0 opacity-20"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.5) 1px, transparent 0)",
-          backgroundSize: "20px 20px",
-        }}
-      />
-
-      {ambientAnimation ? (
-        <div className="hero-sun-source" aria-hidden />
-      ) : (
         <div
-          className="pointer-events-none absolute inset-0"
+          className="hero-dot-grid absolute inset-0 opacity-[0.14]"
           style={{
-            background:
-              "radial-gradient(ellipse 80% 55% at 50% 0%, rgba(254, 65, 1, 0.14) 0%, transparent 72%)",
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.45) 1px, transparent 0)",
+            backgroundSize: "20px 20px",
           }}
         />
-      )}
+
+        {ambientAnimation ? (
+          <div className="hero-sun-source" aria-hidden />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 80% 55% at 50% 0%, rgba(254, 65, 1, 0.14) 0%, transparent 72%)",
+            }}
+          />
+        )}
+
+        <div className="hero-bg-vignette absolute inset-0" aria-hidden />
+      </div>
 
       <div className={cn("relative z-10", contentClassName)}>{children}</div>
     </Tag>

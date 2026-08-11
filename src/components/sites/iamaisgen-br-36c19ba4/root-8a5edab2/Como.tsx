@@ -37,7 +37,7 @@ export function Como() {
         <ProcessStepper />
 
         <div style={{ textAlign: "center" }}>
-          <LpContactButton label="Solicitar orçamento" className="min-w-[242px]" />
+          <LpContactButton label="Solicitar orçamento" className="min-w-[237px]" />
         </div>
       </div>
     </section>

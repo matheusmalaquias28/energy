@@ -8,7 +8,7 @@ export function Hero() {
       id="hero"
       ambientAnimation
       className="flex min-h-screen flex-col overflow-hidden"
-      contentClassName="flex min-h-screen w-full flex-col items-center justify-center py-24"
+      contentClassName="hero-content flex min-h-screen w-full flex-col items-center justify-center"
     >
       <h1 className="hero-title">
         <span className="hero-title-line hero-enter hero-enter--title-a">
@@ -27,7 +27,7 @@ export function Hero() {
         </p>
 
         <div className="hero-ctas hero-enter hero-enter--ctas">
-          <LpContactButton label="Quero minha Landing Page" className="min-w-[276px]" />
+          <LpContactButton label="Quero minha Landing Page" className="min-w-[270px]" />
           <a href="#problema" className="btn-ghost">
             Como funciona
           </a>

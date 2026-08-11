@@ -73,7 +73,7 @@ export const AntiMetalButton = React.forwardRef<HTMLButtonElement, AntiMetalButt
       <button
         ref={ref}
         className={cn(
-          "group/btn relative inline-flex h-[3.1625rem] min-w-[12.075rem] w-auto overflow-hidden rounded-xl transition-transform active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FE4101]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
+          "group/btn relative inline-flex h-[3.09925rem] min-w-[11.8335rem] w-auto items-center justify-center overflow-hidden rounded-xl transition-transform active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FE4101]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
           "bg-[linear-gradient(180deg,#1a1a1a_0%,#0a0a0a_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_12px_rgba(0,0,0,0.18)]",
           className,
         )}
@@ -94,13 +94,13 @@ export const AntiMetalButton = React.forwardRef<HTMLButtonElement, AntiMetalButt
           }
         `}</style>
 
-        <span className="absolute inset-y-0 right-[1.15rem] flex items-center whitespace-nowrap text-[16px] font-medium tracking-tight text-white">
+        <span className="pointer-events-none relative z-20 block w-full translate-x-[8%] px-[3rem] text-center text-[0.8575rem] font-medium leading-none tracking-normal text-white">
           {content}
         </span>
 
         <span
           aria-hidden="true"
-          className="absolute bottom-[0.2875rem] left-[0.2875rem] top-[0.2875rem] z-10 flex w-[2.5875rem] items-center justify-start gap-[0.71875rem] overflow-hidden rounded-md pl-[0.8625rem] pr-[0.71875rem] transition-[width,gap] duration-200 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover/btn:w-[calc(100%-0.575rem)]"
+          className="absolute bottom-[0.28175rem] left-[0.28175rem] top-[0.28175rem] z-10 flex w-[2.53575rem] items-center justify-start gap-[0.704375rem] overflow-hidden rounded-md pl-[0.84525rem] pr-[0.704375rem] transition-[width,gap] duration-200 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover/btn:w-[calc(100%-0.5635rem)]"
           style={{
             background: `linear-gradient(180deg, ${accentFrom} 0%, ${accentTo} 100%)`,
             boxShadow:

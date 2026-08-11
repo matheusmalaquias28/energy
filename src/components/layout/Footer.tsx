@@ -2,6 +2,7 @@ import BrandLogo from "@/components/layout/BrandLogo";
 import { FooterContactLink } from "@/components/contact/FooterContactLink";
 import { brazilCities } from "@/data/cities";
 import { localPages } from "@/data/local-pages";
+import { lpCityPages } from "@/data/lp-city-pages";
 
 export default function Footer() {
   const topCities = brazilCities.slice(0, 6);
@@ -62,8 +63,20 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Local service pages — SEO internal links */}
+        {/* LP city pages — SEO internal links */}
         <div className="mt-12 pt-8 border-t border-white/5">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-white/15 mb-4">Landing Pages por cidade</p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2 mb-6">
+            {lpCityPages.map((p) => (
+              <a
+                key={p.slug}
+                href={`/landing-page/${p.slug}`}
+                className="text-[11px] text-white/20 hover:text-white/50 transition-colors cursor-none"
+              >
+                Landing Page em {p.cidade}
+              </a>
+            ))}
+          </div>
           <p className="text-[10px] uppercase tracking-[0.2em] text-white/15 mb-4">Serviços por região</p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             {localPages.map((p) => (
