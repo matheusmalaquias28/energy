@@ -7,6 +7,7 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import PreloaderRouter from "@/components/effects/PreloaderRouter";
 import { ContactModalProvider } from "@/components/contact/contact-modal-context";
 import { FloatingQuoteButton } from "@/components/contact/FloatingQuoteButton";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -160,6 +161,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${spaceGrotesk.variable} bg-[#121212] text-white antialiased overflow-x-hidden`}
       >
+        <GoogleAnalytics />
         <ContactModalProvider>
           <PreloaderRouter />
           <CustomCursor />
