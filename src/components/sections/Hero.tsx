@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
 import { GLSLHills } from "@/components/ui/glsl-hills";
 import { anton, manrope } from "@/lib/fonts";
-import { HyperplexedTitle } from "@/components/effects/HyperplexedTitle";
+import { ParticleText } from "@/components/effects/ParticleText";
 import { useContactModal } from "@/components/contact/contact-modal-context";
 
 const LINE_DELAY = 160; // ms between lines
@@ -13,9 +13,6 @@ const heroTitleLines = [
   { font: "anton" as const, text: "QUE NAO ACEITAM", color: "text-[#FE4101]" },
   { font: "manrope" as const, text: "SER ESQUECIDAS.", color: "text-white" },
 ] as const;
-
-/** Linha central (índice 1): delay motion + parte da animação antes do scramble no load. */
-const ANTON_SCRAMBLE_MOUNT_MS = Math.round((0.15 + 1 * (LINE_DELAY / 1000) + 0.65) * 1000);
 
 export default function Hero() {
   const { openContactModal } = useContactModal();
@@ -72,11 +69,11 @@ export default function Hero() {
                     {line.text}
                   </h1>
                 ) : (
-                  <HyperplexedTitle
-                    value={line.text}
-                    mountDelayMs={ANTON_SCRAMBLE_MOUNT_MS}
-                    className={`${fontClass} ${weightClass} uppercase tracking-tight ${sizeClass} max-sm:px-0.5 max-sm:py-1`}
-                  />
+                  <h1
+                    className={`${fontClass} ${weightClass} uppercase tracking-tight ${sizeClass} ${line.color}`}
+                  >
+                    <ParticleText>{line.text}</ParticleText>
+                  </h1>
                 )}
               </motion.div>
             );
