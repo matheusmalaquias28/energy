@@ -186,6 +186,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
                         type="tel"
                         inputMode="numeric"
                         autoComplete="tel-national"
+                        maxLength={15}
                         className={cn(inputClass, errors.telefone && "border-red-500/40")}
                         placeholder="(11) 98765-4321"
                         {...field}

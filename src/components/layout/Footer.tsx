@@ -93,7 +93,12 @@ export default function Footer() {
 
         <div className="mt-8 pt-6 border-t border-white/5 flex flex-col lg:flex-row justify-between gap-4 text-[11px] text-white/15 uppercase tracking-[0.15em]">
           <span>© 2026 Energy. Todos os direitos reservados.</span>
-          <span>Design que trabalha por você.</span>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <a href="/politica-de-privacidade" className="hover:text-white/40 transition-colors">
+              Política de privacidade
+            </a>
+            <span>Design que trabalha por você.</span>
+          </div>
         </div>
       </div>
     </footer>

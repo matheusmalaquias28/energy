@@ -1,11 +1,33 @@
-/** Máscara (XX) XXXXX-XXXX ou (XX) XXXX-XXXX — até 11 dígitos. */
+/**
+ * Máscara de telefone brasileiro com DDD.
+ * Fixo: (XX) XXXX-XXXX
+ * Celular (9 após o DDD): (XX) XXXXX-XXXX
+ * Aceita colagem com +55.
+ */
 export function formatBrazilPhone(raw: string): string {
-  const d = raw.replace(/\D/g, "").slice(0, 11);
-  if (d.length === 0) return "";
-  if (d.length <= 2) return `(${d}`;
-  if (d.length <= 6) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
-  if (d.length <= 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
-  return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+  let digits = raw.replace(/\D/g, "");
+
+  if (digits.startsWith("55") && (digits.length === 12 || digits.length === 13)) {
+    digits = digits.slice(2);
+  }
+
+  digits = digits.slice(0, 11);
+
+  const isMobile = digits[2] === "9";
+  if (!isMobile && digits.length > 10) {
+    digits = digits.slice(0, 10);
+  }
+
+  if (digits.length === 0) return "";
+  if (digits.length <= 2) return `(${digits}`;
+
+  const ddd = digits.slice(0, 2);
+  const rest = digits.slice(2);
+  const headLength = isMobile ? 5 : 4;
+  const head = rest.slice(0, headLength);
+  const tail = rest.slice(headLength);
+
+  return tail ? `(${ddd}) ${head}-${tail}` : `(${ddd}) ${head}`;
 }
 
 export function digitsOnly(s: string): string {
