@@ -8,6 +8,7 @@ import PreloaderRouter from "@/components/effects/PreloaderRouter";
 import { ContactModalProvider } from "@/components/contact/contact-modal-context";
 import { FloatingQuoteButton } from "@/components/contact/FloatingQuoteButton";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import SiteChrome from "@/components/layout/SiteChrome";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -163,12 +164,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       >
         <GoogleAnalytics />
         <ContactModalProvider>
-          <PreloaderRouter />
-          <CustomCursor />
-          <Navbar />
+          <SiteChrome>
+            <PreloaderRouter />
+            <CustomCursor />
+            <Navbar />
+          </SiteChrome>
           {children}
-          <Footer />
-          <FloatingQuoteButton />
+          <SiteChrome>
+            <Footer />
+            <FloatingQuoteButton />
+          </SiteChrome>
         </ContactModalProvider>
       </body>
     </html>
