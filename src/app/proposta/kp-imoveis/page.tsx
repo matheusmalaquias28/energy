@@ -974,7 +974,7 @@ export default function PropostaKP() {
           <ActionButtons />
           <div className="sign">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/matheus-malaquias.jpg" alt={PROPOSAL.author} className="avatar" />
+            <img src="/proposta/kp-imoveis/matheus.webp" alt={PROPOSAL.author} className="avatar" />
             <div className="who">
               {PROPOSAL.author} · {PROPOSAL.agency}
               <span>Design que posiciona. Site que converte.</span>
