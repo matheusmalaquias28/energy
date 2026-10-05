@@ -17,7 +17,7 @@
   --bad: #ff5a4e;
   --mono: var(--font-vvp-mono), ui-monospace, monospace;
   --sans: var(--font-space), ui-sans-serif, system-ui, sans-serif;
-  --display: var(--font-vvp-display), var(--sans);
+  --display: "Manrope", var(--sans);
   --max: 1180px;
   --pad: 24px;
 

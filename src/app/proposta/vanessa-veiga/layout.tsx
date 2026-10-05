@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Manrope } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./proposta.css";
 
 const mono = JetBrains_Mono({
@@ -9,12 +9,7 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
-const display = Manrope({
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
-  variable: "--font-vvp-display",
-  display: "swap",
-});
+const MANROPE_CSS = "https://fonts.googleapis.com/css2?family=Manrope:wght@500..800&display=swap";
 
 export const metadata: Metadata = {
   title: { absolute: "Análise do site · Vanessa Veiga · Energy" },
@@ -31,5 +26,13 @@ export const metadata: Metadata = {
 };
 
 export default function PropostaVanessaLayout({ children }: { children: React.ReactNode }) {
-  return <div className={`${mono.variable} ${display.variable}`}>{children}</div>;
+  return (
+    <>
+      {/* Manrope via link: o next/font/google falha no build da Vercel com essa fonte */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      <link rel="stylesheet" href={MANROPE_CSS} precedence="default" />
+      <div className={mono.variable}>{children}</div>
+    </>
+  );
 }
