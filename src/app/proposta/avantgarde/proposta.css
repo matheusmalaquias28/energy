@@ -17,7 +17,7 @@
   --wa: #25d366;
   --mono: var(--font-avp-mono), ui-monospace, monospace;
   --sans: var(--font-space), ui-sans-serif, system-ui, sans-serif;
-  --display: var(--font-avp-display), var(--sans);
+  --display: "Archivo", var(--sans);
   --max: 1180px;
   --pad: 24px;
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./proposta.css";
 
 const mono = JetBrains_Mono({
@@ -10,12 +10,7 @@ const mono = JetBrains_Mono({
 });
 
 // Variável com eixo de largura: títulos levemente expandidos, com cara de motorsport.
-const display = Archivo({
-  subsets: ["latin"],
-  axes: ["wdth"],
-  variable: "--font-avp-display",
-  display: "swap",
-});
+const ARCHIVO_CSS = "https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&display=swap";
 
 export const metadata: Metadata = {
   title: { absolute: "Proposta · AvantGarde · Energy" },
@@ -32,5 +27,13 @@ export const metadata: Metadata = {
 };
 
 export default function PropostaAvantGardeLayout({ children }: { children: React.ReactNode }) {
-  return <div className={`${mono.variable} ${display.variable}`}>{children}</div>;
+  return (
+    <>
+      {/* Archivo via link: o next/font/google falha no build da Vercel com essa fonte */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      <link rel="stylesheet" href={ARCHIVO_CSS} precedence="default" />
+      <div className={mono.variable}>{children}</div>
+    </>
+  );
 }
