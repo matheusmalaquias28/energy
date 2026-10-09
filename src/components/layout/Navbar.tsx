@@ -31,6 +31,8 @@ const linkTextClass = `${urbanist.className} text-[clamp(2.25rem,6vw,4.5rem)] fo
 export default function Navbar() {
   const pathname = usePathname();
   const isLandingPage = pathname === "/enrgy-lp";
+  /** LPs com seções claras: o logo ganha fundo escuro para não sumir. */
+  const logoOnPill = pathname === "/servicos/seo-para-empresas";
   const links = isLandingPage ? lpLinks : siteLinks;
   const { openContactModal } = useContactModal();
   const [open, setOpen] = useState(false);
@@ -93,7 +95,11 @@ export default function Navbar() {
           initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2, duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
-          className="pointer-events-auto absolute top-6 left-6 z-[102] flex items-center md:left-10 lg:left-14"
+          className={`pointer-events-auto absolute z-[102] flex items-center ${
+            logoOnPill
+              ? "top-5 left-5 h-12 rounded-2xl border border-white/10 bg-black px-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] md:left-8 lg:left-12"
+              : "top-6 left-6 md:left-10 lg:left-14"
+          }`}
           onClick={close}
         >
           <BrandLogo priority />

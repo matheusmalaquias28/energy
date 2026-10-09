@@ -22,6 +22,7 @@ export async function GET() {
 - [Sites Institucionais](${SITE_URL}/#servicos): Sites robustos, elegantes e performáticos com design exclusivo, SEO técnico incluso e Lighthouse 95+ garantido. Para empresas que precisam transmitir autoridade e credibilidade.
 - [Landing Pages](${SITE_URL}/#servicos): Páginas otimizadas para conversão com copy persuasivo, A/B testing e integração com CRM. Cada elemento testado para transformar visitante em cliente.
 - [E-commerces](${SITE_URL}/#servicos): Lojas virtuais com experiência de compra memorável, UX de checkout otimizado, mobile first e integração com ERP e analytics.
+- [Consultoria de SEO para Empresas](${SITE_URL}/servicos/seo-para-empresas): Posicionamento orgânico no Google para gerar leads sem depender de tráfego pago. SEO técnico, SEO local, conteúdo com intenção comercial, autoridade e relatório mensal de leads.
 
 ## Blog
 

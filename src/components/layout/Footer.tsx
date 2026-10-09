@@ -29,6 +29,7 @@ export default function Footer() {
                 <li><a href="/servicos/criacao-de-sites" className="hover:text-white transition-colors cursor-none link-hover">Sites Institucionais</a></li>
                 <li><a href="/servicos/landing-page" className="hover:text-white transition-colors cursor-none link-hover">Landing Pages</a></li>
                 <li><a href="/servicos/ecommerce" className="hover:text-white transition-colors cursor-none link-hover">E-commerces</a></li>
+                <li><a href="/servicos/seo-para-empresas" className="hover:text-white transition-colors cursor-none link-hover">Consultoria de SEO</a></li>
               </ul>
             </div>
             <div>

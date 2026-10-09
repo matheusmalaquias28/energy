@@ -53,6 +53,14 @@ const services = [
     tags: ["UX de checkout", "Mobile first", "Integração ERP", "Google Shopping"],
     href: "/servicos/ecommerce",
   },
+  {
+    num: "04",
+    title: "Consultoria de SEO",
+    subtitle: "Leads sem pagar por clique",
+    desc: "Posicionamento orgânico no Google que vira ativo da empresa. Páginas, conteúdo e autoridade que continuam gerando contatos sem depender de verba mensal em anúncios.",
+    tags: ["SEO técnico", "SEO local", "Conteúdo comercial", "Relatório de leads"],
+    href: "/servicos/seo-para-empresas",
+  },
 ];
 
 export default function ServicosPage() {
@@ -67,7 +75,7 @@ export default function ServicosPage() {
           </p>
           <div className="grid lg:grid-cols-2 gap-12 items-end">
             <h1 className="text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[1.02] text-white">
-              Três soluções.{" "}
+              Quatro soluções.{" "}
               <span className="text-[#FE4101]">Um único objetivo:</span>{" "}
               resultado.
             </h1>

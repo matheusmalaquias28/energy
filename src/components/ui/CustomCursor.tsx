@@ -1,8 +1,14 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
+/** Rotas que usam o cursor nativo do sistema. */
+const NATIVE_CURSOR_ROUTES = ["/servicos/seo-para-empresas"];
+
 export default function CustomCursor() {
+  const pathname = usePathname();
+  const disabled = !!pathname && NATIVE_CURSOR_ROUTES.includes(pathname);
   const [navMenuOpen, setNavMenuOpen] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -20,6 +26,7 @@ export default function CustomCursor() {
   }, []);
 
   useEffect(() => {
+    if (disabled) return;
     const move = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -35,7 +42,9 @@ export default function CustomCursor() {
     return () => {
       window.removeEventListener("mousemove", move);
     };
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, disabled]);
+
+  if (disabled) return null;
 
   const dotColor = navMenuOpen ? "bg-black" : "bg-[#FE4101]";
   const ringColor = navMenuOpen ? "border-black/45" : "border-[#FE4101]/50";

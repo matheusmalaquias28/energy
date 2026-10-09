@@ -11,6 +11,7 @@ const bodySchema = z.object({
       return n.length >= 10 && n.length <= 11;
     }, "Telefone inválido"),
   empresa: z.string().trim().min(2, "Informe o nome da empresa").max(200),
+  origem: z.string().trim().max(80).optional(),
 });
 
 const DEFAULT_WEBHOOK =
@@ -30,7 +31,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: msg }, { status: 400 });
   }
 
-  const { nome, telefone, empresa } = parsed.data;
+  const { nome, telefone, empresa, origem } = parsed.data;
   const webhookUrl = process.env.MAKE_CONTACT_WEBHOOK_URL ?? DEFAULT_WEBHOOK;
 
   try {
@@ -41,6 +42,7 @@ export async function POST(req: Request) {
         nome,
         telefone,
         empresa,
+        origem: origem ?? "site",
         enviadoEm: new Date().toISOString(),
       }),
     });
