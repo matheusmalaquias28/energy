@@ -10,7 +10,7 @@ const LINE_DELAY = 160; // ms between lines
 
 const heroTitleLines = [
   { font: "manrope" as const, text: "FEITO PARA EMPRESAS", color: "text-white" },
-  { font: "anton" as const, text: "QUE NAO ACEITAM", color: "text-[#FE4101]" },
+  { font: "anton" as const, text: "QUE NÃO ACEITAM", color: "text-[#FE4101]" },
   { font: "manrope" as const, text: "SER ESQUECIDAS.", color: "text-white" },
 ] as const;
 
@@ -35,13 +35,13 @@ export default function Hero() {
           className="mb-16 flex flex-wrap items-center justify-center gap-4 text-white/30 text-xs uppercase tracking-[0.2em]"
         >
           <span className="hidden sm:block h-px w-8 bg-white/20" aria-hidden />
-          <span>Soluções digitais para empresas</span>
+          <span>Criação de sites para empresas</span>
           <span className="text-white/20">— 2026 —</span>
           <span className="hidden sm:block h-px w-8 bg-white/20" aria-hidden />
         </motion.div>
 
         {/* Title */}
-        <div className="mx-auto w-full max-w-[90rem] space-y-1 sm:space-y-1.5 md:space-y-2">
+        <h1 className="mx-auto w-full max-w-[90rem] space-y-1 sm:space-y-1.5 md:space-y-2">
           {heroTitleLines.map((line, i) => {
             const fontClass = line.font === "manrope" ? manrope.className : anton.className;
             const weightClass = line.font === "manrope" ? "font-bold" : "";
@@ -51,9 +51,10 @@ export default function Hero() {
                 ? "whitespace-nowrap leading-[1.04] text-[clamp(1.45rem,calc((100vw-3.5rem)/10.25),4.55rem)]"
                 : "whitespace-nowrap leading-[0.88] text-[clamp(2.15rem,calc((100vw-3.5rem)/8.85),11rem)]";
             return (
-              <motion.div
+              <motion.span
                 key={line.text}
-                className="overflow-hidden"
+                /* Respiro no topo da linha Anton (leading 0.88) para o overflow não cortar o til do "NÃO". */
+                className={`block overflow-hidden ${line.font === "anton" ? `${sizeClass} -mt-[0.15em] pt-[0.15em]` : ""}`}
                 initial={{ opacity: 0, y: 48 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -63,22 +64,23 @@ export default function Hero() {
                 }}
               >
                 {line.font === "manrope" ? (
-                  <h1
-                    className={`${fontClass} ${weightClass} uppercase tracking-tight ${sizeClass} ${line.color}`}
+                  <span
+                    className={`block ${fontClass} ${weightClass} uppercase tracking-tight ${sizeClass} ${line.color}`}
                   >
                     {line.text}
-                  </h1>
+                  </span>
                 ) : (
-                  <h1
-                    className={`${fontClass} ${weightClass} uppercase tracking-tight ${sizeClass} ${line.color}`}
+                  <span
+                    className={`block ${fontClass} ${weightClass} uppercase tracking-tight ${sizeClass} ${line.color}`}
                   >
                     <ParticleText>{line.text}</ParticleText>
-                  </h1>
+                  </span>
                 )}
-              </motion.div>
+                {i < heroTitleLines.length - 1 && " "}
+              </motion.span>
             );
           })}
-        </div>
+        </h1>
 
         {/* Bottom row */}
         <motion.div

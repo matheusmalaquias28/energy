@@ -9,7 +9,6 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br
 export default function sitemap(): MetadataRoute.Sitemap {
   const cityPages: MetadataRoute.Sitemap = brazilCities.map((city) => ({
     url: `${SITE_URL}/agencia/${city.slug}`,
-    lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.8,
   }));
@@ -17,9 +16,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogListPage: MetadataRoute.Sitemap = [
     {
       url: `${SITE_URL}/blog`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/vault`,
+      changeFrequency: "weekly",
+      priority: 0.7,
     },
   ];
 
@@ -32,22 +35,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const localServicePages: MetadataRoute.Sitemap = localPages.map((p) => ({
     url: `${SITE_URL}/local/${p.slug}`,
-    lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.85,
   }));
 
   const servicePages: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/servicos`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.95 },
-    { url: `${SITE_URL}/servicos/criacao-de-sites`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${SITE_URL}/servicos/landing-page`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${SITE_URL}/servicos/ecommerce`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${SITE_URL}/servicos/seo-para-empresas`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/servicos`, changeFrequency: "monthly", priority: 0.95 },
+    { url: `${SITE_URL}/servicos/criacao-de-sites`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/servicos/landing-page`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/servicos/ecommerce`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/servicos/seo-para-empresas`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/modelo`, changeFrequency: "monthly", priority: 0.8 },
   ];
 
   const lpCityServicePages: MetadataRoute.Sitemap = lpCityPages.map((p) => ({
     url: `${SITE_URL}/landing-page/${p.slug}`,
-    lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.9,
   }));
@@ -55,13 +57,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_URL,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${SITE_URL}/politica-de-privacidade`,
-      lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.3,
     },
