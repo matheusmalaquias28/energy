@@ -53,8 +53,7 @@ export default function PropostaRafaelZattar() {
           </div>
           <div className="label" data-reveal>Orçamento · {PROPOSAL.issuedAt}</div>
           <h1 data-reveal>
-            Uma porta de entrada.
-            <br />
+            <span>Uma porta de entrada.</span>
             <em>Dois produtos vendendo.</em>
           </h1>
           <p className="lede" data-reveal>

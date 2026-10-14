@@ -72,6 +72,7 @@ body:has(.rzp) { cursor: auto; }
 .rzp .brands .x { color: var(--fg-3); font-family: var(--mono); }
 .rzp .brands .cz { display: inline-flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 22px; letter-spacing: .14em; text-transform: uppercase; }
 .rzp .hero h1 { margin-top: 18px; font-size: clamp(2.7rem, 6.4vw, 5.2rem); line-height: .98; }
+.rzp .hero h1 > * { display: block; text-wrap: balance; }
 .rzp .lede { margin: 26px 0 0; max-width: 58ch; font-size: clamp(1.02rem, 1.5vw, 1.15rem); color: var(--fg-2); }
 .rzp .hero-actions { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; }
 .rzp .hero-actions.center { justify-content: center; }
@@ -193,6 +194,8 @@ body:has(.rzp) { cursor: auto; }
   .rzp .sec { padding: 72px 0; }
   .rzp .hero { padding: 56px 0 48px; }
   .rzp .hero-bg { opacity: .3; }
+  /* Cada frase numa linha: a mais longa mede ~8,6× o corpo da fonte */
+  .rzp .hero h1 { font-size: min(calc((100vw - 32px) / 9), 3.4rem); line-height: 1.04; }
   .rzp .brands { margin-bottom: 32px; }
   .rzp .meta, .rzp .pay, .rzp .terms { grid-template-columns: minmax(0, 1fr); }
   .rzp .meta > div { border-right: 0; border-bottom: 1px solid var(--line); }
