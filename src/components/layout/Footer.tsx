@@ -1,3 +1,4 @@
+import Link from "next/link";
 import BrandLogo from "@/components/layout/BrandLogo";
 import { FooterContactLink } from "@/components/contact/FooterContactLink";
 import { brazilCities } from "@/data/cities";
@@ -30,6 +31,7 @@ export default function Footer() {
                 <li><a href="/servicos/landing-page" className="hover:text-white transition-colors cursor-none link-hover">Landing Pages</a></li>
                 <li><a href="/servicos/ecommerce" className="hover:text-white transition-colors cursor-none link-hover">E-commerces</a></li>
                 <li><a href="/servicos/seo-para-empresas" className="hover:text-white transition-colors cursor-none link-hover">Consultoria de SEO</a></li>
+                <li><a href="/modelo" className="hover:text-white transition-colors cursor-none link-hover">Landing Pages por Nicho</a></li>
               </ul>
             </div>
             <div>
@@ -47,18 +49,19 @@ export default function Footer() {
             <div>
               <h4 className="text-[10px] uppercase tracking-[0.2em] text-white/20 mb-5">Empresa</h4>
               <ul className="space-y-3 text-sm text-white/40">
-                <li><a href="#" className="hover:text-white transition-colors cursor-none link-hover">Sobre</a></li>
-                <li><a href="#projetos" className="hover:text-white transition-colors cursor-none link-hover">Projetos</a></li>
-                <li><a href="/blog" className="hover:text-white transition-colors cursor-none link-hover">Blog</a></li>
+                <li><Link href="/#sobre-nos" className="hover:text-white transition-colors cursor-none link-hover">Sobre</Link></li>
+                <li><Link href="/#projetos" className="hover:text-white transition-colors cursor-none link-hover">Projetos</Link></li>
+                <li><Link href="/blog" className="hover:text-white transition-colors cursor-none link-hover">Blog</Link></li>
+                <li><a href="/vault" className="hover:text-white transition-colors cursor-none link-hover">Vault</a></li>
                 <li><FooterContactLink /></li>
               </ul>
             </div>
             <div>
               <h4 className="text-[10px] uppercase tracking-[0.2em] text-white/20 mb-5">Social</h4>
               <ul className="space-y-3 text-sm text-white/40">
-                <li><a href="#" className="hover:text-white transition-colors cursor-none link-hover">Instagram</a></li>
-                <li><a href="#" className="hover:text-white transition-colors cursor-none link-hover">LinkedIn</a></li>
-                <li><a href="#" className="hover:text-white transition-colors cursor-none link-hover">Behance</a></li>
+                <li><a href="https://instagram.com/energymidia" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors cursor-none link-hover">Instagram</a></li>
+                <li><a href="https://linkedin.com/company/energymidia" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors cursor-none link-hover">LinkedIn</a></li>
+                <li><a href="https://behance.net/matheusmalaquias" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors cursor-none link-hover">Behance</a></li>
               </ul>
             </div>
           </div>
@@ -66,6 +69,18 @@ export default function Footer() {
 
         {/* LP city pages — SEO internal links */}
         <div className="mt-12 pt-8 border-t border-white/5">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-white/15 mb-4">Criação de sites por cidade</p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2 mb-6">
+            {brazilCities.map((city) => (
+              <a
+                key={city.slug}
+                href={`/agencia/${city.slug}`}
+                className="text-[11px] text-white/20 hover:text-white/50 transition-colors cursor-none"
+              >
+                Criação de Sites em {city.name}
+              </a>
+            ))}
+          </div>
           <p className="text-[10px] uppercase tracking-[0.2em] text-white/15 mb-4">Landing Pages por cidade</p>
           <div className="flex flex-wrap gap-x-5 gap-y-2 mb-6">
             {lpCityPages.map((p) => (

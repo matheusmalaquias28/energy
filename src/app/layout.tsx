@@ -21,11 +21,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Energy — Design que posiciona. Site que converte.",
+    default: "Criação de Sites, Landing Pages e E-commerce | Energy",
     template: "%s | Energy",
   },
   description:
-    "Agência de criação de sites, landing pages e e-commerces com design de alto nível para médias e grandes empresas. Resultados reais desde o primeiro clique.",
+    "Agência de criação de sites, landing pages e e-commerces com design de alto nível para médias e grandes empresas. Design que posiciona. Site que converte.",
   keywords: [
     "criação de sites",
     "agência digital",
@@ -56,27 +56,15 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: SITE_URL,
     siteName: "Energy",
-    title: "Energy — Design que posiciona. Site que converte.",
+    title: "Criação de Sites, Landing Pages e E-commerce | Energy",
     description:
       "Agência de criação de sites, landing pages e e-commerces com design de alto nível. Ativos digitais para empresas que não aceitam ser esquecidas.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Energy — Design que posiciona. Site que converte.",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Energy — Design que posiciona. Site que converte.",
+    title: "Criação de Sites, Landing Pages e E-commerce | Energy",
     description:
       "Agência de criação de sites, landing pages e e-commerces com design de alto nível.",
-    images: ["/og-image.jpg"],
-  },
-  alternates: {
-    canonical: SITE_URL,
   },
   icons: {
     icon: [{ url: "/favicon2.svg", type: "image/svg+xml" }],
@@ -95,7 +83,16 @@ const jsonLd = {
       name: "Energy",
       description: "Criação de sites, landing pages e e-commerces de alto nível.",
       inLanguage: "pt-BR",
-
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#matheus-malaquias`,
+      name: "Matheus Malaquias",
+      jobTitle: "Fundador & Webdesigner",
+      image: `${SITE_URL}/matheus-malaquias.jpg`,
+      worksFor: { "@id": `${SITE_URL}/#organization` },
+      sameAs: ["https://behance.net/matheusmalaquias"],
     },
     {
       "@type": "ProfessionalService",
@@ -145,7 +142,13 @@ const jsonLd = {
           },
         ],
       },
-      sameAs: [],
+      email: "contato@energymidia.com.br",
+      telephone: "+55-12-99743-0172",
+      founder: { "@id": `${SITE_URL}/#matheus-malaquias` },
+      sameAs: [
+        "https://instagram.com/energymidia",
+        "https://linkedin.com/company/energymidia",
+      ],
     },
   ],
 };

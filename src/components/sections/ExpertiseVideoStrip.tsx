@@ -167,7 +167,7 @@ function HoverVideoTile({
         />
       ) : null}
       <h3
-        className={`pointer-events-none absolute bottom-0 left-0 z-[2] p-5 text-left text-[32px] leading-[1] text-white md:p-6 md:text-[54px] ${sectionTitle} font-bold`}
+        className={`pointer-events-none absolute bottom-0 left-0 z-[2] p-5 text-left text-[32px] leading-[1] text-white md:p-6 md:text-[34px] lg:text-[40px] 2xl:text-[54px] ${sectionTitle} font-bold`}
       >
         {title}
       </h3>

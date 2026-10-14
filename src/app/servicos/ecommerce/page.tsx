@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { defaultOgImages, pageTitle } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 import ServicePageCTA from "@/components/ui/ServicePageCTA";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 
 const SITE_URL = "https://energymidia.com.br";
 
 export const metadata: Metadata = {
-  title: "Criação de E-commerce e Lojas Virtuais | Energy",
+  title: pageTitle("Criação de E-commerce e Lojas Virtuais | Energy"),
   description:
     "Desenvolvimento de e-commerce e lojas virtuais com UX de alto nível, checkout otimizado e integração com ERP, meios de pagamento e marketplaces. Venda mais com uma loja que foi feita para vender.",
   keywords: [
@@ -19,6 +22,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/servicos/ecommerce` },
   openGraph: {
+    images: defaultOgImages,
     title: "Criação de E-commerce e Lojas Virtuais | Energy",
     description:
       "E-commerces com UX de alto nível, checkout otimizado e integração completa. Lojas que vendem de verdade.",
@@ -116,9 +120,14 @@ export default function EcommercePage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <JsonLd
+        data={[
+          jsonLd,
+          breadcrumbJsonLd([
+            { name: "Serviços", path: "/servicos" },
+            { name: "E-commerce", path: "/servicos/ecommerce" },
+          ]),
+        ]}
       />
 
       <main className="bg-[#0a0a0a] text-white">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageTitle } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { brazilCities, getCityBySlug } from "@/data/cities";
 import CityPageCTA from "@/components/ui/CityPageCTA";
@@ -18,7 +19,7 @@ export async function generateMetadata(props: {
 
   const canonicalUrl = `${SITE_URL}/agencia/${city.slug}`;
   return {
-    title: city.metaTitle,
+    title: pageTitle(city.metaTitle),
     description: city.metaDescription,
     alternates: { canonical: canonicalUrl },
     openGraph: {
@@ -27,7 +28,6 @@ export async function generateMetadata(props: {
       url: canonicalUrl,
       type: "website",
       locale: "pt_BR",
-      images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     },
   };
 }
@@ -161,7 +161,7 @@ export default async function CityPage(props: {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-        { "@type": "ListItem", position: 2, name: "Agência Digital", item: `${SITE_URL}/agencia` },
+        { "@type": "ListItem", position: 2, name: "Criação de Sites", item: `${SITE_URL}/servicos/criacao-de-sites` },
         { "@type": "ListItem", position: 3, name: `Sites em ${city.name}`, item: pageUrl },
       ],
     },

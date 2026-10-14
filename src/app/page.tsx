@@ -9,10 +9,21 @@ import StrategicPartner from "@/components/sections/StrategicPartner";
 import Support from "@/components/sections/Support";
 import FAQ from "@/components/sections/FAQ";
 import CTAFinal from "@/components/sections/CTAFinal";
+import type { Metadata } from "next";
+import { homeFaqs } from "@/data/home-faq";
+import { faqJsonLd } from "@/lib/schema";
+import JsonLd from "@/components/seo/JsonLd";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br";
+
+export const metadata: Metadata = {
+  alternates: { canonical: SITE_URL },
+};
 
 export default function Home() {
   return (
     <main>
+      <JsonLd data={faqJsonLd(homeFaqs)} />
       <Hero />
       <ClientLogosMarquee />
       <FeaturedWork />

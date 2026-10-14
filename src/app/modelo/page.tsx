@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { defaultOgImages } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 import ServicePageCTA from "@/components/ui/ServicePageCTA";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import { Check, Target, Zap, BarChart3, Clock, RefreshCw, Shield } from "lucide-react";
@@ -21,6 +24,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/modelo` },
   openGraph: {
+    images: defaultOgImages,
     title: "Landing Pages por Nicho | Energy",
     description:
       "Páginas específicas para médicos, advogados, psicólogos e mais. Copy estratégico, design que converte.",
@@ -171,6 +175,7 @@ const allItems = [...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeI
 export default function ModeloPage() {
   return (
     <main className="bg-[#0a0a0a] text-white overflow-hidden">
+      <JsonLd data={breadcrumbJsonLd([{ name: "Landing Pages por Nicho", path: "/modelo" }])} />
 
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section

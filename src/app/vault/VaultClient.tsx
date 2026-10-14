@@ -536,7 +536,8 @@ function VaultHero() {
             >
               {/* Giant VAULT */}
               <div className="mb-6 overflow-hidden">
-                <motion.h1
+                <motion.p
+                  aria-hidden
                   className="font-bold leading-[0.9] tracking-tighter text-white"
                   style={{ fontSize: "clamp(5rem,16vw,13rem)" }}
                   initial={{ y: "105%" }}
@@ -551,7 +552,7 @@ function VaultHero() {
                   >
                     _
                   </motion.span>
-                </motion.h1>
+                </motion.p>
               </div>
 
               {/* ID line */}

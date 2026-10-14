@@ -1,4 +1,5 @@
 import { readFile } from "node:fs/promises";
+import { ImageResponse } from "next/og";
 import path from "node:path";
 
 type OgFont = { name: string; data: ArrayBuffer; weight: 400 | 600 | 700 | 800; style: "normal" };
@@ -69,7 +70,8 @@ export function OgCard({ logo, eyebrow, title, footer }: OgCardProps) {
         <div
           style={{
             fontFamily: "Manrope",
-            fontSize: 72,
+            // Títulos longos (posts, páginas locais) diminuem para caber em até 3 linhas.
+            fontSize: title.length > 80 ? 50 : title.length > 55 ? 60 : 72,
             fontWeight: 800,
             lineHeight: 1.05,
             letterSpacing: "-0.045em",
@@ -82,4 +84,13 @@ export function OgCard({ logo, eyebrow, title, footer }: OgCardProps) {
       <div style={{ display: "flex", fontSize: 26, fontWeight: 600, color: "#a3a3a8" }}>{footer}</div>
     </div>
   );
+}
+
+/** Gera a imagem de compartilhamento padrão (logo, eyebrow laranja, título e rodapé). */
+export async function renderOgImage({ eyebrow, title, footer }: Omit<OgCardProps, "logo">) {
+  const [logo, fonts] = await Promise.all([energyLogoDataUri(), loadOgFonts(eyebrow + title + footer)]);
+  return new ImageResponse(<OgCard logo={logo} eyebrow={eyebrow} title={title} footer={footer} />, {
+    ...OG_SIZE,
+    fonts,
+  });
 }

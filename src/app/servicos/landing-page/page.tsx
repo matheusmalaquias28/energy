@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { defaultOgImages, pageTitle } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 import ServicePageCTA from "@/components/ui/ServicePageCTA";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 
 const SITE_URL = "https://energymidia.com.br";
 
 export const metadata: Metadata = {
-  title: "Landing Pages de Alta Conversão | Energy",
+  title: pageTitle("Landing Pages de Alta Conversão | Energy"),
   description:
     "Criação de landing pages de alta conversão com copy persuasivo, design focado e integração com Google Ads e Meta Ads. Transforme tráfego em leads e clientes reais.",
   keywords: [
@@ -19,6 +22,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/servicos/landing-page` },
   openGraph: {
+    images: defaultOgImages,
     title: "Landing Pages de Alta Conversão | Energy",
     description:
       "Landing pages com copy persuasivo, design focado em conversão e integração com campanhas de tráfego pago.",
@@ -116,9 +120,14 @@ export default function LandingPagePage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <JsonLd
+        data={[
+          jsonLd,
+          breadcrumbJsonLd([
+            { name: "Serviços", path: "/servicos" },
+            { name: "Landing Pages", path: "/servicos/landing-page" },
+          ]),
+        ]}
       />
 
       <main className="bg-[#0a0a0a] text-white">

@@ -18,7 +18,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-07-04",
     readingTime: "13 min",
     category: "Inteligência Artificial",
-    coverImage: "/Capas/magnific_crie-a-imagem-de-um-desig_kLETTeW16B.jpeg",
+    coverImage: "/Capas/magnific-ia-geracao-de-imagens.jpeg",
     keywords: [
       "magnific ia",
       "magnific freepik",
@@ -40,7 +40,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-07-02",
     readingTime: "14 min",
     category: "Inteligência Artificial",
-    coverImage: "/Capas/magnific_crie-uma-imagem-realista-_74rgw9AJAL (1).jpeg",
+    coverImage: "/Capas/fable-5-o-que-e-como-usar.jpeg",
     keywords: [
       "fable 5",
       "claude fable 5",

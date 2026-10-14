@@ -5,8 +5,20 @@ import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { blogPosts, getPostBySlug, formatDate } from "@/data/blog-posts";
 import { blogContent } from "@/lib/blog-content";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br";
+
+/** Página de serviço linkada no fim de cada post, pela categoria (links internos para as páginas que vendem). */
+const serviceByCategory: Record<string, { href: string; label: string }> = {
+  "SEO Local": { href: "/servicos/criacao-de-sites", label: "criação de sites" },
+  Websites: { href: "/servicos/criacao-de-sites", label: "criação de sites" },
+  Guias: { href: "/servicos/criacao-de-sites", label: "criação de sites" },
+  "Marketing Digital": { href: "/servicos/landing-page", label: "criação de landing pages" },
+  "E-commerce": { href: "/servicos/ecommerce", label: "criação de e-commerce" },
+  SEO: { href: "/servicos/seo-para-empresas", label: "consultoria de SEO" },
+};
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -57,8 +69,12 @@ export default async function BlogPostPage(props: {
     dateModified: post.publishedAt,
     author: {
       "@type": "Person",
+      "@id": `${SITE_URL}/#matheus-malaquias`,
       name: "Matheus Malaquias",
-      url: SITE_URL,
+      url: `${SITE_URL}/#sobre-nos`,
+      jobTitle: "Fundador & Webdesigner",
+      image: `${SITE_URL}/matheus-malaquias.jpg`,
+      sameAs: ["https://behance.net/matheusmalaquias"],
     },
     publisher: {
       "@type": "Organization",
@@ -71,7 +87,7 @@ export default async function BlogPostPage(props: {
     },
     image: {
       "@type": "ImageObject",
-      url: post.coverImage ? `${SITE_URL}${post.coverImage}` : `${SITE_URL}/og-image.jpg`,
+      url: post.coverImage ? `${SITE_URL}${post.coverImage}` : `${SITE_URL}/blog/${slug}/opengraph-image`,
       width: 1200,
       height: 630,
     },
@@ -82,15 +98,22 @@ export default async function BlogPostPage(props: {
     keywords: post.keywords.join(", "),
   };
 
+  const relatedService = serviceByCategory[post.category];
+
   const relatedPosts = blogPosts
     .filter((p) => p.slug !== slug)
     .slice(0, 3);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <JsonLd
+        data={[
+          jsonLd,
+          breadcrumbJsonLd([
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${slug}` },
+          ]),
+        ]}
       />
 
       <main className="bg-[#0a0a0a] text-white min-h-screen">
@@ -158,6 +181,15 @@ export default async function BlogPostPage(props: {
               <p className="text-white/40 leading-relaxed mb-8 max-w-lg">
                 Criação de sites, landing pages e e-commerces com design de alto nível. Resposta em até 24 horas.
               </p>
+              {relatedService && (
+                <p className="text-white/40 text-sm mb-8">
+                  Conheça nosso serviço de{" "}
+                  <Link href={relatedService.href} className="text-white underline decoration-[#FE4101] underline-offset-4 hover:text-[#FE4101] transition-colors">
+                    {relatedService.label}
+                  </Link>
+                  .
+                </p>
+              )}
               <Link
                 href="/#contato"
                 className="inline-flex items-center gap-3 bg-[#FE4101] text-white text-sm uppercase tracking-widest px-8 py-4 hover:bg-white hover:text-[#121212] transition-colors duration-300"

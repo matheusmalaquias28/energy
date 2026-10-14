@@ -29,7 +29,7 @@ export const vaultItems: VaultItem[] = [
     href: "/blog/magnific-ia-geracao-de-imagens",
     isNew: true,
     isFeatured: true,
-    coverImage: "/Capas/magnific_crie-a-imagem-de-um-desig_kLETTeW16B.jpeg",
+    coverImage: "/Capas/magnific-ia-geracao-de-imagens.jpeg",
   },
   {
     id: "v011",
@@ -43,7 +43,7 @@ export const vaultItems: VaultItem[] = [
     href: "/blog/fable-5-o-que-e-como-usar",
     isNew: true,
     isFeatured: true,
-    coverImage: "/Capas/magnific_crie-uma-imagem-realista-_74rgw9AJAL (1).jpeg",
+    coverImage: "/Capas/fable-5-o-que-e-como-usar.jpeg",
   },
   {
     id: "v001",

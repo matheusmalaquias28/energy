@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
+import { defaultOgImages } from "@/lib/seo";
 import Link from "next/link";
 import { sectionBodyTitle, sectionTitle } from "@/lib/fonts";
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/politica-de-privacidade` },
   robots: { index: true, follow: true },
   openGraph: {
+    images: defaultOgImages,
     title: "Política de Privacidade | Energy",
     description:
       "Como a Energy trata dados pessoais no site e no aplicativo conectado ao Pinterest.",

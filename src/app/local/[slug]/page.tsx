@@ -1,8 +1,11 @@
 ﻿import type { Metadata } from "next";
+import { pageTitle } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { localPages, getLocalPageBySlug } from "@/data/local-pages";
 import CityPageCTA from "@/components/ui/CityPageCTA";
 import FaqAccordion from "@/components/ui/FaqAccordion";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, faqJsonLd } from "@/lib/schema";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br";
 
@@ -19,7 +22,7 @@ export async function generateMetadata(props: {
 
   const url = `${SITE_URL}/local/${page.slug}`;
   return {
-    title: page.metaTitle,
+    title: pageTitle(page.metaTitle),
     description: page.metaDescription,
     keywords: page.keywords,
     alternates: { canonical: url },
@@ -60,9 +63,12 @@ export default async function LocalPage(props: {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <JsonLd
+        data={[
+          jsonLd,
+          faqJsonLd(page.faqs),
+          breadcrumbJsonLd([{ name: `${page.serviceLabel} em ${page.city}`, path: `/local/${page.slug}` }]),
+        ]}
       />
 
       <main className="bg-[#0a0a0a] text-white">

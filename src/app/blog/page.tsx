@@ -1,4 +1,7 @@
 ﻿import type { Metadata } from "next";
+import { defaultOgImages } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 import Link from "next/link";
 import { blogPosts, formatDate } from "@/data/blog-posts";
 import { ArrowUpRight } from "lucide-react";
@@ -13,6 +16,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/blog`,
   },
   openGraph: {
+    images: defaultOgImages,
     title: "Blog Energy — Estratégia Digital, Sites e E-commerce",
     description:
       "Artigos sobre criação de sites, landing pages, e-commerce e SEO para empresas.",
@@ -28,6 +32,7 @@ export default function BlogPage() {
 
   return (
     <main className="bg-[#0a0a0a] text-white min-h-screen">
+      <JsonLd data={breadcrumbJsonLd([{ name: "Blog", path: "/blog" }])} />
       {/* Header */}
       <section className="pt-40 pb-20 px-6 lg:px-16 border-b border-white/5">
         <div className="max-w-[90rem] mx-auto">

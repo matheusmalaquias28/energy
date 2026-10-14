@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { defaultOgImages, pageTitle } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 import ServicePageCTA from "@/components/ui/ServicePageCTA";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 
 const SITE_URL = "https://energymidia.com.br";
 
 export const metadata: Metadata = {
-  title: "Criação de Sites Profissionais | Energy",
+  title: pageTitle("Criação de Sites Profissionais | Energy"),
   description:
     "Criação de sites institucionais com design exclusivo, SEO técnico e performance 95+. Para empresas que precisam de presença digital que transmite autoridade e gera resultados reais.",
   keywords: [
@@ -19,6 +22,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/servicos/criacao-de-sites` },
   openGraph: {
+    images: defaultOgImages,
     title: "Criação de Sites Profissionais | Energy",
     description:
       "Sites institucionais com design exclusivo, SEO técnico e performance máxima para empresas que não aceitam ser esquecidas.",
@@ -116,9 +120,14 @@ export default function CriacaoDeSitesPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <JsonLd
+        data={[
+          jsonLd,
+          breadcrumbJsonLd([
+            { name: "Serviços", path: "/servicos" },
+            { name: "Criação de Sites", path: "/servicos/criacao-de-sites" },
+          ]),
+        ]}
       />
 
       <main className="bg-[#0a0a0a] text-white">

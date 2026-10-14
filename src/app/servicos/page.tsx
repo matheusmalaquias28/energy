@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { defaultOgImages, pageTitle } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import ServicePageCTA from "@/components/ui/ServicePageCTA";
@@ -6,7 +9,7 @@ import ServicePageCTA from "@/components/ui/ServicePageCTA";
 const SITE_URL = "https://energymidia.com.br";
 
 export const metadata: Metadata = {
-  title: "Serviços | Energy — Criação de Sites, Landing Pages e E-commerce",
+  title: pageTitle("Serviços | Energy — Criação de Sites, Landing Pages e E-commerce"),
   description:
     "Agência especializada em criação de sites institucionais, landing pages de alta conversão e e-commerces com design exclusivo e SEO técnico. Conheça nossos serviços.",
   keywords: [
@@ -19,6 +22,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_URL}/servicos` },
   openGraph: {
+    images: defaultOgImages,
     title: "Serviços | Energy — Criação de Sites, Landing Pages e E-commerce",
     description:
       "Sites institucionais, landing pages e e-commerces com design exclusivo e SEO técnico.",
@@ -66,6 +70,7 @@ const services = [
 export default function ServicosPage() {
   return (
     <main className="bg-[#0a0a0a] text-white min-h-screen">
+      <JsonLd data={breadcrumbJsonLd([{ name: "Serviços", path: "/servicos" }])} />
 
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section className="pt-40 pb-24 px-6 lg:px-16 border-b border-white/5">

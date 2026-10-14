@@ -1,18 +1,10 @@
 "use client";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { Plus, Minus } from "lucide-react";
 import { sectionBodyTitle, sectionTitle } from "@/lib/fonts";
-
-const faqs = [
-  { q: "Quanto tempo leva para entregar um projeto?", a: "Depende do escopo. Landing pages: 7-14 dias. Sites institucionais: 3-6 semanas. E-commerces: 6-12 semanas. Sempre apresentamos um cronograma detalhado na proposta." },
-  { q: "Vocês trabalham com empresas de qualquer segmento?", a: "Sim. Já atendemos advocacia, tecnologia, varejo, construção, saúde e mais. O que importa é o seu compromisso com qualidade — o segmento vem depois." },
-  { q: "Como funciona o processo de aprovação e revisões?", a: "O projeto passa por etapas claras: briefing, wireframes, design, desenvolvimento e entrega. Em cada etapa você aprova antes de avançar. Revisões são ilimitadas na fase de design." },
-  { q: "O site vai ter boa performance e SEO?", a: "Garantimos. Todos os nossos projetos são desenvolvidos com Lighthouse 95+ como meta mínima. SEO técnico, acessibilidade e Core Web Vitals são parte do escopo padrão." },
-  { q: "Posso atualizar o conteúdo do site depois?", a: "Sim. Todos os projetos incluem CMS integrado para você atualizar textos, imagens e páginas sem precisar de um desenvolvedor." },
-  { q: "Vocês também fazem manutenção após a entrega?", a: "O suporte pós-entrega de 7 dias é padrão. Para manutenção contínua, oferecemos planos mensais a partir do segundo mês." },
-];
+import { homeFaqs as faqs } from "@/data/home-faq";
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
@@ -50,18 +42,16 @@ export default function FAQ() {
                     {open === i ? <Minus size={16} /> : <Plus size={16} />}
                   </span>
                 </button>
-                <AnimatePresence>
-                  {open === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
-                    >
-                      <p className="pb-6 text-sm leading-relaxed text-white/40">{faq.a}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/* Resposta sempre no DOM (só recolhida) para o Google ler o mesmo texto do schema FAQPage. */}
+                <motion.div
+                  initial={false}
+                  animate={open === i ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+                  transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
+                  className="overflow-hidden"
+                  aria-hidden={open !== i}
+                >
+                  <p className="pb-6 text-sm leading-relaxed text-white/40">{faq.a}</p>
+                </motion.div>
               </div>
             </ScrollReveal>
           ))}

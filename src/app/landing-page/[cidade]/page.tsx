@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageTitle } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { lpCityPages, getLpCityPage } from "@/data/lp-city-pages";
 import { ScrollReveal } from "@/components/sites/iamaisgen-br-36c19ba4/root-8a5edab2/ScrollReveal";
@@ -29,7 +30,7 @@ export async function generateMetadata(props: {
 
   const url = `${SITE_URL}/landing-page/${city.slug}`;
   return {
-    title: city.metaTitle,
+    title: pageTitle(city.metaTitle),
     description: city.metaDescription,
     alternates: { canonical: url },
     openGraph: {
@@ -38,7 +39,6 @@ export async function generateMetadata(props: {
       url,
       type: "website",
       locale: "pt_BR",
-      images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",

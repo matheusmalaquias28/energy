@@ -5,22 +5,22 @@ export type GalleryMarqueeItem = {
 };
 
 const FRAME_FILES = [
-  "Frame 1707483151.jpg",
-  "Frame 1707483152.jpg",
-  "Frame 1707483153.jpg",
-  "Frame 1707483154.jpg",
-  "Frame 1707483155.jpg",
-  "Frame 1707483156.jpg",
-  "Frame 1707483157.jpg",
-  "Frame 1707483158.jpg",
-  "Frame 1707483159.jpg",
-  "Frame 1707483160.jpg",
-  "Frame 1707483161.jpg",
-  "Frame 1707483162.jpg",
-  "Frame 1707483163.jpg",
-  "Frame 1707483164.jpg",
-  "Frame 1707483165.jpg",
-  "Frame 1707483166.jpg",
+  "portfolio-energy-01.webp",
+  "portfolio-energy-02.webp",
+  "portfolio-energy-03.webp",
+  "portfolio-energy-04.webp",
+  "portfolio-energy-05.webp",
+  "portfolio-energy-06.webp",
+  "portfolio-energy-07.webp",
+  "portfolio-energy-08.webp",
+  "portfolio-energy-09.webp",
+  "portfolio-energy-10.webp",
+  "portfolio-energy-11.webp",
+  "portfolio-energy-12.webp",
+  "portfolio-energy-13.webp",
+  "portfolio-energy-14.webp",
+  "portfolio-energy-15.webp",
+  "portfolio-energy-16.webp",
 ] as const;
 
 function frameItem(file: (typeof FRAME_FILES)[number], index: number): GalleryMarqueeItem {

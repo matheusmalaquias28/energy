@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
+import { defaultOgImages, pageTitle } from "@/lib/seo";
 import Image from "next/image";
 import { ArrowUpRight, Globe, Share2, MessageCircle, BookOpen, Link2, Palette, Mail } from "lucide-react";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br";
 
 export const metadata: Metadata = {
-  title: "Links — Energy Midia",
+  title: pageTitle("Links — Energy Midia"),
   description:
     "Todos os links da Energy Midia: site, redes sociais, WhatsApp e portfólio.",
   alternates: {
     canonical: `${SITE_URL}/links`,
   },
   openGraph: {
+    images: defaultOgImages,
     title: "Links — Energy Midia",
     description: "Todos os links da Energy Midia em um só lugar.",
     url: `${SITE_URL}/links`,
