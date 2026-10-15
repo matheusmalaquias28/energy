@@ -105,6 +105,12 @@ const jsonLd = {
       },
       description:
         "Agência especializada em criação de sites institucionais, landing pages de alta conversão e e-commerces para médias e grandes empresas.",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Vila Velha",
+        addressRegion: "ES",
+        addressCountry: "BR",
+      },
       areaServed: {
         "@type": "Country",
         name: "Brazil",

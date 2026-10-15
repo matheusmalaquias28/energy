@@ -11,12 +11,19 @@ export type FeaturedProject = {
   badges: string[];
   /** URL do site ao vivo — abre em nova guia ao clicar no card */
   href?: string;
+  /** Cidade do cliente — aparece nos cases das páginas de cidade */
+  city?: string;
+  /** Uma frase sobre o cliente, para os cases das páginas de cidade */
+  summary?: string;
 };
 
 export const FEATURED_PROJECTS: FeaturedProject[] = [
   {
     name: "Above Imobiliária",
     year: "2026",
+    city: "Campos do Jordão",
+    summary:
+      "Imobiliária de alto padrão em Campos do Jordão: compra, venda e locação de casas, chalés e empreendimentos na serra.",
     image:
       "https://images.unsplash.com/photo-1499951360447-b19be27880ed?w=1600&q=80&auto=format&fit=crop",
     video: "/videos/render-above-2.mp4",
@@ -27,6 +34,9 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
   {
     name: "Chocolate Araucária",
     year: "2026",
+    city: "Campos do Jordão",
+    summary:
+      "Fábrica artesanal de chocolates fundada em 1991 em Campos do Jordão, com lojas físicas na cidade.",
     image:
       "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1600&q=80&auto=format&fit=crop",
     video: "/videos/araucaria-render-1.mp4",
@@ -47,6 +57,9 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
   {
     name: "Rastro Collect",
     year: "2026",
+    city: "São Paulo",
+    summary:
+      "Máquinas autônomas em shoppings que vendem boosters originais de TCG, como Pokémon, Lorcana, One Piece e Magic.",
     image: "/projects/rastro-collect.webp",
     badges: ["Site institucional", "UI/UX", "Scroll Effects"],
     href: "https://www.rastrocollect.com.br/",
@@ -54,6 +67,9 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
   {
     name: "Cashflow",
     year: "2026",
+    city: "Vila Velha",
+    summary:
+      "Plataforma que reúne vendas de checkouts, campanhas de Meta Ads e controle financeiro para quem opera ofertas low ticket.",
     image: "/projects/cashflow.webp",
     badges: ["Landing page", "SaaS", "UI/UX"],
     href: "https://www.appcashflow.com.br/",

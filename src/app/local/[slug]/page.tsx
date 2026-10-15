@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { localPages, getLocalPageBySlug } from "@/data/local-pages";
 import CityPageCTA from "@/components/ui/CityPageCTA";
 import FaqAccordion from "@/components/ui/FaqAccordion";
+import CityLocalBlock from "@/components/ui/CityLocalBlock";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/schema";
 
@@ -116,6 +117,8 @@ export default async function LocalPage(props: {
             </p>
           </div>
         </section>
+
+        <CityLocalBlock city={page.city} block={page.local} />
 
         <section className="py-28 px-6 lg:px-16 border-b border-white/5 bg-[#111111]">
           <div className="max-w-[90rem] mx-auto">

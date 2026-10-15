@@ -1,3 +1,5 @@
+import type { LocalBlockData } from "./local-block";
+
 export interface LpCityPage {
   slug: string;
   cidade: string;
@@ -5,6 +7,8 @@ export interface LpCityPage {
   metaTitle: string;
   metaDescription: string;
   heroLead: string;
+  /** Conteúdo que só vale para esta cidade */
+  local: LocalBlockData;
   faq: { q: string; a: string }[];
 }
 
@@ -18,14 +22,24 @@ export const lpCityPages: LpCityPage[] = [
       "Landing pages profissionais em São Paulo para empresas que investem em tráfego pago. Design estratégico, copy orientada à conversão e desenvolvimento responsivo. Solicite um orçamento.",
     heroLead:
       "No mercado paulistano, o custo por clique é alto e a concorrência é implacável. Uma página genérica desperdiça cada real investido em anúncios. Criamos landing pages que fazem o visitante avançar — da atenção para a ação.",
+    local: {
+      heading: "Campanhas segmentadas pedem páginas segmentadas",
+      paragraphs: [
+        "Em São Paulo o clique é caro porque todo mundo anuncia. Segmentar a campanha por região, por exemplo só a Zona Sul ou só o eixo Paulista–Faria Lima, reduz desperdício, mas só funciona se a landing page conversar com quem chegou: endereço, área de atendimento e oferta coerentes com o anúncio.",
+        "Para negócios com várias unidades, uma página por unidade, com endereço, horários e equipe reais, costuma converter melhor do que mandar todo mundo para a mesma página. Quem atende também o ABC ou Guarulhos precisa dizer isso logo no primeiro bloco.",
+        "Em São Paulo, a Energy criou o site institucional da Rastro Collect, que leva máquinas autônomas de boosters de TCG para shoppings.",
+      ],
+      places: ["Zona Sul", "Faria Lima e Itaim", "Avenida Paulista", "Pinheiros", "ABC Paulista"],
+      cases: ["Rastro Collect"],
+    },
     faq: [
       {
-        q: "Quanto custa uma landing page em São Paulo?",
-        a: "O investimento varia conforme a complexidade, quantidade de seções e integrações do projeto. Em São Paulo, atendemos empresas de diferentes portes — de prestadores de serviço a negócios com alto investimento em mídia paga. Após entender seu cenário, enviamos uma proposta personalizada.",
+        q: "Vale fazer uma landing page por região de São Paulo?",
+        a: "Se a campanha é segmentada por região e você atende essas regiões de forma diferente, sim. Uma página para a Zona Sul com o endereço da unidade de Moema converte melhor do que uma página genérica para a cidade toda. Se o atendimento é igual em toda SP, uma página basta.",
       },
       {
-        q: "Vocês criam landing pages para quais setores em SP?",
-        a: "Já desenvolvemos páginas para clínicas, consultorias, SaaS, imóveis, e-commerces e serviços B2B em São Paulo. A estratégia é adaptada para o comportamento de compra do seu público específico.",
+        q: "Vocês têm cliente em São Paulo?",
+        a: "Sim. Criamos o site institucional da Rastro Collect, empresa que opera máquinas autônomas de cards colecionáveis em shoppings.",
       },
       {
         q: "Quanto tempo leva para criar?",
@@ -54,14 +68,22 @@ export const lpCityPages: LpCityPage[] = [
       "Landing pages em Belo Horizonte com design profissional e foco em conversão. Para empresas que precisam transformar tráfego pago em leads e vendas. Solicite um orçamento sem compromisso.",
     heroLead:
       "BH tem um mercado digital competitivo e consumidores exigentes. Uma landing page mediana não converte. Criamos páginas que transmitem confiança desde o primeiro segundo e conduzem o visitante para a ação.",
+    local: {
+      heading: "Do anúncio ao agendamento, sem atrito",
+      paragraphs: [
+        "Clínicas, consultórios, escolas e prestadores de serviço de BH que anunciam no Google e no Instagram dependem de agendamento. Para esse tipo de negócio, a landing page precisa tirar as dúvidas que travam o contato (onde fica, se atende convênio, como agendar) e levar direto para o WhatsApp ou para a agenda.",
+        "Outra particularidade é a região metropolitana: muita gente que pesquisa por BH mora ou trabalha em Nova Lima, Contagem ou Betim. A página precisa dizer com clareza onde você atende, para não pagar por cliques de quem não pode virar cliente.",
+      ],
+      places: ["Savassi", "Lourdes", "Funcionários", "Nova Lima", "Contagem"],
+    },
     faq: [
       {
-        q: "Quanto custa uma landing page em Belo Horizonte?",
-        a: "O valor depende da complexidade, quantidade de seções e integrações necessárias. Atendemos empresas de diferentes portes em BH — desde prestadores de serviço até negócios com investimento relevante em mídia paga. Enviamos proposta após entender seu projeto.",
+        q: "Landing page funciona para clínica que agenda pelo WhatsApp?",
+        a: "Funciona bem. A página explica especialidades, localização e convênios e tem um botão de WhatsApp com mensagem pronta, para o paciente chegar ao atendimento já dizendo o que procura. O clique no botão pode ser medido como conversão no Google Ads e no Meta Ads.",
       },
       {
-        q: "Quais setores de BH vocês já atenderam?",
-        a: "Clínicas, escritórios de advocacia, consultorias, imóveis, academias, serviços B2B e e-commerces. A estratégia é construída para o contexto e o público de cada projeto.",
+        q: "Minha campanha deve incluir a região metropolitana de BH?",
+        a: "Só se você atende essas cidades. Se atende, a página deixa isso claro logo no início; se não atende, a campanha deve excluir essas regiões, e a página reforça onde fica o atendimento.",
       },
       {
         q: "Vocês fazem copy e desenvolvimento além do design?",
@@ -77,7 +99,7 @@ export const lpCityPages: LpCityPage[] = [
       },
       {
         q: "Atendem presencialmente em BH ou é remoto?",
-        a: "Nosso processo é 100% remoto e eficiente. Trabalhamos com clientes em todo o Brasil com reuniões por videoconferência e aprovações online.",
+        a: "O processo é remoto. A Energy fica em Vila Velha (ES) e trabalha com clientes de BH por videochamada, com aprovações online.",
       },
     ],
   },
@@ -90,14 +112,22 @@ export const lpCityPages: LpCityPage[] = [
       "Landing pages em Curitiba com design profissional e foco em conversão. Para empresas que investem em tráfego pago e precisam de páginas que realmente convertem.",
     heroLead:
       "Curitiba tem um dos mercados digitais mais maduros do Brasil. Consumidores curitibanos pesquisam, comparam e exigem qualidade antes de decidir. Sua landing page precisa estar à altura dessa exigência.",
+    local: {
+      heading: "Para quem clica, lê e volta depois",
+      paragraphs: [
+        "O consumidor de Curitiba compara antes de decidir, e isso aparece na campanha: muita gente clica, lê e volta dias depois. Uma landing page para esse público precisa de argumentos concretos (como funciona, prazos, garantias e provas reais) e de um jeito de manter contato com quem ainda não está pronto, como um material para baixar ou uma lista de espera.",
+        "Para indústrias da CIC e de São José dos Pinhais, a landing page costuma servir a campanhas de geração de cotação: catálogo resumido, aplicações do produto e um formulário que já pergunta o que o time comercial precisa saber.",
+      ],
+      places: ["Batel", "Centro Cívico", "CIC", "São José dos Pinhais", "Água Verde"],
+    },
     faq: [
       {
-        q: "Quanto custa desenvolver uma landing page em Curitiba?",
-        a: "O investimento é proporcional à complexidade e ao escopo do projeto. Atendemos desde startups do ecossistema curitibano até empresas estabelecidas que precisam de uma página de alta performance. Enviamos proposta personalizada após entender o projeto.",
+        q: "Como captar quem ainda está comparando opções?",
+        a: "Com uma oferta intermediária na própria página: um material para baixar, um diagnóstico ou uma demonstração. Assim você guarda o contato de quem ainda não está pronto e retoma a conversa depois.",
       },
       {
         q: "Curitiba tem muitas startups — vocês têm experiência com esse perfil?",
-        a: "Sim. Já criamos landing pages para SaaS, fintechs e startups de diferentes estágios. Sabemos como apresentar propostas de valor técnicas de forma clara e persuasiva para o cliente final.",
+        a: "Sim. A Energy criou a landing page da Cashflow, uma plataforma SaaS, e sabe como apresentar um produto técnico de forma clara para quem vai assinar.",
       },
       {
         q: "O projeto inclui copy e desenvolvimento?",
@@ -113,7 +143,7 @@ export const lpCityPages: LpCityPage[] = [
       },
       {
         q: "Vocês trabalham com empresas fora de Curitiba também?",
-        a: "Sim. Nosso processo é 100% remoto. Trabalhamos com empresas em todo o Brasil com a mesma qualidade e atenção.",
+        a: "Sim. A Energy fica em Vila Velha (ES) e o processo é remoto, então atendemos empresas de todo o Brasil com a mesma qualidade e atenção.",
       },
     ],
   },
@@ -125,15 +155,23 @@ export const lpCityPages: LpCityPage[] = [
     metaDescription:
       "Landing pages em Porto Alegre com foco em conversão. Design profissional, copy estratégica e desenvolvimento responsivo para empresas que investem em tráfego pago.",
     heroLead:
-      "Porto Alegre tem uma das maiores densidades de empresas por habitante do Brasil e consumidores que valorizam consistência e credibilidade. Uma landing page bem construída é o diferencial entre ser escolhido ou ser ignorado.",
+      "Porto Alegre tem um mercado de serviços maduro e consumidores que valorizam consistência e credibilidade. Uma landing page bem construída é o diferencial entre ser escolhido ou ser ignorado.",
+    local: {
+      heading: "A capital e a região metropolitana na mesma campanha",
+      paragraphs: [
+        "Para muitas empresas, Porto Alegre e a região metropolitana formam um mercado só: quem atende na capital costuma atender também Canoas, Novo Hamburgo e Gravataí. A landing page precisa deixar a área de atendimento clara, para que a campanha segmentada por região não pague clique de quem está fora dela.",
+        "No ecossistema de tecnologia, com empresas ligadas ao Tecnopuc e ao Zenit, a landing page costuma servir a pedidos de demonstração: o visitante precisa entender o produto em poucos segundos e marcar uma conversa sem preencher um formulário enorme.",
+      ],
+      places: ["Moinhos de Vento", "Centro Histórico", "4º Distrito", "Canoas", "Novo Hamburgo"],
+    },
     faq: [
-      {
-        q: "Quanto custa uma landing page em Porto Alegre?",
-        a: "O valor depende do escopo: quantidade de seções, integrações e complexidade do projeto. Atendemos negócios de diferentes portes em Porto Alegre. Após entender suas necessidades, enviamos uma proposta detalhada.",
-      },
       {
         q: "O mercado gaúcho é exigente — como vocês adaptam a estratégia?",
         a: "O consumidor de Porto Alegre é criterioso. A estratégia considera clareza de oferta, prova social relevante e argumentação sólida — não apelos genéricos. Cada seção é pensada para construir confiança antes de pedir a ação.",
+      },
+      {
+        q: "Vale fazer landing page para pedido de demonstração de software?",
+        a: "Vale. A página mostra o problema que o produto resolve, como ele funciona e para quem é, e pede só o essencial para agendar a demonstração. Formulário curto e prova concreta convertem mais do que uma lista longa de funcionalidades.",
       },
       {
         q: "Vocês entregam copy e código também?",
@@ -149,7 +187,7 @@ export const lpCityPages: LpCityPage[] = [
       },
       {
         q: "Atendem empresas de todos os setores?",
-        a: "Sim. Já desenvolvemos páginas para serviços B2B, clínicas, varejo, imóveis e empresas de tecnologia. A estratégia é construída para o perfil de compra do seu cliente.",
+        a: "Sim. A estratégia muda conforme o setor e o jeito de comprar do seu cliente: serviços B2B, clínicas, varejo, imóveis e tecnologia pedem argumentos e chamadas diferentes.",
       },
     ],
   },
@@ -162,22 +200,31 @@ export const lpCityPages: LpCityPage[] = [
       "Landing pages em Vila Velha para empresas que precisam converter tráfego em clientes. Design profissional, copy estratégica e desenvolvimento responsivo. Orçamento sem compromisso.",
     heroLead:
       "Vila Velha é um dos mercados que mais crescem no Espírito Santo. Empresas locais que estruturam sua presença digital agora saem na frente antes que a concorrência perceba. Criamos landing pages que trabalham por você 24 horas por dia.",
+    local: {
+      heading: "Landing pages feitas em Vila Velha",
+      paragraphs: [
+        "A Energy é de Vila Velha. Foi daqui que criamos a landing page da Cashflow, plataforma que reúne vendas de checkouts, campanhas de Meta Ads e controle financeiro para quem opera várias ofertas low ticket. É uma página feita para transformar visitante em assinante, com a oferta explicada em blocos curtos e chamadas para ação ao longo de toda a rolagem.",
+        "Para negócios locais, a campanha muitas vezes mira bairros específicos, como Praia da Costa, Itaparica ou a Glória, e a landing page precisa confirmar logo de cara que você atende ali, com endereço, mapa e WhatsApp.",
+      ],
+      places: ["Praia da Costa", "Itaparica", "Glória", "Centro", "Grande Vitória"],
+      cases: ["Cashflow"],
+    },
     faq: [
       {
-        q: "Quanto custa uma landing page em Vila Velha?",
-        a: "O investimento varia conforme o escopo do projeto. Atendemos desde negócios locais iniciando no digital até empresas com investimento relevante em mídia paga. Enviamos proposta personalizada após entender suas necessidades.",
+        q: "A Energy fica em Vila Velha?",
+        a: "Sim, a Energy é sediada em Vila Velha (ES). O processo é feito online, por videochamada e WhatsApp, o que agiliza as aprovações para clientes daqui e de outras cidades.",
+      },
+      {
+        q: "Vocês já fizeram landing page para SaaS ou produto digital?",
+        a: "Sim. Criamos a landing page da Cashflow, plataforma de gestão para operações low ticket, com foco em converter visitantes em assinantes.",
       },
       {
         q: "Quais tipos de negócio de Vila Velha vocês atendem?",
-        a: "Clínicas, imobiliárias, prestadores de serviço, comércio local e negócios em expansão digital. Adaptamos a estratégia para cada realidade.",
+        a: "Clínicas, imobiliárias, prestadores de serviço, comércio local, produtos digitais e negócios em expansão. A estratégia é adaptada para cada realidade.",
       },
       {
-        q: "O projeto inclui design e desenvolvimento?",
+        q: "O projeto inclui design, copy e desenvolvimento?",
         a: "Sim. Entregamos o projeto completo: estratégia, copy, design e código responsivo. Pronto para ir ao ar e receber visitantes.",
-      },
-      {
-        q: "Vocês fazem a copy da página?",
-        a: "Sim. A copy é parte do processo e é desenvolvida com base na sua oferta, público-alvo e objetivo de conversão.",
       },
       {
         q: "A página funciona para anúncios no Google e Instagram?",
@@ -198,14 +245,22 @@ export const lpCityPages: LpCityPage[] = [
       "Landing pages em Vitória com design profissional e foco em conversão. Para empresas que investem em mídia paga e precisam de páginas que transformam cliques em clientes.",
     heroLead:
       "Capital do Espírito Santo, Vitória concentra o maior volume de negócios do estado. Empresas que querem captar clientes pelo digital precisam de páginas que transmitam autoridade e conduzam à ação — não de templates genéricos.",
+    local: {
+      heading: "Uma página para cada público da capital",
+      paragraphs: [
+        "A Energy fica em Vila Velha, na mesma Grande Vitória, e acompanha o mercado da capital de perto. Em Vitória, campanhas pagas costumam mirar públicos bem diferentes: o executivo da Enseada do Suá, o paciente que procura uma clínica na Praia do Canto, a família de Jardim Camburi. Cada um pede uma página própria, com oferta e linguagem certas.",
+        "Como a Grande Vitória é compacta, muita empresa da capital atende também Vila Velha, Serra e Cariacica. A landing page deixa isso claro, e a campanha pode ser segmentada para a região metropolitana inteira sem perder relevância.",
+      ],
+      places: ["Enseada do Suá", "Praia do Canto", "Jardim Camburi", "Bento Ferreira", "Grande Vitória"],
+    },
     faq: [
       {
-        q: "Quanto custa criar uma landing page em Vitória?",
-        a: "O valor depende da complexidade, quantidade de seções e integrações. Atendemos empresas de diferentes portes na capital capixaba. Após entender o projeto, enviamos uma proposta clara e detalhada.",
+        q: "Vocês conhecem o mercado de Vitória e do Espírito Santo?",
+        a: "Sim. A Energy é de Vila Velha, na Grande Vitória, e conhece o mercado capixaba de perto. O processo é online, mas falamos a mesma língua do seu cliente.",
       },
       {
-        q: "Vocês têm experiência com o mercado de Vitória e ES?",
-        a: "Sim. Desenvolvemos projetos para empresas do setor de serviços, consultoria, comércio e negócios B2B da região. Entendemos a dinâmica do mercado capixaba.",
+        q: "Uma landing page serve para toda a Grande Vitória?",
+        a: "Serve, se o seu atendimento é igual em toda a região. Se você tem unidades ou ofertas diferentes por cidade, vale uma página por público, cada uma ligada à campanha certa.",
       },
       {
         q: "O projeto inclui copy, design e desenvolvimento?",
@@ -234,18 +289,26 @@ export const lpCityPages: LpCityPage[] = [
       "Landing pages em Brasília para empresas que precisam transmitir credibilidade e converter tráfego em clientes. Design profissional, copy estratégica e desenvolvimento completo.",
     heroLead:
       "Brasília tem o maior PIB per capita do Brasil e um mercado formado por governo, setor privado e terceiro setor. Credibilidade e profissionalismo na página não são opcionais — são o filtro que define quem avança para uma conversa comercial.",
+    local: {
+      heading: "Público pequeno, qualificado e criterioso",
+      paragraphs: [
+        "Em Brasília, muita campanha mira um público pequeno e qualificado: gestores, advogados, servidores e empresários que decidem com base em credibilidade. Para esse público, a landing page funciona melhor quando é sóbria e objetiva, com quem é a empresa, o que entrega, provas concretas e um caminho claro para agendar uma reunião.",
+        "A geografia também conta. Plano Piloto, Águas Claras, Taguatinga e o Entorno têm públicos e distâncias bem diferentes, e campanhas de negócios locais rendem mais quando a página e o anúncio falam da mesma região.",
+      ],
+      places: ["Plano Piloto", "Setor Comercial Sul", "Lago Sul", "Águas Claras", "Taguatinga"],
+    },
     faq: [
       {
-        q: "Quanto custa uma landing page em Brasília?",
-        a: "O investimento varia conforme o escopo. Em Brasília, atendemos consultorias, prestadores de serviço, startups e empresas privadas. Enviamos proposta personalizada após entender seu projeto.",
-      },
-      {
-        q: "Vocês têm experiência com o mercado do Distrito Federal?",
-        a: "Sim. O mercado de Brasília tem características únicas — alta concentração de tomadores de decisão, necessidade de credibilidade institucional e processos de compra mais formais em vários segmentos. Nossa estratégia considera essas especificidades.",
+        q: "Como vocês adaptam a página ao mercado do Distrito Federal?",
+        a: "Considerando o que o mercado de Brasília tem de particular: muitos tomadores de decisão, necessidade de credibilidade institucional e compras mais formais em vários segmentos. A página prioriza clareza, provas concretas e um caminho direto para reunião.",
       },
       {
         q: "Landing page serve para empresas que vendem para o governo?",
         a: "Sim. Uma landing page bem construída serve como ponto de contato profissional para qualquer visitante — incluindo gestores públicos que pesquisam fornecedores. A página transmite credibilidade antes de qualquer reunião.",
+      },
+      {
+        q: "Atendem empresas de todo o DF?",
+        a: "Sim. A Energy fica em Vila Velha (ES) e atende Brasília, as regiões administrativas e o Entorno de forma remota, por videochamada e aprovações online.",
       },
       {
         q: "O projeto inclui copy, design e desenvolvimento?",

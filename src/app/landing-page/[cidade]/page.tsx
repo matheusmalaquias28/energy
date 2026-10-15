@@ -13,6 +13,7 @@ import { Como } from "@/components/sites/iamaisgen-br-36c19ba4/root-8a5edab2/Com
 import { Comparativo } from "@/components/sites/iamaisgen-br-36c19ba4/root-8a5edab2/Comparativo";
 import { CityHero } from "@/components/lp-cidade/Hero";
 import { CityFaq } from "@/components/lp-cidade/Faq";
+import { CityLocal } from "@/components/lp-cidade/Local";
 import { CityCtaFinal } from "@/components/lp-cidade/CtaFinal";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br";
@@ -144,6 +145,7 @@ export default async function LandingPageCidadePage(props: {
         <Galeria />
         <Como />
         <Comparativo />
+        <CityLocal city={city} />
         <CityFaq city={city} />
         <CityCtaFinal city={city} />
       </div>

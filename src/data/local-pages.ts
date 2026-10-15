@@ -1,3 +1,5 @@
+import type { LocalBlockData } from "./local-block";
+
 export type ServiceType = "sites" | "ecommerce" | "landing-page" | "sites-imobiliarios";
 
 export interface LocalFaq {
@@ -24,6 +26,8 @@ export interface LocalPageData {
     tags: string[];
   }[];
   whyLocal: string;
+  /** Conteúdo que só vale para esta página */
+  local: LocalBlockData;
   faqs: LocalFaq[];
 }
 
@@ -52,7 +56,7 @@ export const localPages: LocalPageData[] = [
     intro:
       "Campos do Jordão é um mercado único no Brasil: uma cidade de alto poder aquisitivo, com forte presença turística e um público que valoriza qualidade acima de preço. Empresas locais que investem em um site profissional chegam primeiro nesse mercado exigente.",
     marketContext:
-      "Com mais de 700 mil turistas por ano e um dos maiores festivais de inverno do Brasil, Campos do Jordão atrai clientes que pesquisam online antes de visitar presencialmente. Pousadas, restaurantes, ateliês, imobiliárias e prestadores de serviço que têm um site profissional capturam essa demanda antes mesmo da chegada do turista à cidade.",
+      "Com fluxo turístico o ano todo e um dos maiores festivais de inverno do Brasil, Campos do Jordão atrai clientes que pesquisam online antes de visitar presencialmente. Pousadas, restaurantes, ateliês, imobiliárias e prestadores de serviço que têm um site profissional capturam essa demanda antes mesmo da chegada do turista à cidade.",
     serviceDetails: [
       {
         title: "Sites para Turismo e Hospedagem",
@@ -72,6 +76,15 @@ export const localPages: LocalPageData[] = [
     ],
     whyLocal:
       "O público de Campos do Jordão — tanto o morador quanto o turista — tem alto poder aquisitivo e toma decisões com base na qualidade percebida. Um site mal feito não apenas não gera clientes: ativamente afasta quem você mais quer atrair.",
+    local: {
+      heading: "Dois projetos da Energy na serra",
+      paragraphs: [
+        "Em Campos do Jordão a Energy criou o site da Above Imobiliária, especializada em imóveis de alto padrão, e o da Chocolate Araucária, fábrica artesanal de chocolates fundada na cidade em 1991.",
+        "Os dois mostram bem os dois públicos da cidade. O comprador de imóvel pesquisa com calma, compara e quer ver detalhe; o site precisa de imagens grandes, boa performance e contato direto com quem atende. O turista procura a loja, o horário e o caminho antes de subir a serra; o site precisa entregar essa informação rápido, no celular.",
+      ],
+      places: ["Capivari", "Vila Jaguaribe", "Abernéssia", "Jardim do Embaixador", "Serra da Mantiqueira"],
+      cases: ["Above Imobiliária", "Chocolate Araucária"],
+    },
     faqs: [
       {
         q: "Preciso estar em Campos do Jordão para contratar a agência?",
@@ -136,6 +149,15 @@ export const localPages: LocalPageData[] = [
     ],
     whyLocal:
       "Campos do Jordão tem um dos mais altos índices de recompra por reconhecimento de marca do turismo brasileiro. Quem visita, ama. Quem ama, quer comprar de novo. Um e-commerce transforma esse sentimento em canal de vendas permanente — muito além da temporada.",
+    local: {
+      heading: "Do balcão da temporada para a venda o ano todo",
+      paragraphs: [
+        "Muitos negócios de Campos do Jordão vendem principalmente no balcão, durante a temporada. A Chocolate Araucária, cliente da Energy, vende nas lojas físicas da cidade, e o site institucional que criamos apresenta a marca, os produtos e onde encontrá-los. Para negócios com esse perfil, a loja online é o passo seguinte para vender para quem já conheceu a cidade e voltou para casa.",
+        "Na serra, a logística pesa no projeto: chocolate, queijo e geleia exigem embalagem e transporte que aguentem calor e prazo de entrega, e o frete calculado por CEP evita surpresa no checkout. Por isso o e-commerce começa pela operação de envio, não pela vitrine.",
+      ],
+      places: ["Vila Jaguaribe", "Capivari", "Santo Antônio do Pinhal", "São Bento do Sapucaí", "Serra da Mantiqueira"],
+      cases: ["Chocolate Araucária"],
+    },
     faqs: [
       {
         q: "Vale a pena criar um e-commerce para produtos de Campos do Jordão?",
@@ -200,6 +222,15 @@ export const localPages: LocalPageData[] = [
     ],
     whyLocal:
       "Campos do Jordão tem sazonalidade marcante. Quem não aparece nos resultados durante o planejamento da viagem simplesmente não existe para o turista. Landing pages bem construídas garantem que a sua empresa seja a primeira encontrada — e a escolhida.",
+    local: {
+      heading: "Campanhas que seguem o calendário da serra",
+      paragraphs: [
+        "Em Campos do Jordão o ano tem picos conhecidos: julho, com o Festival de Inverno, os feriados prolongados e o fim de ano. Uma landing page por campanha, publicada antes da alta, faz o anúncio e a página falarem exatamente da mesma oferta, seja um pacote de hospedagem, um jantar especial ou um imóvel de temporada.",
+        "No mercado imobiliário da cidade, onde a Energy fez o site da Above Imobiliária, uma landing page por empreendimento ou por imóvel de destaque concentra o interesse de quem chegou pelo anúncio e leva direto ao contato com o corretor.",
+      ],
+      places: ["Capivari", "Vila Jaguaribe", "Abernéssia", "Festival de Inverno", "Serra da Mantiqueira"],
+      cases: ["Above Imobiliária"],
+    },
     faqs: [
       {
         q: "Preciso de uma landing page separada para cada campanha?",
@@ -242,9 +273,9 @@ export const localPages: LocalPageData[] = [
       "site para empresa vila velha",
     ],
     intro:
-      "Vila Velha é a cidade mais populosa do Espírito Santo e um dos mercados comerciais mais movimentados da Grande Vitória. Com forte presença de comércio, serviços, saúde e gastronomia, empresas locais que investem em um site profissional se destacam num mercado onde a concorrência ainda subestima a presença digital.",
+      "Vila Velha é uma das cidades mais populosas do Espírito Santo e um dos mercados comerciais mais movimentados da Grande Vitória. Com forte presença de comércio, serviços, saúde e gastronomia, empresas locais que investem em um site profissional se destacam num mercado onde a concorrência ainda subestima a presença digital.",
     marketContext:
-      "Com mais de 500 mil habitantes e bairros consolidados como Praia da Costa, Itapoã e Centro, Vila Velha concentra um mercado consumidor exigente e bem conectado. O comportamento do consumidor capixaba moderno começa pelo Google — e empresas sem site profissional simplesmente não entram na lista de opções de quem pesquisa antes de comprar.",
+      "Com bairros consolidados como Praia da Costa, Itapoã e Centro, Vila Velha concentra um mercado consumidor exigente e bem conectado. O comportamento do consumidor capixaba moderno começa pelo Google — e empresas sem site profissional simplesmente não entram na lista de opções de quem pesquisa antes de comprar.",
     serviceDetails: [
       {
         title: "Sites para Comércio e Varejo",
@@ -263,11 +294,20 @@ export const localPages: LocalPageData[] = [
       },
     ],
     whyLocal:
-      "Vila Velha cresce em ritmo acelerado — novos bairros, novos shoppings, nova rota de metrô. O mercado está em expansão e o consumidor está online. Empresas que investem em presença digital agora se consolidam antes que a concorrência perceba o movimento.",
+      "Vila Velha cresce em ritmo acelerado — novos bairros, novos empreendimentos na orla, comércio se espalhando para além do Centro. O mercado está em expansão e o consumidor está online. Empresas que investem em presença digital agora se consolidam antes que a concorrência perceba o movimento.",
+    local: {
+      heading: "A Energy é de Vila Velha",
+      paragraphs: [
+        "Vila Velha é a casa da Energy. Conhecemos de perto a diferença entre o comércio da Glória, a orla da Praia da Costa e de Itaparica e o movimento do Centro e da Prainha, ao pé do Convento da Penha. Isso ajuda a escrever um site que fala a língua do cliente capixaba, sem texto genérico.",
+        "Também daqui, a Energy criou a landing page da Cashflow, plataforma que reúne vendas de checkouts, campanhas de Meta Ads e controle financeiro para quem opera ofertas low ticket.",
+      ],
+      places: ["Praia da Costa", "Itaparica", "Glória", "Centro e Prainha", "Coqueiral de Itaparica"],
+      cases: ["Cashflow"],
+    },
     faqs: [
       {
-        q: "Preciso estar fisicamente em Vila Velha para contratar a agência?",
-        a: "Não. Todo o processo é 100% remoto: briefing por videochamada, aprovações por e-mail ou WhatsApp e entrega digital. Atendemos empresas em Vila Velha, Vitória, Serra e toda a Grande Vitória.",
+        q: "A Energy fica em Vila Velha?",
+        a: "Sim, a Energy é sediada em Vila Velha (ES). O processo de projeto funciona online: briefing por videochamada, aprovações por e-mail ou WhatsApp e entrega digital. Atendemos empresas de Vila Velha, Vitória, Serra, Cariacica e de outros estados.",
       },
       {
         q: "Quanto tempo leva para criar um site profissional para minha empresa?",
@@ -317,7 +357,7 @@ export const localPages: LocalPageData[] = [
       },
       {
         title: "Sites para Startups e Tecnologia",
-        desc: "O ecossistema de inovação de Vitória cresce com programas como o ES Tech Hub. Startups e empresas de tecnologia precisam de sites que comuniquem modernidade, produto e proposta de valor de forma clara e convincente para investidores e clientes.",
+        desc: "O ecossistema de inovação de Vitória está em crescimento. Startups e empresas de tecnologia precisam de sites que comuniquem modernidade, produto e proposta de valor de forma clara e convincente para investidores e clientes.",
         tags: ["Startup-ready", "Product storytelling", "Captação de leads", "Integração de CRM"],
       },
       {
@@ -328,10 +368,18 @@ export const localPages: LocalPageData[] = [
     ],
     whyLocal:
       "O mercado de Vitória é disputado, sofisticado e crescente. Uma empresa sem site de qualidade equivale a um escritório sem recepção — o cliente percebe antes de entrar. Investir em presença digital de alto nível em Vitória é investir na credibilidade que o mercado capixaba exige.",
+    local: {
+      heading: "Vitória, vizinha da Energy",
+      paragraphs: [
+        "A Energy fica em Vila Velha, do outro lado da Terceira Ponte, e acompanha de perto o mercado da capital. Em Vitória, os negócios se concentram em regiões bem definidas: a Enseada do Suá e a Praia do Canto reúnem escritórios, consultórios e restaurantes; a Reta da Penha e Jardim Camburi têm comércio e serviços de bairro; o Centro e a região do porto concentram atividades ligadas a logística e comércio exterior.",
+        "Cada região pede uma estratégia diferente no Google. Uma clínica na Praia do Canto disputa buscas de toda a Grande Vitória, enquanto uma padaria em Jardim Camburi precisa aparecer para quem está a poucas quadras.",
+      ],
+      places: ["Enseada do Suá", "Praia do Canto", "Jardim Camburi", "Reta da Penha", "Centro"],
+    },
     faqs: [
       {
-        q: "Vocês atendem empresas em Vitória de forma remota?",
-        a: "Sim. Todo o processo — briefing, desenvolvimento, aprovações e entrega — é 100% remoto. Atendemos empresas em Vitória, Vila Velha, Serra, Cariacica e toda a Grande Vitória.",
+        q: "Vocês atendem empresas em Vitória?",
+        a: "Sim. A Energy fica em Vila Velha, ao lado de Vitória, e o processo funciona online: briefing por videochamada, aprovações por e-mail ou WhatsApp e entrega digital. Atendemos Vitória, Vila Velha, Serra, Cariacica e toda a Grande Vitória.",
       },
       {
         q: "Qual o prazo para criar um site corporativo em Vitória?",
@@ -370,7 +418,7 @@ export const localPages: LocalPageData[] = [
       "site para empresa serra es",
     ],
     intro:
-      "Serra é o maior polo industrial do Espírito Santo — sede de empresas como ArcelorMittal, Nestlé e dezenas de indústrias de médio porte. É também um dos municípios com maior crescimento populacional da Grande Vitória, com comércio e serviços em expansão acelerada. Empresas que investem em presença digital agora chegam primeiro num mercado que ainda está se formando.",
+      "Serra é o maior polo industrial do Espírito Santo — sede da ArcelorMittal Tubarão, dos centros industriais da Civit e de indústrias de médio porte. É também um dos municípios com maior crescimento populacional da Grande Vitória, com comércio e serviços em expansão acelerada. Empresas que investem em presença digital agora chegam primeiro num mercado que ainda está se formando.",
     marketContext:
       "A Serra divide-se entre um polo industrial consolidado e bairros residenciais em rápida expansão. Comércio local, clínicas, escolas, prestadores de serviços e fornecedores industriais competem por um público crescente e cada vez mais conectado. Empresas com site profissional e bem posicionado no Google têm vantagem real sobre concorrentes que ainda dependem exclusivamente de indicação.",
     serviceDetails: [
@@ -392,10 +440,18 @@ export const localPages: LocalPageData[] = [
     ],
     whyLocal:
       "Serra ainda está em formação como mercado digital — o que é uma vantagem estratégica para quem age agora. Enquanto a maioria dos concorrentes não investiu em presença digital de qualidade, uma empresa com site profissional e SEO bem feito pode dominar as buscas locais com muito mais facilidade do que em mercados mais disputados.",
+    local: {
+      heading: "O município mais populoso do Espírito Santo",
+      paragraphs: [
+        "Pelo Censo 2022 do IBGE, Serra passou a ser o município mais populoso do Espírito Santo. O crescimento aparece em bairros como Laranjeiras, Jacaraípe, Manguinhos e Carapina, ao lado de um polo industrial que inclui a ArcelorMittal Tubarão e os centros industriais da Civit.",
+        "A Energy fica em Vila Velha, na mesma Grande Vitória, e conhece a dinâmica da região: muita empresa de Serra atende clientes de Vitória e Vila Velha, e o site precisa deixar claro até onde vai o atendimento.",
+      ],
+      places: ["Laranjeiras", "Jacaraípe", "Manguinhos", "Carapina", "Civit"],
+    },
     faqs: [
       {
         q: "Atendem empresas industriais e B2B em Serra?",
-        a: "Sim. Temos experiência em criar sites para empresas industriais, fornecedoras e prestadoras de serviço B2B, com foco em comunicar capacidade técnica, portfólio e gerar leads qualificados para equipes comerciais.",
+        a: "Sim. Para empresas industriais, fornecedoras e prestadoras de serviço B2B, o site foca em comunicar capacidade técnica e portfólio e em gerar contatos qualificados para a equipe comercial.",
       },
       {
         q: "Quanto tempo leva para criar o site da minha empresa em Serra?",
@@ -462,6 +518,15 @@ export const localPages: LocalPageData[] = [
     ],
     whyLocal:
       "O mercado imobiliário do Vale do Paraíba é disputado por imobiliárias locais e pelos grandes portais nacionais. Um site bem construído, com SEO forte para termos locais, posiciona sua imobiliária acima dos portais genéricos para buscas específicas da região — onde a intenção de compra é mais alta.",
+    local: {
+      heading: "Site imobiliário feito na região",
+      paragraphs: [
+        "Campos do Jordão faz parte da Região Metropolitana do Vale do Paraíba e Litoral Norte, e é lá que fica a Above Imobiliária, especializada em imóveis de alto padrão, cujo site foi criado pela Energy. O projeto foi pensado para quem compra imóvel de valor: design limpo, imagens em destaque e boa performance.",
+        "No restante do Vale, o público muda de cidade para cidade. Em São José dos Campos, boa parte da demanda vem de profissionais da indústria aeroespacial e de tecnologia; em Taubaté e Jacareí, de famílias em busca de mais espaço; no Litoral Norte, de imóveis de temporada. Um site imobiliário bem estruturado separa esses públicos em páginas e filtros próprios.",
+      ],
+      places: ["São José dos Campos", "Taubaté", "Jacareí", "Campos do Jordão", "Litoral Norte"],
+      cases: ["Above Imobiliária"],
+    },
     faqs: [
       {
         q: "O site vai aparecer para quem pesquisa imóveis em São José dos Campos ou Taubaté?",
@@ -478,10 +543,6 @@ export const localPages: LocalPageData[] = [
       {
         q: "O site funciona para imobiliária que atende várias cidades do Vale?",
         a: "Perfeitamente. Criamos estrutura com filtros por cidade e bairro, e cada cidade tem sua própria página de categoria otimizada para SEO. Isso permite que a imobiliária apareça nas buscas de São José dos Campos, Taubaté, Jacareí e qualquer outra cidade do Vale.",
-      },
-      {
-        q: "Quanto custa criar um site para imobiliária no Vale do Paraíba?",
-        a: "O investimento varia com a quantidade de imóveis, integrações necessárias e funcionalidades. Sites imobiliários profissionais com portal completo partem de R$ 12.000. Apresentamos proposta detalhada após uma conversa para entender suas necessidades específicas.",
       },
     ],
   },

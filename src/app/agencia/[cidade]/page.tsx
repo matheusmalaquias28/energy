@@ -3,6 +3,7 @@ import { pageTitle } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { brazilCities, getCityBySlug } from "@/data/cities";
 import CityPageCTA from "@/components/ui/CityPageCTA";
+import CityLocalBlock from "@/components/ui/CityLocalBlock";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://energymidia.com.br";
 
@@ -83,15 +84,8 @@ const differentials = [
   },
 ];
 
-const faqs = [
-  {
-    q: "Quanto custa um site profissional?",
-    a: "O valor varia conforme a complexidade do projeto, quantidade de páginas e funcionalidades. Após entender suas necessidades, enviamos uma proposta personalizada e detalhada.",
-  },
-  {
-    q: "Quanto tempo leva para criar um site?",
-    a: "O prazo é definido antes do início, com etapas e aprovações claras. Projetos menores podem ser entregues em semanas; projetos mais complexos têm cronograma proporcional.",
-  },
+/** Perguntas comuns a todas as cidades; as específicas vêm de city.faqs. */
+const sharedFaqs = [
   {
     q: "O site fica bem no Google?",
     a: "Sim. SEO técnico, Core Web Vitals, acessibilidade e estrutura de dados (Schema.org) fazem parte do escopo padrão de todos os projetos.",
@@ -99,10 +93,6 @@ const faqs = [
   {
     q: "Vou conseguir editar o site depois?",
     a: "Sim. Todos os projetos incluem CMS integrado para que você atualize textos, imagens e conteúdo sem precisar de um desenvolvedor.",
-  },
-  {
-    q: "Vocês atendem empresas de todos os segmentos?",
-    a: "Sim. Já desenvolvemos projetos para clínicas, consultorias, imobiliárias, e-commerces, SaaS, serviços B2B e empresas de diferentes portes.",
   },
 ];
 
@@ -114,6 +104,7 @@ export default async function CityPage(props: {
   if (!city) notFound();
 
   const pageUrl = `${SITE_URL}/agencia/${city.slug}`;
+  const faqs = [...city.faqs, ...sharedFaqs];
 
   const jsonLd = [
     {
@@ -215,6 +206,8 @@ export default async function CityPage(props: {
             </p>
           </div>
         </section>
+
+        <CityLocalBlock city={city.name} block={city.local} />
 
         {/* Services */}
         <section className="py-28 px-6 lg:px-16 border-b border-white/5 bg-[#111111]">
