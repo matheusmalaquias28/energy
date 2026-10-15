@@ -86,10 +86,6 @@ const faqs = [
     a: "Sites institucionais de 5 a 10 páginas ficam prontos em 3 a 6 semanas a partir do briefing aprovado. O prazo depende da complexidade do projeto e da velocidade de aprovação das etapas. Sempre apresentamos um cronograma detalhado na proposta.",
   },
   {
-    q: "Quanto custa criar um site?",
-    a: "O investimento varia de acordo com o escopo: número de páginas, funcionalidades, integrações e nível de personalização do design. Sites institucionais profissionais partem de R$ 4.500. Apresentamos proposta detalhada após uma conversa para entender suas necessidades.",
-  },
-  {
     q: "O site vai aparecer no Google?",
     a: "Todos os projetos incluem SEO técnico completo — estrutura de URLs, meta tags, schema markup, sitemap e performance otimizada. Isso cria a base necessária para o posicionamento orgânico. O ranqueamento para termos competitivos exige também estratégia de conteúdo e link building ao longo do tempo.",
   },

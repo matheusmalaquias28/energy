@@ -90,10 +90,6 @@ const faqs = [
     a: "E-commerces com catálogo padrão ficam prontos em 6 a 10 semanas. Para operações com integrações específicas (ERP, WMS, marketplace), o prazo pode ser de 8 a 16 semanas. Apresentamos cronograma detalhado na proposta.",
   },
   {
-    q: "Quanto custa criar um e-commerce?",
-    a: "O investimento varia com a quantidade de produtos, integrações necessárias e complexidade da operação. E-commerces profissionais partem de R$ 10.000. Apresentamos proposta detalhada após entendermos a sua operação.",
-  },
-  {
     q: "Vocês integram com marketplaces como Mercado Livre?",
     a: "Sim. Criamos integrações para publicar o catálogo automaticamente no Mercado Livre, Shopee, Amazon e outros marketplaces. Você gerencia tudo em um painel central — sem precisar atualizar cada canal manualmente.",
   },

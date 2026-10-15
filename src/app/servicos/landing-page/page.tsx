@@ -94,10 +94,6 @@ const faqs = [
     a: "Landing pages ficam prontas em 7 a 14 dias úteis. Para campanhas com prazo fixo, recomendamos solicitar com pelo menos 3 semanas de antecedência para garantir tempo de ajustes e otimização antes do lançamento.",
   },
   {
-    q: "Quanto custa uma landing page profissional?",
-    a: "Landing pages de alta conversão partem de R$ 2.500. O valor varia com a complexidade do copy, número de seções, integrações necessárias (CRM, automação de e-mail, checkout) e se inclui pacote de otimização pós-lançamento.",
-  },
-  {
     q: "Vocês escrevem o texto ou eu preciso fornecer?",
     a: "Escrevemos o copy estratégico da landing page a partir do briefing do produto, público e oferta. Quanto mais informações você fornecer sobre o seu cliente e o diferencial da oferta, mais preciso e eficaz o copy.",
   },

@@ -3,10 +3,6 @@ import { useState } from "react";
 
 const faqs = [
   {
-    q: "Quanto custa uma Landing Page?",
-    a: "O investimento varia de acordo com a complexidade, quantidade de seções, integrações e necessidades do projeto. Após entender seu negócio, enviamos uma proposta personalizada.",
-  },
-  {
     q: "Vocês fazem a copy?",
     a: "Sim. A copy pode fazer parte do projeto e é construída considerando sua oferta, público e objetivo de conversão.",
   },

@@ -154,10 +154,6 @@ const faqs: Faq[] = [
     a: "Não. Ninguém controla o algoritmo do Google, e quem promete posição garantida está vendendo algo que não pode entregar. O que garantimos é método, transparência e relatórios mensais mostrando a evolução de posições, tráfego e leads.",
   },
   {
-    q: "Quanto custa SEO para empresas?",
-    a: "SEO é um trabalho mensal, e o investimento depende do tamanho do site, da concorrência do setor e de quantas páginas precisam ser criadas. Depois do diagnóstico, apresentamos uma proposta com escopo e valor fechados.",
-  },
-  {
     q: "Preciso fazer um site novo?",
     a: "Nem sempre. Se o site atual tem uma base técnica aproveitável, otimizamos o que já existe. Quando a plataforma impede velocidade, indexação ou a criação de novas páginas, recomendamos a reconstrução, e a Energy também desenvolve o site.",
     link: { href: "/servicos/criacao-de-sites", label: "Conheça a criação de sites da Energy" },
