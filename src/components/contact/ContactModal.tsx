@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,6 +9,7 @@ import { X } from "lucide-react";
 import { urbanist } from "@/lib/fonts";
 import { formatBrazilPhone } from "@/lib/phone-br";
 import { cn } from "@/lib/utils";
+import { Honeypot } from "./Honeypot";
 
 const formSchema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome"),
@@ -46,9 +47,12 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
 
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const startedAt = useRef(0);
 
   useEffect(() => {
     if (!open) return;
+    startedAt.current = Date.now();
     setStatus("idle");
     setErrorMsg(null);
   }, [open]);
@@ -83,6 +87,8 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
           telefone: data.telefone,
           empresa: data.empresa,
           origem: `modal ${window.location.pathname}`,
+          website: honeypotRef.current?.value ?? "",
+          t: startedAt.current || Date.now(),
         }),
       });
       const json = (await res.json().catch(() => ({}))) as { error?: string };
@@ -160,6 +166,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
                 onSubmit={handleSubmit(onSubmit)}
                 noValidate
               >
+                <Honeypot inputRef={honeypotRef} />
                 <div>
                   <label htmlFor="contact-nome" className="mb-1.5 block text-xs uppercase tracking-[0.12em] text-white/40">
                     Nome

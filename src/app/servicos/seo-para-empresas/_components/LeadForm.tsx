@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Honeypot } from "@/components/contact/Honeypot";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -40,6 +41,12 @@ export function LeadForm() {
 
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const startedAt = useRef(0);
+
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   const onSubmit = async (data: FormValues) => {
     setStatus("idle");
@@ -48,7 +55,12 @@ export function LeadForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, origem: "lp-seo-para-empresas" }),
+        body: JSON.stringify({
+          ...data,
+          origem: "lp-seo-para-empresas",
+          website: honeypotRef.current?.value ?? "",
+          t: startedAt.current || Date.now(),
+        }),
       });
       const json = (await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) {
@@ -76,6 +88,7 @@ export function LeadForm() {
 
   return (
     <form className="lead-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <Honeypot inputRef={honeypotRef} />
       <div className="lead-field">
         <label htmlFor="lead-nome">Nome</label>
         <input
