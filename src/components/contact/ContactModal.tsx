@@ -82,6 +82,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
           nome: data.nome,
           telefone: data.telefone,
           empresa: data.empresa,
+          origem: `modal ${window.location.pathname}`,
         }),
       });
       const json = (await res.json().catch(() => ({}))) as { error?: string };
@@ -90,6 +91,9 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
         setErrorMsg(json.error ?? "Não foi possível enviar.");
         return;
       }
+      (window as { gtag?: (...args: unknown[]) => void }).gtag?.("event", "generate_lead", {
+        form: "modal",
+      });
       setStatus("success");
       reset();
     } catch {
