@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOgImages } from "@/lib/seo";
 import "./proposta.css";
 
 // Fraunces nos títulos (calor de confeitaria), Hanken Grotesk no corpo e nos números.
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     siteName: "Energy",
     locale: "pt_BR",
     type: "website",
+    images: defaultOgImages,
   },
 };
 

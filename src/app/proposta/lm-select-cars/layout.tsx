@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOgImages } from "@/lib/seo";
 import "./proposta.css";
 
 // Mesmo par tipográfico do site da LM: Saira com eixo de largura nos títulos, Hanken Grotesk no corpo.
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     siteName: "Energy",
     locale: "pt_BR",
     type: "website",
+    images: defaultOgImages,
   },
 };
 

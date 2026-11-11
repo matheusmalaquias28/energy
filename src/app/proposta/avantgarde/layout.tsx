@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOgImages } from "@/lib/seo";
 import { JetBrains_Mono } from "next/font/google";
 import "./proposta.css";
 
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
     siteName: "Energy",
     locale: "pt_BR",
     type: "website",
+    images: defaultOgImages,
   },
 };
 
