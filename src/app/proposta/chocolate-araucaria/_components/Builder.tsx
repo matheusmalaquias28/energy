@@ -18,11 +18,12 @@ function withoutDependents(id: string, set: Set<string>) {
   ALL_MODULES.forEach((m) => m.requires?.includes(id) && set.has(m.id) && withoutDependents(m.id, set));
 }
 
-const weeksLabel = (w: number) =>
-  w === 0.5 ? "½ semana" : `${w.toLocaleString("pt-BR")} ${w === 1 ? "semana" : "semanas"}`;
-const monthsLabel = (w: number) => {
-  const m = Math.max(0.5, Math.round((w / 4.33) * 2) / 2);
-  return `≈ ${m.toLocaleString("pt-BR")} ${m === 1 ? "mês" : "meses"}`;
+/** Prazo em faixa de meses, a partir da soma interna de semanas. Ex.: 17 semanas → "3 a 4 meses". */
+const monthsRange = (w: number) => {
+  const m = w / 4.33;
+  const lo = Math.max(1, Math.floor(m));
+  const hi = Math.max(lo + 1, Math.ceil(m));
+  return `${lo} a ${hi} meses`;
 };
 
 export default function Builder() {
@@ -70,7 +71,7 @@ export default function Builder() {
     ...chosen.map((m) => `• ${m.name}`),
     "",
     `Emissão de nota fiscal: ${fiscalOn ? "com" : "sem"}`,
-    `Total: ${brl(total)}${pct ? ` (com ${pct}% de desconto)` : ""} · ${weeksLabel(weeks)}`,
+    `Total: ${brl(total)}${pct ? ` (com ${pct}% de desconto)` : ""} · prazo de ${monthsRange(weeks)}`,
   ].join("\n");
 
   return (
@@ -154,9 +155,7 @@ export default function Builder() {
           <div className="price">{brl(total)}</div>
           <div className="row">
             <span>Prazo estimado</span>
-            <b>
-              {weeksLabel(weeks)} · {monthsLabel(weeks)}
-            </b>
+            <b>{monthsRange(weeks)}</b>
           </div>
           <div className="row">
             <span>Nota fiscal pelo sistema</span>
@@ -179,8 +178,8 @@ export default function Builder() {
             </div>
           </div>
           <p className="fine">
-            Mais o custo mensal de hospedagem, ferramentas e suporte, definido depois de fechar os módulos. Nunca passa de{" "}
-            {brl(MONTHLY.cap)}/mês.
+            Mais o custo mensal de hospedagem, ferramentas e suporte: entre {brl(MONTHLY.min)} e {brl(MONTHLY.max)}/mês, conforme os
+            módulos escolhidos.
           </p>
           <a className="btn" href={wa(waText)} target="_blank" rel="noopener noreferrer">
             Aprovar esta montagem
@@ -193,7 +192,7 @@ export default function Builder() {
         <div className="bar-info">
           <span className="eyebrow">{chosen.length + 1} {chosen.length ? "módulos" : "módulo"}</span>
           <b>{brl(total)}</b>
-          <span className="bar-time">{weeksLabel(weeks)}</span>
+          <span className="bar-time">{monthsRange(weeks)}</span>
         </div>
         <div className="bar-nf">
           <span className="eyebrow">NF</span>
@@ -236,7 +235,6 @@ function ModuleCard({ m, on, locked, onToggle }: { m: Module; on: boolean; locke
         </span>
         <span className="mod-price">
           <b>{brl(m.price)}</b>
-          <span>{weeksLabel(m.weeks)}</span>
         </span>
       </label>
       <details>

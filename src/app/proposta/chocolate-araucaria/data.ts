@@ -11,9 +11,10 @@ export const PROPOSAL = {
   energySite: "https://energymidia.com.br",
 };
 
-/** Custo mensal: definido depois de fechar os módulos, nunca acima do teto. */
+/** Custo mensal: faixa estimada; o valor exato depende dos módulos escolhidos. */
 export const MONTHLY = {
-  cap: 1000,
+  min: 500,
+  max: 1800,
   items: [
     "Hospedagem em nuvem com backup diário",
     "Ferramentas que o sistema usa (API fiscal, e-mails e afins)",
@@ -24,7 +25,6 @@ export const MONTHLY = {
 
 /** Desconto progressivo pela quantidade de módulos opcionais marcados. */
 export const DISCOUNTS = [
-  { min: 12, pct: 15 },
   { min: 8, pct: 10 },
   { min: 4, pct: 5 },
 ];
@@ -77,7 +77,7 @@ export const GROUPS: Group[] = [
       {
         id: "ficha",
         name: "Ficha técnica e receitas",
-        price: 2500,
+        price: 3000,
         weeks: 0.5,
         badge: "recomendado",
         summary: "Composição, informação nutricional e validade de cada produto.",
@@ -92,7 +92,7 @@ export const GROUPS: Group[] = [
       {
         id: "producao",
         name: "Produção",
-        price: 5000,
+        price: 6500,
         weeks: 1.5,
         badge: "recomendado",
         requires: ["ficha"],
@@ -109,7 +109,7 @@ export const GROUPS: Group[] = [
       {
         id: "compras",
         name: "Compras",
-        price: 3000,
+        price: 4500,
         weeks: 1,
         badge: "recomendado",
         summary: "Da solicitação ao recebimento, com a nota do fornecedor importada pelo XML.",
@@ -124,7 +124,7 @@ export const GROUPS: Group[] = [
       {
         id: "tabelas",
         name: "Tabelas de preço",
-        price: 1500,
+        price: 2000,
         weeks: 0.5,
         badge: "recomendado",
         summary: "As tabelas de venda da empresa, com ICMS e ST por estado.",
@@ -156,7 +156,7 @@ export const GROUPS: Group[] = [
       {
         id: "redes",
         name: "Redes de varejo",
-        price: 3500,
+        price: 2500,
         weeks: 0.5,
         summary: "Contratos e verbas com as redes de supermercado.",
         includes: [
@@ -168,7 +168,7 @@ export const GROUPS: Group[] = [
       {
         id: "portal",
         name: "Portal B2B do cliente",
-        price: 5000,
+        price: 3500,
         weeks: 0.5,
         requires: ["tabelas"],
         summary: "O cliente atacado faz o pedido sozinho, com a tabela de preço dele.",
@@ -200,7 +200,7 @@ export const GROUPS: Group[] = [
       {
         id: "financeiro",
         name: "Financeiro",
-        price: 8000,
+        price: 6500,
         weeks: 1,
         summary: "Contas a pagar e a receber, caixa e fluxo de caixa.",
         includes: [
@@ -214,7 +214,7 @@ export const GROUPS: Group[] = [
       {
         id: FISCAL_ID,
         name: "Faturamento e emissão de nota fiscal",
-        price: 7000,
+        price: 5500,
         weeks: 1,
         summary: "O sistema emite a NF-e direto do pedido, sem digitar em outro lugar.",
         includes: [
@@ -228,7 +228,7 @@ export const GROUPS: Group[] = [
       {
         id: "protheus",
         name: "Integração com o Protheus",
-        price: 6000,
+        price: 4000,
         weeks: 0.5,
         badge: "a confirmar",
         summary: "Clientes, pedidos, notas e títulos sincronizados com o Protheus.",
@@ -244,7 +244,7 @@ export const GROUPS: Group[] = [
       {
         id: "retaguarda",
         name: "Retaguarda das lojas",
-        price: 3000,
+        price: 3500,
         weeks: 0.5,
         badge: "a confirmar",
         summary: "Preços, caixa e inventário de cada loja, no mesmo sistema da fábrica.",
@@ -260,7 +260,7 @@ export const GROUPS: Group[] = [
       {
         id: "pdv",
         name: "PDV com NFC-e",
-        price: 4000,
+        price: 2500,
         weeks: 0.5,
         requires: ["retaguarda"],
         summary: "Troca do PDV com ECF, que foi extinto, por um PDV atual com NFC-e.",
@@ -273,7 +273,7 @@ export const GROUPS: Group[] = [
       {
         id: "chococard",
         name: "ChocoCard",
-        price: 1800,
+        price: 2000,
         weeks: 0.5,
         requires: ["retaguarda"],
         summary: "O programa de fidelidade, com pontos e resgates.",
@@ -304,7 +304,7 @@ export const GROUPS: Group[] = [
       {
         id: "qualidade",
         name: "Documentos e qualidade",
-        price: 2500,
+        price: 1500,
         weeks: 0.5,
         summary: "POPs, documentos e termos, com controle de leitura.",
         includes: [
@@ -336,7 +336,7 @@ export const GROUPS: Group[] = [
       {
         id: "painel",
         name: "Painel e alertas",
-        price: 2000,
+        price: 2500,
         weeks: 0.5,
         summary: "Os números do dia numa tela só e avisos automáticos. Substitui o ChocoAlerta.",
         includes: [

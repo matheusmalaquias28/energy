@@ -199,7 +199,7 @@ body:has(.arp) { cursor: auto; background: oklch(0.17 0.018 50); }
 .arp .price { font-family: var(--display); font-weight: 300; font-size: clamp(2.8rem, 6vw, 4.8rem); line-height: 1; letter-spacing: -.03em; color: var(--gold); font-variant-numeric: tabular-nums; margin-bottom: 6px; }
 .arp .price.small { font-size: clamp(2.2rem, 4.4vw, 3.2rem); margin-top: 14px; }
 .arp .price span { font-size: .38em; color: var(--mute); margin-left: 6px; letter-spacing: 0; }
-.arp .price span.pre { margin: 0 8px 0 0; }
+.arp .price span.pre-to { margin: 0 10px; }
 .arp .tier { margin: 2px 0 0; font-size: 14px; color: var(--gold-2); }
 .arp .pay { margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
 .arp .pay > div { background: var(--ink-3); padding: 14px 16px; }

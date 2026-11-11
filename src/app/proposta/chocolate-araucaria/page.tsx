@@ -74,9 +74,9 @@ const STEPS = [
 ];
 
 const MONTHLY_RULES = [
-  "O valor é fechado depois do orçamento, quando os módulos estiverem definidos.",
-  "Depende de quantos módulos entram e das ferramentas que eles usam.",
-  "Seja qual for a montagem, não passa de R$ 1.000 por mês.",
+  "O valor exato depende dos módulos escolhidos e das ferramentas que eles usam.",
+  "Ele é fechado junto com o orçamento, quando a montagem estiver definida.",
+  "Seja qual for a montagem, fica dentro dessa faixa.",
 ];
 
 function Head({ n, kicker, title, intro }: { n: string; kicker: string; title: React.ReactNode; intro?: React.ReactNode }) {
@@ -253,8 +253,9 @@ export default function PropostaAraucaria() {
           <article className="card" data-reveal>
             <div className="eyebrow">Custo mensal</div>
             <div className="price small">
-              <span className="pre">até</span>
-              {brl(MONTHLY.cap)}
+              {brl(MONTHLY.min)}
+              <span className="pre-to">a</span>
+              {brl(MONTHLY.max)}
               <span>/mês</span>
             </div>
             <ul className="incl">
